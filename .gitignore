@@ -46,4 +46,4 @@ target/
 MANIFEST.MF
 pom.properties
 target/
-src/main/webapp/WEB-INF/spring/root-context.xml
+root-context.xml
