@@ -9,7 +9,7 @@ public class BookRank {
 	private int RankNo;
 	private int userno;
 	private String isbn;
-
+	private int value;
 	private static int offset;
 	private static int listCount;
 

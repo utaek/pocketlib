@@ -2,6 +2,8 @@ package pocketLib.spring.pocketLibSpring.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import pocketLib.spring.pocketLibSpring.helper.RetrofitHelper;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
+import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
 
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
-
 import pocketLib.spring.pocketLibSpring.retrofit.Service.AladinService;
+import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBook;
 import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBookList;
 
 import retrofit2.Call;
@@ -35,11 +39,15 @@ public class RetrofitController {
 	private BookService bookService;
 	
 	
-	@RequestMapping(value = "/04_book/bestseller.do", method = RequestMethod.GET)
-	public String bestseller(Model model) {
+	@RequestMapping(value = "/book/bestseller.do", method = RequestMethod.GET)
+	public String bestseller(Model model, HttpServletRequest request) {
 		Retrofit retrofit = retrofitHelper.getRetrofit(AladinService.BASE_URL);
-	
-		
+		HttpSession session = request.getSession();
+
+		Customer userInfo = (Customer) session.getAttribute("userInfo");
+		if(userInfo==null) {
+			userInfo= null;
+		}
 		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
 		AladinService aladinService = retrofit.create(AladinService.class);
 
@@ -91,17 +99,24 @@ public class RetrofitController {
 				e.getLocalizedMessage();
 			}
 		}
+		
+		model.addAttribute("userInfo",userInfo);
 		model.addAttribute(categoryId);
 		model.addAttribute(aladinBookList);
 		
-		return "04_book/bestseller";
+		return "book/bestseller";
 
 	}
 
-	@RequestMapping(value = "/04_book/item_new_special.do", method = RequestMethod.GET)
-	public String itemNewSpecial(Model model) {
+	@RequestMapping(value = "/book/item_new_special.do", method = RequestMethod.GET)
+	public String itemNewSpecial(Model model, HttpServletRequest request) {
 		Retrofit retrofit = retrofitHelper.getRetrofit(AladinService.BASE_URL);
+		HttpSession session = request.getSession();
 
+		Customer userInfo = (Customer) session.getAttribute("userInfo");
+		if(userInfo==null) {
+			userInfo= null;
+		}
 		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
 		AladinService aladinService = retrofit.create(AladinService.class);
 
@@ -153,14 +168,61 @@ public class RetrofitController {
 				e.getLocalizedMessage();
 			}
 		}
-		
+		model.addAttribute("userInfo",userInfo);
 		model.addAttribute(categoryId);
 		model.addAttribute(aladinBookList);
 		
-		return "04_book/item_new_special";
+		return "book/item_new_special";
 
 	}
 
+	@RequestMapping(value = "/book/booksearch.do", method = RequestMethod.GET)
+	public ModelAndView booksearch(Model model, HttpServletRequest request) {
+		Retrofit retrofit = retrofitHelper.getRetrofit(AladinService.BASE_URL);
+		HttpSession session = request.getSession();
+
+		Customer userInfo = (Customer) session.getAttribute("userInfo");
+		
+		if (userInfo == null) {
+			userInfo= null;
+		
+		}
 	
+		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
+		AladinService aladinService = retrofit.create(AladinService.class);
+
+
+		//검색키워드 받기
+		String query = webHelper.getString("query", "");
+
+		//검색 결과 저장할 beans 객체 선언
+		AladinBook search = null;
+		String ttbkey = "ttbfreda70890100001";
+		String queryType = "Title";
+		int maxResults = 10;
+		String cover = "Big";
+		int start = 1;
+		String searchTarget = "Book";
+		String output = "js";
+		int version = 20131101;
+
+		//검색어 존재할 경우 검색결과받기
+		if (!query.equals("")) {
+
+			Call<AladinBook> call = aladinService.getAladinBookSearch(ttbkey, query, queryType, maxResults, cover,
+					start, searchTarget, output, version);
+			try {
+				search = call.execute().body();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		model.addAttribute("userInfo",userInfo);
+		model.addAttribute("search", search);
 	
+		String viewPath = "book/booksearch";
+		return new ModelAndView(viewPath);
+
+	}
 }

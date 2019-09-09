@@ -2,10 +2,13 @@ package pocketLib.spring.pocketLibSpring.mybatis.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested;
 
+
 public interface BookInterestedService {
-	public BookInterested getBookInterestedItem(BookInterested input) throws Exception;
+	public pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested getBookInterestedItem(BookInterested input) throws Exception;
 
 	public List<BookInterested> getBookInterestedList(BookInterested input) throws Exception;
 

@@ -2,7 +2,10 @@ package pocketLib.spring.pocketLibSpring.mybatis.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
+
 
 public interface BookReadService {
 
