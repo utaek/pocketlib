@@ -10,6 +10,8 @@ public interface BookRankService {
 
 	public List<BookRank> getBookRankList(BookRank input) throws Exception;
 
+	
+	
 	public int getBookRankCount(BookRank input) throws Exception;
 
 	public int addBookRank(BookRank input) throws Exception;
