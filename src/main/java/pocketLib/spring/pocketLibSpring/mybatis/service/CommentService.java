@@ -4,6 +4,8 @@ import java.util.List;
 
 import pocketLib.spring.pocketLibSpring.mybatis.model.Comment;
 
+
+
 /** 학과 데이터 관리 기능을 제공하기 위한 Service 계층. */
 public interface CommentService {
     
