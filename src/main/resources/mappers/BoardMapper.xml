@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardMapper">
-
+<!-- 김현종 -->
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap id="boardMap"
 		type="pocketLib.spring.pocketLibSpring.mybatis.model.Board">
