@@ -49,6 +49,6 @@
 	</interceptors>
 	
 	<task:scheduled-tasks>
-		<task:scheduled ref="getBook" method="getBook" cron="0/10 * * * * ?"/>
+		<task:scheduled ref="BookScheduler" method="getBook" cron="0/10 * * * * ?"/>
 	</task:scheduled-tasks>
 </beans:beans>

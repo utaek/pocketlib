@@ -53,9 +53,12 @@
 		<prop key="dbUsername">root</prop>
 		<!-- 데이터베이스 비밀번호 -->
 		<prop key="dbPassword">lernensql12#</prop>
+
+   
 		<!-- Mapper 파일들이 위치할 '/src/main/resources' 하위의 경로 -->
 		<prop key="mapperPath">/mappers/*Mapper.xml</prop>
 	</util:properties>
+
 
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

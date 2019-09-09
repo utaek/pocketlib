@@ -46,4 +46,8 @@ target/
 MANIFEST.MF
 pom.properties
 target/
+<<<<<<< HEAD
 \pocketlib\src\main\webapp\WEB-INF\spring\root-context.xml
+=======
+src/main/webapp/WEB-INF/spring/root-context.xml
+>>>>>>> f1cd26bbb41b54115ce93ea2b1be85db5b4cc012
