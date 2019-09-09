@@ -16,22 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Slf4j
 public class RetrofitHelper {
     // -------------- 싱글톤 생성 시작 ---------------
-    private static RetrofitHelper current;
-
-    public static RetrofitHelper getInstance() {
-        if (current == null) {
-            current = new RetrofitHelper();
-        }
-
-        return current;
-    }
-
-    public static void freeInstance() {
-        current = null;
-    }
-
-    private RetrofitHelper() {
-    }
+   
+    
     // -------------- 싱글톤 생성 끝 ---------------
     
     /**

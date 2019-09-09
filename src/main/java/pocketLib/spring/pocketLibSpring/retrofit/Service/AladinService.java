@@ -1,15 +1,12 @@
 package pocketLib.spring.pocketLibSpring.retrofit.Service;
 
-import pocketLib.spring.pocketLibSpring.helper.RetrofitHelper;
+import org.springframework.stereotype.Service;
+
 import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBook;
 import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBookList;
 import retrofit2.Call;
-
-import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-
-
 
 /*/**
  * 
@@ -26,6 +23,7 @@ ttbkey=[TTBKey]
 
  * @return
  */
+@Service
 public interface AladinService {
 	public static final String BASE_URL = "http://www.aladin.co.kr";
 	

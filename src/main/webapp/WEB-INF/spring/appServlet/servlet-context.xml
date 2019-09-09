@@ -38,6 +38,7 @@
 		base-package="pocketLib.spring.pocketLibSpring.controller" />
 	<context:component-scan
 		base-package="pocketLib.spring.pocketLibSpring.mybatis.service.impl" />
+		
 
 	<!-- 인터셉터 등록 -->
 	<interceptors>
@@ -49,6 +50,6 @@
 	</interceptors>
 	
 	<task:scheduled-tasks>
-		<task:scheduled ref="getBook" method="getBook" cron="0/10 * * * * ?"/>
+		<task:scheduled ref="BookScheduler" method="getBook" cron="0 0 15 * * ?"/>
 	</task:scheduled-tasks>
 </beans:beans>

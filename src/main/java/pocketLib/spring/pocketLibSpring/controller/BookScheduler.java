@@ -1,12 +1,15 @@
-package pocketLib.spring.pocketLibSpring.mybatis.scheduler;
+package pocketLib.spring.pocketLibSpring.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
 import pocketLib.spring.pocketLibSpring.helper.RetrofitHelper;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
@@ -17,6 +20,7 @@ import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBookList;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
+@Slf4j
 @Controller
 public class BookScheduler {
 	@Autowired
@@ -27,13 +31,11 @@ public class BookScheduler {
 
 	@Autowired
 	BookService bookService;
-
-	@Autowired
-	AladinService aladinService;
 	
 	@Autowired
 	RetrofitHelper retrofitHelper;
 	
+	@RequestMapping
 	public void getBook() {
 		AladinBookList booklist = null;
 
@@ -52,8 +54,9 @@ public class BookScheduler {
 		String searchTarget = "Book";
 		String output = "js";
 		int version = 20131101;
-
+		
 		Retrofit retrofit = retrofitHelper.getRetrofit(AladinService.BASE_URL);
+		
 
 		AladinService aladinService = retrofit.create(AladinService.class);
 
