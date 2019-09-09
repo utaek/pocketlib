@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
 
+@Data
 public class AladinBookList {
 	
 	@SerializedName("title")
@@ -19,7 +21,8 @@ public class AladinBookList {
 	
 	@SerializedName("item")
 	public List<Item> item;
-
+	
+	@Data
 	public class Item {
 		@SerializedName("link")
 		public String link;
