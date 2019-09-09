@@ -23,6 +23,15 @@
 
     </select>
     
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="test"
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead" 
+            resultMap="BookReadMap">
+        <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+	select RankNo, userno, isbn, value from bookRead where RankNo=#{RankNo};
+
+    </select>
+    
     
       <!-- 단일행 조회를 위한 기능 정의 -->
     <select id="selectItembyUserId"
