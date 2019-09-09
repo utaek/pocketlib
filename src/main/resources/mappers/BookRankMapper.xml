@@ -11,7 +11,7 @@
         <result property="RankNo" column="RankNo" />
         <result property="userno" column="userno" />
         <result property="isbn" column="isbn" />
-           <result property="value" column="value" />
+         	<result property="value" column="value" />
     </resultMap>
     
     <!-- 단일행 조회를 위한 기능 정의 -->
