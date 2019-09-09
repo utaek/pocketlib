@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="CustomerMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="customerMap"
+		type="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="userno" column="userno" />
+		<result property="userId" column="userid" />
+		<result property="password" column="password" />
+		<result property="userName" column="username" />
+		<result property="birthday" column="birthday" />
+		<result property="email" column="email" />
+		<result property="gender" column="gender" />
+		<result property="userkey" column="usesrkey" />
+
+	</resultMap>
+
+	<!-- 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer"
+		useGeneratedKeys="true" keyProperty="userno">
+		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+		INSERT INTO customer (userid, password, username, birthday, email,
+		gender, userkey)
+		VALUES (#{userId}, #{password}, #{userName}, #{birthday}, #{email},
+		#{gender}, #{userkey});
+	</insert>
+
+	<select id="selectCount"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer" resultType="int">
+
+		SELECT COUNT(*) FROM customer where userid = #{userId};
+	</select>
+
+	<select id="LoginCheckId" resultMap="customerMap"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
+
+		SELECT * FROM customer where userid = #{userId};
+	</select>
+	
+	<select id="LoginCheckEmail" resultMap="customerMap"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
+
+		SELECT * FROM customer where userkey = 'Y' AND userid = #{userId};
+	</select>
+	
+	<update id="updateCustomer"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
+		UPDATE customer SET password=#{password}, username=#{userName},
+		birthday=#{birthday}, email=#{email}, gender=#{gender} WHERE
+		userid=#{userId};
+	</update>
+	
+	<update id="emailCheck"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
+		UPDATE customer SET userkey=#{userkey} WHERE
+		userid=#{userId};
+	</update>
+	
+	<select id="newPasswordCheck" resultMap="customerMap"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
+
+		SELECT * FROM customer where userid = #{userId} AND username = #{userName} AND email = #{email};
+	</select>
+	
+	<update id="newPassword"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
+		UPDATE customer SET password=#{password} WHERE
+		userid=#{userId};
+	</update>
+
+</mapper>

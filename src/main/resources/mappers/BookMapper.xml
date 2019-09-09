@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BookMapper">
+   
+    <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+    <resultMap id="bookMap" type="pocketLib.spring.pocketLibSpring.mybatis.model.Book">
+        <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+             <result property="isbn" column="isbn" />
+              <result property="title" column="title" />
+        <result property="author" column="author" />
+        <result property="description" column="description" />
+        <result property="pubDate" column="pubDate" />
+       <result property="priceSales" column="priceSales" />
+        <result property="priceStandard" column="priceStandard" />
+        <result property="cover" column="cover" />
+        <result property="categoryId" column="categoryId" />
+        <result property="categoryName" column="categoryName" />
+        <result property="publisher" column="publisher " />
+          </resultMap>
+    
+     <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+    <resultMap id="BookReadMap" type="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead">
+        <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+        <result property="bRNo" column="bRNo" />
+        <result property="userno" column="userno" />
+        <result property="isbn" column="isbn" />
+    </resultMap>
+    
+      <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+    <resultMap id="BookInterestedMap" type="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested">
+        <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+        <result property="bINo" column="bINo" />
+        <result property="userno" column="userno" />
+        <result property="isbn" column="isbn" />
+    </resultMap>
+    
+    
+        
+    
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItem"
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
+            resultMap="bookMap">
+        <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+	select isbn, title, author, description, pubDate, priceSales, priceStandard, cover, categoryId, categoryName from book where isbn=#{isbn};
+
+    </select>
+    
+
+    
+    <!-- 다중행 조회를 위한 기능 정의 -->
+   <select id="selectList" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
+            resultMap="bookMap">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+	select isbn, title, author, description, pubDate,  priceSales, priceStandard, cover, categoryId, categoryName from book;
+
+   
+    </select>
+   <!-- 관심책과 inner join? -->
+   
+    <select id="InterestedList" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
+            resultMap="bookMap">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+	select b.isbn, title, cover from book as b join bookinterested as i where b.isbn=i.isbn and userno=#{userno};
+
+    </select>
+    
+    
+    <!-- 읽은책과 inner join? -->
+ <select id="ReadList" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
+            resultMap="bookMap">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+	select book.isbn, title, cover from book join bookread  where book.isbn = bookread.isbn and userno=#{userno};
+
+   
+    </select>
+    
+   
+    
+    <!-- 데이터 수 조회를 위한 기능 정의 -->
+    <select id="selectCount" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
+            resultType="int">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+   	select count(*) from book;
+
+    </select>
+    
+    
+    <!-- isbn 없으면 insert 하기 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertItem" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" >
+        <!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+    insert ignore into book (isbn, title, author, description, pubDate, priceSales, priceStandard, cover, categoryId, categoryName) 
+  values (#{isbn},#{title}, #{author},#{description}, #{pubDate}, #{priceSales}, #{priceStandard}, #{cover}, #{categoryId}, #{categoryName});
+    </insert>
+    
+    
+    <!-- 데이터 삭제를 위한 기능 정의 -->
+    <delete id="deleteItem" parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    delete from book where isbn=#{isbn} ;
+    </delete>
+    
+   
+</mapper>

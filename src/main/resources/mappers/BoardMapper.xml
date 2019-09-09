@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="boardMap"
+		type="pocketLib.spring.pocketLibSpring.mybatis.model.Board">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="boardNo" column="boardNo" />
+		<result property="userNo" column="userNo" />
+		<result property="userId" column="userId" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="reg_date" column="reg_date" />
+		<result property="hits" column="hits" />
+		<result property="boardCate" column="boardCate" />
+		<result property="sortCate" column="sortCate" />
+		<result property="love" column="love" />
+		<result property="hate" column="hate" />
+	</resultMap>
+
+	<!-- 단일행 조회를 위한 기능 정의 -->
+	<select id="selectItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board" resultMap="boardMap">
+		<!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+		SELECT boardNo, userNo, userId, title, content,
+		reg_date,hits,boardCate,love,hate FROM Board WHERE boardNo=#{boardNo};
+	</select>
+	
+	<select id="selectOptionList1"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board" resultMap="boardMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT boardNo,title,content,userId,reg_date,hits,boardCate,love,hate FROM Board
+		<where>
+			<if test="true">
+				boardCate = #{boardCate} 
+			</if>
+			<if test="title != null and title !=''">
+				AND( title LIKE concat('%', #{title}, '%')
+			</if>
+			<if test="content != null and title !=''">
+				OR content LIKE concat('%', #{content}, '%')) 
+			</if>
+			<if test="sortCate == 'order' or (sortCate == null or sortCate =='')">
+				order by boardNo DESC
+			</if>
+			<if test="sortCate == 'reg_date'">
+				order by reg_date DESC
+			</if>
+			<if test="sortCate == 'hits'">
+				order by hits DESC
+			</if>
+		</where>
+		
+		<if test="listCount >0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+	
+	<select id="selectOptionList2"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board" resultMap="boardMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT boardNo,title,content,userId,reg_date,hits,boardCate,love,hate  FROM Board
+		<where>
+			<if test="true">
+				boardCate = #{boardCate} 
+			</if>
+			<if test="title != null and title !=''">
+				AND title LIKE concat('%', #{title}, '%')
+			</if>
+			
+			<if test="sortCate == 'order' or sortCate == null or sortCate==''">
+				order by boardNo DESC
+			</if>
+			<if test="sortCate == 'reg_date'">
+				order by reg_date DESC
+			</if>
+			<if test="sortCate == 'hits'">
+				order by hits DESC
+			</if>
+			
+		</where>
+		<if test="listCount >0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+
+	<select id="selectOptionList3"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board" resultMap="boardMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT boardNo,title,content,userId,reg_date,hits,boardCate,love,hate  FROM Board
+		<where>
+			<if test="true">
+				boardCate = #{boardCate} 
+			</if>
+			<if test="userId != null and userId !=''">
+				AND userId LIKE concat('%', #{userId}, '%')
+			</if>
+			<if test="sortCate == 'order' or (sortCate == null or sortCate=='')">
+				order by boardNo DESC
+			</if>
+			<if test="sortCate == 'reg_date'">
+				order by reg_date DESC
+			</if>
+			<if test="sortCate == 'hits'">
+				order by hits DESC
+			</if>
+		</where>
+		<if test="listCount >0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+	<!-- 데이터 수 조회를 위한 기능 정의 -->
+	
+	<select id="selectOptionCount1"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board" resultType="int">
+		SELECT COUNT(*) FROM Board
+		<where>
+			<if test="true">
+				boardCate = #{boardCate}
+			</if>
+			<if test="title != null and title !=''">
+				AND (title LIKE concat('%', #{title}, '%')
+			</if>
+			<if test="content != null and title !=''">
+				OR content LIKE concat('%', #{content}, '%'))
+			</if>
+			
+		</where>
+	</select>
+	
+	<select id="selectOptionCount2"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board" resultType="int">
+		SELECT COUNT(*) FROM Board
+		<where>
+			<if test="true">
+				boardCate = #{boardCate}
+			</if>
+			<if test="title != null and title !=''">
+				AND title LIKE concat('%', #{title}, '%')
+			</if>
+			
+		</where>
+	</select>
+	
+	<select id="selectOptionCount3"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board" resultType="int">
+		SELECT COUNT(*) FROM Board
+		<where>
+			<if test="true">
+				boardCate = #{boardCate}
+			</if>
+			<if test="userId != null and userId !=''">
+				AND userId LIKE concat('%', #{userId}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
+		useGeneratedKeys="true" keyProperty="boardNo">
+		INSERT INTO Board
+		(userNo,userId,title,content,reg_date,boardCate,love,hate)
+		VALUES
+		(#{userNo},#{userId},#{title}, #{content}, #{reg_date}, #{boardCate},0,0);
+	</insert>
+
+	<!-- 데이터 삭제를 위한 기능 정의 -->
+	<delete id="deleteItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board">
+		DELETE FROM Board WHERE boardNo=#{boardNo};
+	</delete>
+
+	<!-- 데이터 갱신을 위한 기능 정의 -->
+	<update id="updateItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board">
+		UPDATE Board SET title = #{title}, content = #{content},
+		reg_date = #{reg_date} where boardNo = #{boardNo};
+	</update>
+
+	
+	<update id="updateLove"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board">
+		UPDATE Board SET love = love+1 where boardNo = #{boardNo};
+	</update>
+	
+	<update id="updateHate"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board">
+		UPDATE Board SET hate = hate+1 where boardNo = #{boardNo};
+	</update>
+
+	<!-- 데이터 갱신을 위한 기능 정의 -->
+	<update id="updateViewCount"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board">
+		UPDATE Board SET hits = hits+1 where boardNo =
+		#{boardNo};
+	</update>
+</mapper>

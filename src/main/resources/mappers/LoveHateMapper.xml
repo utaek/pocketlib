@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LoveHateMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="LoveHateMap"
+		type="pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="loveNo" column="loveNo" />
+		<result property="boardNo" column="boardNo" />
+		<result property="cmtNo" column="cmtNo" />
+		<result property="userNo" column="userNo" />
+		<result property="type" column="type" />
+		<result property="loveType" column="loveType" />
+	</resultMap>
+
+	<!-- 단일행 조회를 위한 기능 정의 -->
+	<select id="selectItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate"
+		resultMap="LoveHateMap">
+		<!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+		SELECT loveNo, boardNo, cmtNo,userNo,type, loveType
+		FROM love_hate WHERE loveNo=#{loveNo};
+	</select>
+
+	
+	
+	<select id="selectList"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate"
+		resultMap="LoveHateMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT loveNo, boardNo, cmtNo, userNo,type, loveType FROM love_hate
+		
+	</select>
+
+	
+
+	
+	<!-- 데이터 수 조회를 위한 기능 정의 -->
+
+	<select id="selectCountbycmt"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate" resultType="int">
+		SELECT COUNT(*) FROM love_hate 
+		where cmtNo=#{cmtNo} and userNo=#{userNo} and type=1;
+	
+	</select>
+	
+	<select id="selectCountbyboard"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate" resultType="int">
+		SELECT COUNT(*) FROM love_hate 
+		where boardNo=#{boardNo} and userNo=#{userNo} and type=0;
+	
+	</select>
+
+	
+
+
+
+	<!-- 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate"
+		useGeneratedKeys="true" keyProperty="loveNo">
+		INSERT INTO love_hate
+		(
+		boardNo, cmtNo,userNo,type, loveType)
+		VALUES
+		(#{boardNo},#{cmtNo},#{userNo},
+		#{type}, #{loveType});
+	</insert>
+
+
+	
+
+
+	
+	
+
+	
+	
+	<!-- 데이터 갱신을 위한 기능 정의 -->
+	<update id="updateItem3"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate">
+		UPDATE love_hate SET ccmt_ref = #{cmtNo}
+		 where cmtNo = #{cmtNo};
+	</update>
+
+	
+</mapper>

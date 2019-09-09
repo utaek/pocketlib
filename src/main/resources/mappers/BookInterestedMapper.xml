@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BookInterestedMapper">
+   
+    <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+    <resultMap id="BookInterestedMap" type="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested">
+        <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+        <result property="bINo" column="bINo" />
+        <result property="userno" column="userno" />
+        <result property="isbn" column="isbn" />
+    </resultMap>
+    
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItem"
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested" 
+            resultMap="BookInterestedMap">
+        <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+	select bINo, userno, isbn from BookInterested where bINo=#{bINo};
+
+    </select>
+    
+    
+      <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItembyUserId"
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested" 
+            resultMap="BookInterestedMap">
+        <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+	select bINo, userno, isbn from BookInterested where userno=#{userno};
+
+    </select>
+    
+    
+    
+    <!-- 다중행 조회를 위한 기능 정의 -->
+   <select id="selectList" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested" 
+            resultMap="BookInterestedMap">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+	select bINo, userno, isbn from BookInterested;
+
+    </select>
+    
+    <!-- 데이터 수 조회를 위한 기능 정의 -->
+    <select id="selectCount" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested" 
+            resultType="int">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+   	select count(*) from BookInterested where userno=#{userno} and isbn=#{isbn};
+
+    </select>
+    
+    
+    <!-- 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertItem" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested" 
+            useGeneratedKeys="true"
+            keyProperty="bINo">
+        <!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+    insert into BookInterested (userno, isbn) values (#{userno}, #{isbn});
+    
+    </insert>
+    
+    
+    <!-- 데이터 삭제를 위한 기능 정의 -->
+    <delete id="deleteItem" parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    delete from BookInterested where userno=#{userno} and isbn=#{isbn};
+    </delete>
+    
+   
+</mapper>
