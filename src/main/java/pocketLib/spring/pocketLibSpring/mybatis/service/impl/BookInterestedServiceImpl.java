@@ -2,7 +2,6 @@ package pocketLib.spring.pocketLibSpring.mybatis.service.impl;
 
 import java.util.List;
 
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,19 +9,12 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookInterestedService;
-
-@Slf4j
 @Service
+@Slf4j
 public class BookInterestedServiceImpl implements BookInterestedService {
 
 	@Autowired
 	SqlSession sqlSession;
-
-	public BookInterestedServiceImpl(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-
-	
 	@Override
 	public int addBookInterested(BookInterested input) throws Exception {
 		int result=0;
@@ -41,15 +33,9 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 			   sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 저장에 실패했습니다.");
-		} finally {
-            sqlSession.commit();
-        }
-
-		
+		} 
 		return result;
 	}
-
-
 	@Override
 	public BookInterested getBookInterestedItem(BookInterested input) throws Exception {
 		  BookInterested result = null;
@@ -66,13 +52,9 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
-	        } finally {
-	            sqlSession.commit();
-	        }
+	        } 
 	        return result;
 	}
-
-
 	@Override
 	public List<BookInterested> getBookInterestedList(BookInterested input) throws Exception {
 		 List<BookInterested> result = null;
@@ -89,32 +71,21 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
-	        } finally {
-	            sqlSession.commit();
-	        }
+	        } 
 	        return result;
 	}
-
-
 	@Override
 	public int getBookInterestedCount(BookInterested input) throws Exception {
 		 int result = 0;
-	        
 	        try {
 	            result = sqlSession.selectOne("BookInterestedMapper.selectCount", input);
 	        } catch (Exception e) {
 	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
-	        } finally {
-	            sqlSession.commit();
-	        }
-	        
+	        } 
 	        return result;
 	}
-
-
-	
 
 	@Override
 	public int editBookInterested(BookInterested input) throws Exception {
@@ -132,9 +103,7 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 수정에 실패했습니다.");
-	        } finally {
-	            sqlSession.commit();
-	        }
+	        } 
 	        return result;
 	}
 
@@ -155,9 +124,7 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 삭제에 실패했습니다.");
-	        } finally {
-	            sqlSession.commit();
-	        }
+	        } 
 	        return result;
 	}
 
