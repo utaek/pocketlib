@@ -133,33 +133,32 @@
 							<li><a href="#">내 책장</a></li>
 							<li><a href="#">???????</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">커뮤니티</a>
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">자유게시판</a></li>
-							<li><a href="#">책 후기 게시판</a></li>
-							<li><a href="#">QNA 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
+									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">고객센터</a>
 						<ul class="dropdown-menu">
 							<li><a href="buttons.html">공지사항</a>
-
-								<li><a href="buttons.html">FAQ</a>
-							
+							<li><a href="buttons.html">FAQ</a>
 							<li><a href="buttons.html">Email상담</a>
-						
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a
-								href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="02_session/logout.jsp">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/login/myPage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+
 				</ul>
 			</div>
 		</div>

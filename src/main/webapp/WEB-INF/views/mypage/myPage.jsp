@@ -133,46 +133,47 @@
 							<li><a href="#">내 책장</a></li>
 							<li><a href="#">???????</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">커뮤니티</a>
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">자유게시판</a></li>
-							<li><a href="#">책 후기 게시판</a></li>
-							<li><a href="#">QNA 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
+									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">고객센터</a>
 						<ul class="dropdown-menu">
 							<li><a href="buttons.html">공지사항</a>
-
-								<li><a href="buttons.html">FAQ</a>
-							
+							<li><a href="buttons.html">FAQ</a>
 							<li><a href="buttons.html">Email상담</a>
-						
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a
-								href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="02_session/logout.jsp">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/login/myPage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+
 				</ul>
 			</div>
 		</div>
 	</nav>
-<div class="main">
-									<section class="module">
+	<div class="main">
+		<section class="module">
 			<div class="container">
 
-				<form method="post" action="${pageContext.request.contextPath}/login/myPageEdit.do" name="form">
+				<form method="post"
+					action="${pageContext.request.contextPath}/login/myPageEdit.do"
+					name="form">
 					<table class="table table-hover">
 						<thead>
 
-							<h3>${userInfo.userName}님의 My Page</h3>
+							<h3>${userInfo.userName}님의My Page</h3>
 						</thead>
 						<tbody>
 
@@ -182,9 +183,7 @@
 							</tr>
 							<tr>
 								<td>성별</td>
-								<td colspan="6">
-									${userInfo.gender}
-								</td>
+								<td colspan="6">${userInfo.gender}</td>
 
 							</tr>
 							<tr>
@@ -200,7 +199,7 @@
 
 							<tr>
 								<td style="text-align: center;" colspan="9"><input
-																class="btn btn-b btn-round" type="submit" value="정보 수정" /></td>
+									class="btn btn-b btn-round" type="submit" value="정보 수정" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -253,7 +252,7 @@
 								<li class="clearfix">
 									<div class="widget-posts-image">
 										<a href="#"><img src="../assets/images/rp-1.jpg"
-																		alt="Post Thumbnail" /></a>
+											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
 										<div class="widget-posts-title">
@@ -265,7 +264,7 @@
 								<li class="clearfix">
 									<div class="widget-posts-image">
 										<a href="#"><img src="../assets/images/rp-2.jpg"
-																		alt="Post Thumbnail" /></a>
+											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
 										<div class="widget-posts-title">
@@ -293,9 +292,9 @@
 					<div class="col-sm-6">
 						<div class="footer-social-links">
 							<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-															class="fa fa-twitter"></i></a><a href="#"><i
-															class="fa fa-dribbble"></i></a><a href="#"><i
-															class="fa fa-skype"></i></a>
+								class="fa fa-twitter"></i></a><a href="#"><i
+								class="fa fa-dribbble"></i></a><a href="#"><i
+								class="fa fa-skype"></i></a>
 						</div>
 					</div>
 				</div>
@@ -314,18 +313,18 @@
 	<script src="../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../assets/lib/wow/dist/wow.js"></script>
 	<script
-									src="../assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+		src="../assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
 	<script src="../assets/lib/isotope/dist/isotope.pkgd.js"></script>
 	<script src="../assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
 	<script src="../assets/lib/flexslider/jquery.flexslider.js"></script>
 	<script src="../assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
 	<script src="../assets/lib/smoothscroll.js"></script>
 	<script
-									src="../assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+		src="../assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 	<script
-									src="../assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+		src="../assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
 	<script src="../assets/js/plugins.js"></script>
 	<script src="../assets/js/main.js"></script>
 
-							</body>
+</body>
 </html>

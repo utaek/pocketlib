@@ -27,35 +27,35 @@
     =============================================
     -->
 <link rel="apple-touch-icon" sizes="57x57"
-	href="assets/images/favicons/apple-icon-57x57.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60"
-	href="assets/images/favicons/apple-icon-60x60.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72"
-	href="assets/images/favicons/apple-icon-72x72.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-72x72.png">
 <link rel="apple-touch-icon" sizes="76x76"
-	href="assets/images/favicons/apple-icon-76x76.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-76x76.png">
 <link rel="apple-touch-icon" sizes="114x114"
-	href="assets/images/favicons/apple-icon-114x114.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-114x114.png">
 <link rel="apple-touch-icon" sizes="120x120"
-	href="assets/images/favicons/apple-icon-120x120.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-120x120.png">
 <link rel="apple-touch-icon" sizes="144x144"
-	href="assets/images/favicons/apple-icon-144x144.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152"
-	href="assets/images/favicons/apple-icon-152x152.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="180x180"
-	href="assets/images/favicons/apple-icon-180x180.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-180x180.png">
 <link rel="icon" type="image/png" sizes="192x192"
-	href="assets/images/favicons/android-icon-192x192.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/android-icon-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="assets/images/favicons/favicon-32x32.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96"
-	href="assets/images/favicons/favicon-96x96.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16"
-	href="assets/images/favicons/favicon-16x16.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-16x16.png">
 <link rel="manifest" href="/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage"
-	content="assets/images/favicons/ms-icon-144x144.png">
+	content="${pageContext.request.contextPath}/assets/images/favicons/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 <!--  
     Stylesheets
@@ -63,7 +63,7 @@
     
     -->
 <!-- Default stylesheets-->
-<link href="assets/lib/bootstrap/dist/css/bootstrap.min.css"
+<link href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- Template specific stylesheets-->
 <link
@@ -74,23 +74,23 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
 	rel="stylesheet">
-<link href="assets/lib/animate.css/animate.css" rel="stylesheet">
-<link href="assets/lib/components-font-awesome/css/font-awesome.min.css"
+<link href="${pageContext.request.contextPath}/assets/lib/animate.css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/lib/components-font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
-<link href="assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
-<link href="assets/lib/flexslider/flexslider.css" rel="stylesheet">
-<link href="assets/lib/owl.carousel/dist/assets/owl.carousel.min.css"
+<link href="${pageContext.request.contextPath}/assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
-	href="assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.theme.default.min.css"
 	rel="stylesheet">
-<link href="assets/lib/magnific-popup/dist/magnific-popup.css"
+<link href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
 	rel="stylesheet">
-<link href="assets/lib/simple-text-rotator/simpletextrotator.css"
+<link href="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/simpletextrotator.css"
 	rel="stylesheet">
 <!-- Main stylesheet and color file-->
-<link href="assets/css/style.css" rel="stylesheet">
-<link id="color-scheme" href="assets/css/colors/default.css"
+<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+<link id="color-scheme" href="${pageContext.request.contextPath}/assets/css/colors/default.css"
 	rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -146,11 +146,11 @@
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="#">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -162,7 +162,7 @@
 		<div class="hero-slider">
 			<ul class="slides">
 				<li class="bg-dark-30 bg-dark"
-					style="background-image: url(assets/images/section-8.jpg);">
+					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-8.jpg);">
 					<div class="titan-caption">
 						<div class="caption-content">
 							<div class="font-alt mb-30 titan-title-size-1">Hello &amp;
@@ -174,7 +174,7 @@
 					</div>
 				</li>
 				<li class="bg-dark-30 bg-dark"
-					style="background-image: url(assets/images/section-9.jpg);">
+					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-9.jpg);">
 					<div class="titan-caption">
 						<div class="caption-content">
 							<div class="font-alt mb-30 titan-title-size-2">
@@ -186,7 +186,7 @@
 					</div>
 				</li>
 				<li class="bg-dark-30 bg-dark"
-					style="background-image: url(assets/images/section-10.jpg);">
+					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-10.jpg);">
 					<div class="titan-caption">
 						<div class="caption-content">
 							<div class="font-alt mb-30 titan-title-size-1">We build
@@ -208,7 +208,7 @@
 					<li class="work-item illustration webdesign"><a
 						href="portfolio_single_featured_image1.html">
 							<div class="work-image">
-								<img src="assets/images/photography/portrait.jpg"
+								<img src="${pageContext.request.contextPath}/assets/images/photography/portrait.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -219,7 +219,7 @@
 					<li class="work-item marketing photography"><a
 						href="portfolio_single_featured_image2.html">
 							<div class="work-image">
-								<img src="assets/images/photography/landscape.jpg"
+								<img src="${pageContext.request.contextPath}/assets/images/photography/landscape.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -230,7 +230,7 @@
 					<li class="work-item illustration photography"><a
 						href="portfolio_single_featured_slider1.html">
 							<div class="work-image">
-								<img src="assets/images/photography/architecture.jpg"
+								<img src="${pageContext.request.contextPath}/assets/images/photography/architecture.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -241,7 +241,7 @@
 					<li class="work-item marketing photography"><a
 						href="portfolio_single_featured_slider2.htmll">
 							<div class="work-image">
-								<img src="assets/images/photography/lifestyle.jpg"
+								<img src="${pageContext.request.contextPath}/assets/images/photography/lifestyle.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -297,7 +297,7 @@
 							<ul class="widget-posts">
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="assets/images/rp-1.jpg"
+										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-1.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
@@ -309,7 +309,7 @@
 								</li>
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="assets/images/rp-2.jpg"
+										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-2.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
@@ -355,19 +355,19 @@
     JavaScripts
     =============================================
     -->
-	<script src="assets/lib/jquery/dist/jquery.js"></script>
-	<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="assets/lib/wow/dist/wow.js"></script>
-	<script src="assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
-	<script src="assets/lib/isotope/dist/isotope.pkgd.js"></script>
-	<script src="assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
-	<script src="assets/lib/flexslider/jquery.flexslider.js"></script>
-	<script src="assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
-	<script src="assets/lib/smoothscroll.js"></script>
-	<script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/jquery/dist/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/wow/dist/wow.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/isotope/dist/isotope.pkgd.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/flexslider/jquery.flexslider.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/smoothscroll.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 	<script
-		src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
-	<script src="assets/js/plugins.js"></script>
-	<script src="assets/js/main.js"></script>
+		src="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/plugins.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </body>
 </html>
