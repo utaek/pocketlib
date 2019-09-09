@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BookReadMapper">
-   <!-- 김현종 빡빡이 -->
-   <!-- 김현종 전자두뇌 -->
+   <!-- 김현종 빡빡이 만세-->
+   <!-- 김현종 전자두뇌 만세 -->
     <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
     <resultMap id="BookReadMap" type="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead">
         <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
@@ -19,7 +19,8 @@
             parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead" 
             resultMap="BookReadMap">
         <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
-	select RankNo, userno, isbn, value from bookRead where RankNo=#{RankNo};
+	select RankNo, userno, isbn, value from
+		bookRead where RankNo=#{RankNo};
 
     </select>
 
@@ -30,7 +31,10 @@
             parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead" 
             resultMap="BookReadMap">
         <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
-	select RankNo, userno, isbn ,value from bookRead where userno=#{userno};
+	select RankNo, userno, isbn ,value from 
+	
+	
+	bookRead where userno=#{userno};
 
     </select>
     
