@@ -18,7 +18,7 @@
 ehthumbs.db
 Thumbs.db
 config.xml
-root-context.xml
+
 
 # 프로젝트정보 파일 제외
 .metadata
@@ -46,3 +46,4 @@ target/
 MANIFEST.MF
 pom.properties
 target/
+root-context.xml
