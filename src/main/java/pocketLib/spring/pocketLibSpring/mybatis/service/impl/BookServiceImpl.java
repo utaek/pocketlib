@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,17 +13,14 @@ import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
-
-@Slf4j
 @Service
+@Slf4j
 public class BookServiceImpl implements BookService {
     /** MyBatis */
     // --> import org.apache.ibatis.session.SqlSession
-    SqlSession sqlSession;
-    /** 생성자를 통한 객체 생성 */
-    public BookServiceImpl(SqlSession sqlSession) {
-        this.sqlSession = sqlSession;
-    }
+	@Autowired
+	SqlSession sqlSession;
+
    
     @Override
     public Book getBookItem(Book input) throws Exception {
@@ -32,16 +31,12 @@ public class BookServiceImpl implements BookService {
                 throw new NullPointerException("result=null");
             }
         } catch (NullPointerException e) {
-            sqlSession.rollback();
-            log.error(e.getLocalizedMessage());
+           log.error(e.getLocalizedMessage());
             throw new Exception("조회된 데이터가 없습니다.");
         } catch (Exception e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("데이터 조회에 실패했습니다.");
-        } finally {
-            sqlSession.commit();
-        }
+        } 
         return result;
     }
   
@@ -54,16 +49,12 @@ public class BookServiceImpl implements BookService {
                 throw new NullPointerException("result=null");
             }
         } catch (NullPointerException e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("조회된 데이터가 없습니다.");
         } catch (Exception e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("데이터 조회에 실패했습니다.");
-        } finally {
-            sqlSession.commit();
-        }
+        } 
         return result;
     }
 
@@ -74,12 +65,9 @@ public class BookServiceImpl implements BookService {
         try {
             result = sqlSession.selectOne("BookMapper.selectCount", input);
         } catch (Exception e) {
-            sqlSession.rollback();
-            log.error(e.getLocalizedMessage());
+           log.error(e.getLocalizedMessage());
             throw new Exception("데이터 조회에 실패했습니다.");
-        } finally {
-            sqlSession.commit();
-        }
+        } 
         
         return result;
     }
@@ -94,23 +82,16 @@ public class BookServiceImpl implements BookService {
             result = sqlSession.insert("BookMapper.insertItem", input);
            
         } catch (NullPointerException e) {
-            sqlSession.rollback();
-            log.error(e.getLocalizedMessage());
+           log.error(e.getLocalizedMessage());
             throw new Exception("저장된 데이터가 없습니다.");
         } catch (Exception e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("데이터 저장에 실패했습니다.");
-        } finally {
-            sqlSession.commit();
-        }
+        } 
         return result;
     }
-    /**
-     * 학과 데이터 수정하기
-     * @param Book 수정할 정보를 담고 있는 Beans
-     * @throws Exception
-     */
+    
+    
     @Override
     public int editBook(Book input) throws Exception {
         int result = 0;
@@ -120,23 +101,15 @@ public class BookServiceImpl implements BookService {
                 throw new NullPointerException("result=0");
             }
         } catch (NullPointerException e) {
-            sqlSession.rollback();
-            log.error(e.getLocalizedMessage());
+           log.error(e.getLocalizedMessage());
             throw new Exception("수정된 데이터가 없습니다.");
         } catch (Exception e) {
-            sqlSession.rollback();
-            log.error(e.getLocalizedMessage());
+           log.error(e.getLocalizedMessage());
             throw new Exception("데이터 수정에 실패했습니다.");
-        } finally {
-            sqlSession.commit();
-        }
+        } 
         return result;
     }
-    /**
-     * 학과 데이터 삭제하기
-     * @param Book 삭제할 학과의 일련번호를 담고 있는 Beans
-     * @throws Exception
-     */
+   
     @Override
     public int deleteBook(Book input) throws Exception {
         int result = 0;
@@ -146,16 +119,12 @@ public class BookServiceImpl implements BookService {
                 throw new NullPointerException("result=0");
             }
         } catch (NullPointerException e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("삭제된 데이터가 없습니다.");
         } catch (Exception e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("데이터 삭제에 실패했습니다.");
-        } finally {
-            sqlSession.commit();
-        }
+        } 
         return result;
     }
 
@@ -168,16 +137,12 @@ public class BookServiceImpl implements BookService {
 	                throw new NullPointerException("result=null");
 	            }
 	        } catch (NullPointerException e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("조회된 데이터가 없습니다.");
 	        } catch (Exception e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
-	        } finally {
-	            sqlSession.commit();
-	        }
+	        } 
 	        return result;
 	}
 
@@ -190,16 +155,12 @@ public class BookServiceImpl implements BookService {
 	                throw new NullPointerException("result=null");
 	            }
 	        } catch (NullPointerException e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("조회된 데이터가 없습니다.");
 	        } catch (Exception e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
-	        } finally {
-	            sqlSession.commit();
-	        }
+	        } 
 	        return result;
 	}
 }
