@@ -185,7 +185,6 @@ public class RetrofitController {
 		
 		if (userInfo == null) {
 			userInfo= null;
-		
 		}
 	
 		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
@@ -216,6 +215,28 @@ public class RetrofitController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		Book book = new Book();
+		
+		if(search!=null) {
+		for (AladinBook.Item item : search.item) {
+			book.setIsbn(item.isbn);
+			book.setTitle(item.title);
+			book.setAuthor(item.author);
+			book.setDescription(item.description);
+			book.setPriceSales(item.priceSales);
+			book.setPriceStandard(item.priceStandard);
+			book.setPublisher(item.publisher);
+			book.setCategoryId(item.categoryId);
+			book.setCategoryName(item.categoryName);
+			book.setPubDate(item.pubDate);
+			book.setCover(item.cover);
+			try {
+				bookService.addBook(book);
+			} catch (Exception e) {
+				e.getLocalizedMessage();
+			}
+		}
 		}
 		
 		model.addAttribute("userInfo",userInfo);
