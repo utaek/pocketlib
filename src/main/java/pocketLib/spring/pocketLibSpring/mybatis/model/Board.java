@@ -2,10 +2,6 @@ package pocketLib.spring.pocketLibSpring.mybatis.model;
 
 import lombok.Data;
 
-/**
- *  안녕하세요~!!!
- */
-
 /** 테이블 구조에 맞춘 Java Beans 생성 */
 @Data
 public class Board {
