@@ -146,11 +146,11 @@
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="#">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 
