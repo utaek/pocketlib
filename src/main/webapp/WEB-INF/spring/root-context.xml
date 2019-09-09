@@ -127,4 +127,5 @@
         <constructor-arg ref="mailSender" />
     </bean>
     
+    <bean id="getBook" class="pocketLib.spring.pocketLibSpring.mybatis.scheduler.BookScheduler"/>
 </beans>
