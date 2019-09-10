@@ -21,7 +21,6 @@ public class AladinBookList {
 	
 	@SerializedName("item")
 	public List<Item> item;
-
 	
 	@Data
 	public class Item {
@@ -41,7 +40,6 @@ public class AladinBookList {
 		
 		@SerializedName("isbn")
 		public String isbn;
-		
 		
 		@SerializedName("publisher")
 		public String publisher;
@@ -68,3 +66,4 @@ public class AladinBookList {
 	
 	}
 }
+
