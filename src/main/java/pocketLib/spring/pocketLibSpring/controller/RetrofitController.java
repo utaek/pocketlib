@@ -93,6 +93,7 @@ public class RetrofitController {
 			book.setCategoryName(item.categoryName);
 			book.setPubDate(item.pubDate);
 			book.setCover(item.cover);
+			book.setCustomerReviewRank(item.customerReviewRank);
 			try {
 				bookService.addBook(book);
 			} catch (Exception e) {
@@ -162,6 +163,7 @@ public class RetrofitController {
 			book.setCategoryName(item.categoryName);
 			book.setPubDate(item.pubDate);
 			book.setCover(item.cover);
+			book.setCustomerReviewRank(item.customerReviewRank);
 			try {
 				bookService.addBook(book);
 			} catch (Exception e) {
@@ -231,6 +233,7 @@ public class RetrofitController {
 			book.setCategoryName(item.categoryName);
 			book.setPubDate(item.pubDate);
 			book.setCover(item.cover);
+			book.setCustomerReviewRank(item.customerReviewRank);
 			try {
 				bookService.addBook(book);
 			} catch (Exception e) {
