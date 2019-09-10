@@ -106,7 +106,7 @@
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
-	<main>
+	
 	<div class="page-loader">
 		<div class="loader">Loading...</div>
 	</div>
@@ -129,8 +129,7 @@
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/04_book/bestseller.do">베스트 셀러</a></li>
-								<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
-							
+							<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -152,6 +151,7 @@
 
 								</c:otherwise>
 							</c:choose>
+							</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
@@ -195,25 +195,7 @@
 		</div>
 	</section>
 	<div class="main showcase-page">
-	<section class="module-extra-small bg-dark">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-md-8 col-lg-9">
-						<div class="callout-text font-alt">
-							<h4 style="margin-top: 0px;">Start Creating Beautiful
-								Websites</h4>
-							<p style="margin-bottom: 0px;">Download Titan Free today!</p>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3">
-						<div class="callout-btn-box">
-							<a class="btn btn-border-w btn-circle"
-								href="https://themewagon.com/themes/titan/">Downlaod Free</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+	
 
 		<div class="main">
 			<section class="module-small">
@@ -223,7 +205,7 @@
 
 						<div class="col-sm-4 mb-sm-19 pull-left">
 							<select class="form-control" name="category" value="${category}">
-								<option selected="selected">장르선택</option>
+								<option selected="selected" value=336>장르선택</option>
 								<option value=336>자기계발</option>
 								<option value=170>경제경영</option>
 								<option value=1>소설/시/희곡</option>
@@ -260,7 +242,7 @@
 								</c:if>
 								<td style="width: 25%; min-width: 20%;">
 									<div class="col-md-12 col-sm-6 col-xs-12">
-										<a class="content-box" href=${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+										<a class="content-box" href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
 											<div class="content-box-image"
 												style="height: 300px; vertical-align: middle;">
 												<img src="${item.cover}"
@@ -286,6 +268,8 @@
 			</div>
 
 		</section>
+		
+		
 		<div class="module-small bg-dark">
 			<div class="container">
 				<div class="row">
