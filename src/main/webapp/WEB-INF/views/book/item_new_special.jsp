@@ -129,6 +129,8 @@
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/04_book/bestseller.do">베스트 셀러</a></li>
+								<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
+							
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -136,9 +138,20 @@
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">독서관리</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">내 책장</a></li>
-							<li><a href="#">???????</a></li>
-						</ul></li>
+							<c:choose>
+								<c:when test="${userInfo!=null}">
+
+									<li><a
+										href="${pageContext.request.contextPath}/book/mybookshelf.do">내
+											책장</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a
+										href="${pageContext.request.contextPath}/login/show.do">내
+											책장</a></li>
+
+								</c:otherwise>
+							</c:choose>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
@@ -169,7 +182,38 @@
 	</nav>
 
 	
-
+	<section class="bg-dark-30 showcase-page-header module parallax-bg"
+		data-background="assets/images/showcase_bg.jpg">
+		<div class="titan-caption">
+			<div class="caption-content">
+				<div class="font-alt mb-30 titan-title-size-1">Powerful.
+					Multipurpose.</div>
+				<div class="font-alt mb-40 titan-title-size-4">100+ Layouts</div>
+				<a class="section-scroll btn btn-border-w btn-round" href="#demos">See
+					Demos</a>
+			</div>
+		</div>
+	</section>
+	<div class="main showcase-page">
+	<section class="module-extra-small bg-dark">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-8 col-lg-9">
+						<div class="callout-text font-alt">
+							<h4 style="margin-top: 0px;">Start Creating Beautiful
+								Websites</h4>
+							<p style="margin-bottom: 0px;">Download Titan Free today!</p>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3">
+						<div class="callout-btn-box">
+							<a class="btn btn-border-w btn-circle"
+								href="https://themewagon.com/themes/titan/">Downlaod Free</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<div class="main">
 			<section class="module-small">
@@ -287,7 +331,7 @@
 							<ul class="widget-posts">
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="assets/images/rp-1.jpg"
+										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-1.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
@@ -299,7 +343,7 @@
 								</li>
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="assets/images/rp-2.jpg"
+										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-2.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">

@@ -3,11 +3,6 @@ package pocketLib.spring.pocketLibSpring.mybatis.model;
 import lombok.Data;
 
 
-/**
- * 와아
- * @author Sooyeon
- *
- */
 @Data
 public class Book {
 
@@ -23,7 +18,7 @@ public class Book {
 	private int categoryId;
 	private String categoryName;
 	private String publisher;
-		
+	private int customerReviewRank;
 	private static int offset;
 	private static int listCount;
 

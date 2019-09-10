@@ -58,10 +58,7 @@ public class BookController {
 
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
 
-		int customerReviewRank = webHelper.getInt("customerReviewRank");
-		// customerReviewRank는 open api에서 가져오는 데이터
-		// book table에 없음
-
+		
 		if(userInfo==null) {
 			userInfo= null;
 		}
@@ -92,7 +89,7 @@ public class BookController {
 			bookrank.setIsbn(isbn);
 			bookrank.setUserno(userInfo.getUserno());
 			try {
-				bookRankService.getBookRankCount(bookrank);
+				cnt=bookRankService.getBookRankCount(bookrank);
 			} catch (Exception e) {
 				return webHelper.redirect(null, e.getLocalizedMessage());
 			}
@@ -122,8 +119,7 @@ public class BookController {
 		model.addAttribute("totalCountbI", totalCountbI);
 		model.addAttribute("totalCountbR", totalCountbR);
 		model.addAttribute("output", output);
-		model.addAttribute("customerReviewRank", customerReviewRank);
-
+	
 		String viewPath = "book/book_detail";
 		return new ModelAndView(viewPath);
 
@@ -355,9 +351,7 @@ public class BookController {
 		String isbn = webHelper.getString("isbn");
 
 		
-		int total = 10;
-		int black = 10;
-		int white = 0;
+
 
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("isbn", isbn);

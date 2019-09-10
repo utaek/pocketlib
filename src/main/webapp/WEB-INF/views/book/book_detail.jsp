@@ -132,6 +132,20 @@
 	left: 50%;
 	margin-left: -80px;
 }
+popup .popuptext2 {
+	visibility: hidden;
+	width: 180px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 8px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -80px;
+}
 
 /* Popup arrow */
 .popup .popuptext::after {
@@ -224,6 +238,8 @@ to {
 							<li><a
 								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
 									셀러</a></li>
+										<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
+							
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -340,16 +356,16 @@ to {
 										<td>평점</td>
 										<td>
 											<!-- 여기가 평점 별  --> <c:choose>
-												<c:when test="${customerReviewRank == 0}">
+												<c:when test="${output.customerReviewRank == 0}">
 													<c:forEach var="j" begin="1" end="5" varStatus="status">
 														<i class="fa fa-star-o fa-2x"></i>
 														<c:set var="j" value="${j+1}" />
 													</c:forEach>
 												</c:when>
 
-												<c:when test="${customerReviewRank != 0}">
+												<c:when test="${output.customerReviewRank != 0}">
 													<c:forEach var="i" begin="1"
-														end="${(customerReviewRank-2)/2}" varStatus="status">
+														end="${(output.customerReviewRank-2)/2}" varStatus="status">
 														<i class="fa fa-star fa-2x"></i>
 														<c:set var="i" value="${i+1}" />
 													</c:forEach>
@@ -357,17 +373,17 @@ to {
 												</c:when>
 											</c:choose> <c:choose>
 												<c:when
-													test="${(customerReviewRank % 2 == 0) && customerReviewRank!=0}">
+													test="${(output.customerReviewRank % 2 == 0) && output.customerReviewRank!=0}">
 
 													<i class="fa fa-star fa-2x"></i>
 												</c:when>
 												<c:when
-													test="${(customerReviewRank % 2 != 0) && customerReviewRank!=0}">
+													test="${(output.customerReviewRank % 2 != 0) && output.customerReviewRank!=0}">
 													<i class="fa fa-star fa-2x"></i>
 													<i class="fa fa-star-half fa-2x"></i>
 												</c:when>
 
-											</c:choose> (${customerReviewRank})
+											</c:choose> (${output.customerReviewRank})
 
 											<div class="popup" onmouseover="m_over()">
 												<form name="form">
@@ -390,7 +406,7 @@ to {
 
 														</c:when>
 
-														<c:when test="${cnt>0 && userInfo!=null}}">
+														<c:when test="${cnt>0 && userInfo!=null}">
 
 															<input type="button" class="btn btn-g btn-round btn-xs"
 																value="평점 재등록"

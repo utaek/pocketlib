@@ -18,6 +18,8 @@
         <result property="categoryId" column="categoryId" />
         <result property="categoryName" column="categoryName" />
         <result property="publisher" column="publisher" />
+        <result property="customerReviewRank" column="customerReviewRank" />
+        
           </resultMap>
     
      <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
@@ -56,7 +58,7 @@
             resultMap="bookMap">
         <!-- 이 안에서 처리할 SQL문을 명시한다. -->
 
-	select isbn, title, author, description, pubDate,  priceSales, priceStandard, cover, categoryId, categoryName, publisher from book;
+	select isbn, title, author, description, pubDate,  priceSales, priceStandard, cover, categoryId, categoryName, publisher,customerReviewRank from book;
 
    
     </select>
@@ -99,8 +101,8 @@
     <insert id="insertItem" 
             parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" >
         <!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
-    insert ignore into book (isbn, title, author, description, pubDate, priceSales, priceStandard, cover, categoryId, categoryName, publisher) 
-  values (#{isbn},#{title}, #{author},#{description}, #{pubDate}, #{priceSales}, #{priceStandard}, #{cover}, #{categoryId}, #{categoryName},#{publisher});
+    insert ignore into book (isbn, title, author, description, pubDate, priceSales, priceStandard, cover, categoryId, categoryName, publisher,customerReviewRank) 
+  values (#{isbn},#{title}, #{author},#{description}, #{pubDate}, #{priceSales}, #{priceStandard}, #{cover}, #{categoryId}, #{categoryName},#{publisher},#{customerReviewRank});
     </insert>
     
     
