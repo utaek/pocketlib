@@ -268,8 +268,7 @@
 													</c:when>
 
 													<c:when test="${item.customerReviewRank != 0}">
-														<c:forEach var="i" begin="1"
-															end="${(item.customerReviewRank-2)/2}" varStatus="status">
+														<c:forEach var="i" begin="1" end="${(item.customerReviewRank-2)/2}" varStatus="status">
 															<i class="fa fa-star fa-2x"></i>
 															<c:set var="i" value="${i+1}" />
 														</c:forEach>

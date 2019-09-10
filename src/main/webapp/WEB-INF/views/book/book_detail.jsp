@@ -132,7 +132,7 @@
 	left: 50%;
 	margin-left: -80px;
 }
-popup .popuptext2 {
+.popup .popuptext2 {
 	visibility: hidden;
 	width: 180px;
 	background-color: #555;
@@ -364,8 +364,7 @@ to {
 												</c:when>
 
 												<c:when test="${output.customerReviewRank != 0}">
-													<c:forEach var="i" begin="1"
-														end="${(output.customerReviewRank-2)/2}" varStatus="status">
+													<c:forEach var="i" begin="1" end="${(output.customerReviewRank-2)/2}" varStatus="status">
 														<i class="fa fa-star fa-2x"></i>
 														<c:set var="i" value="${i+1}" />
 													</c:forEach>
