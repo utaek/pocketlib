@@ -238,13 +238,13 @@
 							<tr>
 								<td><h3>${item.bestRank}위</h3></td>
 								<td><a
-									href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}"
-									target="_blank"><img src="${item.cover}" height="150"></a></td>
+									href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+									<img src="${item.cover}" height="150"></a></td>
 								<td>
 									<h3>
 										<a
-											href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}"
-											target="_blank">${item.title}</a>
+											href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+											${item.title}</a>
 									</h3>
 									<table class="table table-hover">
 										<tr>
