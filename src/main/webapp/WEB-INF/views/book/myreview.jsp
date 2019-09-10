@@ -133,7 +133,7 @@ function rank_reg() {
 						type="radio" id="value" name="value" value="3">3점 <input
 						type="radio" id="value" name="value" value="2">2점 <input
 						type="radio" id="value" name="value" value="1">1점
-					<button class="btn btn-g btn-round btn-xs" type="submit">평점등록</button>
+						<button type="submit" class="btn btn-g btn-round btn-xs" onclick="rank_reg();" >평점등록</button>
 				</form>
 			</div>
 		</section>
