@@ -499,7 +499,7 @@ public class LoginController {
 		
 		model.addAttribute("userno", userno);
 		
-		return webHelper.redirect("show.do", "로그인 화면으로 넘어갑니다~");
+		return webHelper.redirect("show.do", "로그인 화면으로 넘어갑니다.");
 	}
 	
 	
