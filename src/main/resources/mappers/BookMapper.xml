@@ -39,19 +39,16 @@
     </resultMap>
     
     
-        
-    
     <!-- 단일행 조회를 위한 기능 정의 -->
     <select id="selectItem"
             parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
             resultMap="bookMap">
         <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
-	select isbn, title, author, description, pubDate, priceSales, priceStandard, cover, categoryId, categoryName, publisher from book where isbn=#{isbn};
+	select isbn, title, author, description, pubDate, priceSales, priceStandard, cover, categoryId, categoryName, publisher, customerReviewRank from book where isbn=#{isbn};
 
     </select>
     
 
-    
     <!-- 다중행 조회를 위한 기능 정의 -->
    <select id="selectList" 
             parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
