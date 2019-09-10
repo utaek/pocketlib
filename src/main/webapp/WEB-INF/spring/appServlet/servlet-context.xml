@@ -54,7 +54,7 @@
 
 	<task:scheduled-tasks>
 		<task:scheduled ref="bookScheduler" method="getBook"
-			cron="0/10 * * * * ?" />
+			cron="0 2 16 * * ?" />
 	</task:scheduled-tasks>
 
 </beans:beans>
