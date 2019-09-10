@@ -216,10 +216,9 @@
 				</form>
 
 			
-				<h3>${aladinBookList.searchCategoryName} 분야 베스트셀러</h3>
+				<h3>${aladinBookList.searchCategoryName}분야 베스트셀러</h3>
 			</div>
-
-			<c:if test="${aladinBookList != null}">
+			<c:if test="${aladinBookList!=null}">
 				<hr style="border: solid 1px black; width: 70%" />
 
 				<table class="table table-hover" align="center"

@@ -37,6 +37,7 @@ public class AladinBook {
 		
 		@SerializedName("publisher")
 		public String publisher;
+		
 		@SerializedName("customerReviewRank")
 		public int customerReviewRank;
 

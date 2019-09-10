@@ -5,38 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 import pocketLib.spring.pocketLibSpring.helper.RetrofitHelper;
-import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
-import pocketLib.spring.pocketLibSpring.mybatis.service.CustomerService;
 import pocketLib.spring.pocketLibSpring.retrofit.Service.AladinService;
 import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBookList;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
-@Slf4j
 @Controller
+@Slf4j
 public class BookScheduler {
-	@Autowired
-	WebHelper webHelper;
-
-	@Autowired
-	CustomerService customerService;
-
+	
 	@Autowired
 	BookService bookService;
-	
 	@Autowired
 	RetrofitHelper retrofitHelper;
 	
-	@RequestMapping
-	public void getBook() {
+	public void getBook() { 		
+		
 		AladinBookList booklist = null;
 
 		// 검색 결과 저장할 beans 객체 선언
@@ -54,6 +44,8 @@ public class BookScheduler {
 		String searchTarget = "Book";
 		String output = "js";
 		int version = 20131101;
+		
+		
 		
 		Retrofit retrofit = retrofitHelper.getRetrofit(AladinService.BASE_URL);
 		
@@ -128,6 +120,5 @@ public class BookScheduler {
 				}
 			}
 		}
-		
 	}
 }	

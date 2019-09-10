@@ -292,7 +292,7 @@ to {
 			<div class="container">
 				<div class="row" style="width: 70%;">
 					<div class="col-sm-6 col-sm-offset-3" style="width: 70%;">
-						<h1 class="module-title font-alt mb-0">Best Seller</h1>
+						<h1 class="module-title font-alt mb-0">Book Detail</h1>
 					</div>
 				</div>
 			</div>

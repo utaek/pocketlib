@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -370,4 +369,5 @@
 	<script src="${pageContext.request.contextPath}/assets/js/plugins.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </body>
+
 </html>

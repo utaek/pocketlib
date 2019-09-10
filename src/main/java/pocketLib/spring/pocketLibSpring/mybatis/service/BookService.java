@@ -22,7 +22,7 @@ public interface BookService {
 	public int getBookCount(Book input) throws Exception;
 
 	public int addBook(Book input) throws Exception;
-
+	
 	public int editBook(Book input) throws Exception;
 
 	public int deleteBook(Book input) throws Exception;

@@ -92,7 +92,6 @@
 				<h4 class="font-alt mb-0">평점등록</h4>
 				<hr class="divider-w mt-10 mb-20">
 
-
 				<form method="post" action="rank_ok.do?isbn=${isbn}">
 					<input type="hidden" id="userno" name="userno"
 						value="${userInfo.userno}"> <input
@@ -106,8 +105,6 @@
 						type="radio" id="value" name="value" value="3">3점 <input
 						type="radio" id="value" name="value" value="2">2점 <input
 						type="radio" id="value" name="value" value="1">1점
-
-
 					<button class="btn btn-g btn-round btn-xs" type="submit">평점등록</button>
 				</form>
 			</div>

@@ -1,4 +1,4 @@
-﻿# 컴파일 결과물 제외
+# 컴파일 결과물 제외
 *.com
 *.class
 *.dll
@@ -18,7 +18,7 @@
 ehthumbs.db
 Thumbs.db
 config.xml
-
+root-context.xml
 
 # 프로젝트정보 파일 제외
 .metadata
@@ -46,4 +46,12 @@ target/
 MANIFEST.MF
 pom.properties
 target/
-/pocketlib/src/main/webapp/WEB-INF/spring/root-context.xml
+<<<<<<< HEAD
+<<<<<<< HEAD
+\pocketlib\src\main\webapp\WEB-INF\spring\root-context.xml
+=======
+src/main/webapp/WEB-INF/spring/root-context.xml
+>>>>>>> f1cd26bbb41b54115ce93ea2b1be85db5b4cc012
+=======
+root-context.xml
+>>>>>>> dfbeeeb83fd72a8958236376745f0347f1528978
