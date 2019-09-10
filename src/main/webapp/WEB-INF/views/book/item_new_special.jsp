@@ -219,7 +219,7 @@
 			<section class="module-small">
 				<div class="container">
 
-					<form class="row" method="get" action="${pageContext.request.contextPath}/04_book/item_new_special.do">
+					<form class="row" method="get" action="${pageContext.request.contextPath}/book/item_new_special.do">
 
 						<div class="col-sm-4 mb-sm-19 pull-left">
 							<select class="form-control" name="category" value="${category}">
@@ -260,7 +260,7 @@
 								</c:if>
 								<td style="width: 25%; min-width: 20%;">
 									<div class="col-md-12 col-sm-6 col-xs-12">
-										<a class="content-box" href=${pageContext.request.contextPath}/04_book/book_detail.do?isbn=${item.isbn}">
+										<a class="content-box" href=${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
 											<div class="content-box-image"
 												style="height: 300px; vertical-align: middle;">
 												<img src="${item.cover}"
