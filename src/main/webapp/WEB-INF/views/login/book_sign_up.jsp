@@ -174,9 +174,9 @@
 	<div class="main">
 	
 		<section class="module-small">
-		<form method="post" action="${pageContext.request.contextPath}">
+		<form method="get" action="${pageContext.request.contextPath}/login/book_register.do">
 			<div class="container">
-				<h3>읽었던 책 5권을 선택해주세요.</h3>
+				<h3>흥미롭게 읽었던 책 5권을 선택해주세요.</h3>
 			</div>
 			<hr style="border: solid 1px black; width: 70%" />
 			<table class="table table-hover" align="center"
@@ -194,33 +194,35 @@
 					<col style="width: 10%;">
 				</colgroup>
 				
-				<c:forEach var="item" begin=0 end="${fn:length(cateList)}" step=1
-					varStatus="status">
-					<c:if test="${book.categoryId} != 5536">
-						<c:if test="item % 5 == 0">
+				<c:forEach var="item" items="${bookList}" varStatus="status">
+					
+						<c:if test="${(status.index) % 5 == 0}">
 							<tr>
 						</c:if>
 						<!-- 한번 봐볼라고 써본 거 -->
 						
-							<td>${book.categoryName }<input
-								type="hidden" id="userno" name="userno" value="${userno}">
+							<td>
+							
 								<input type="checkbox" id="isbn" name="isbn"
-								value="${book.isbn}"> <img src="${book.cove }"
+								value="${item.isbn}"> <img src="${item.cover}"
 								height="150"></td>
-							<td>${book.title}</td>
+							<td>${item.title}</td>
 						
-						<c:if test="(i + 1) % 5 == 0">
+						<c:if test="${(status.index+1) % 5 == 0}">
 							</tr>
 						</c:if>
-					</c:if>
+					
 				</c:forEach>
+				
 			</table>
 			<div class="footer_1" style="background: #2f2f2f;">
 				<p class="btn-list mb-0">
+					<input	type="hidden" id="userno" name="userno" value="${input.userno}">
 					<button class="btn btn-border-w btn-circle" type="submit">완성ㅎㅎ</button>
 				</p>
 
 			</div>
+			
 			</form>
 		</section>
 		<div class="module-small bg-dark">

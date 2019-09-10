@@ -24,7 +24,9 @@ import pocketLib.spring.pocketLibSpring.helper.RegexHelper;
 import pocketLib.spring.pocketLibSpring.helper.RetrofitHelper;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
+import pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
+import pocketLib.spring.pocketLibSpring.mybatis.service.BookInterestedService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.CustomerService;
 import pocketLib.spring.pocketLibSpring.retrofit.Service.AladinService;
@@ -57,6 +59,9 @@ public class LoginController {
 
 	@Autowired
 	BookService bookService;
+	
+	@Autowired
+	BookInterestedService bookInterestedService;
 
 	// private static final Logger logger =
 	// LoggerFactory.getLogger(HomeController.class);
@@ -78,7 +83,7 @@ public class LoginController {
 
 		return "login/sign_up";
 	}
-
+	
 	// 회원가입 페이지 이동
 	@RequestMapping(value = "/login/register.do", method = RequestMethod.GET)
 	public String register() {
@@ -189,16 +194,23 @@ public class LoginController {
 		input.setEmail(email);
 		input.setGender(gender);
 		input.setUserkey(userkey);
-
+		List<Book> bookList=null;
 		try {
 			customerService.addCustomer(input);
+			bookList= bookService.getBookList(null);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 
 		}
-		model.addAttribute("userName", userName);
 
-		return webHelper.redirect("show.do", "이메일 인증을 진행해주세요.");
+		
+	
+		model.addAttribute("userName", userName);
+		model.addAttribute("input",input);
+		model.addAttribute("bookList",bookList);
+		
+		return new ModelAndView("login/book_sign_up");
+	
 	}
 
 	// 로그인
@@ -261,6 +273,8 @@ public class LoginController {
 		if(userkey == null) {
 			return webHelper.redirect(null, "이메일 인증 완료 후 로그인이 가능합니다.");
 		}
+		
+		
 
 		session.setAttribute("userInfo", customer);
 		return webHelper.redirect(request.getContextPath(), null);
@@ -379,18 +393,7 @@ public class LoginController {
 
 	
 	// 회원가입시 관심책 등록
-	@RequestMapping(value = "/login/book_sign_up.do", method = RequestMethod.POST)
-	public String bookInterestedSignUp(Model model) {
-		int userno = webHelper.getInt("userno");
-
-		
-		
-		
-		
-		model.addAttribute("userno", userno);
-
-		return "login/book_sign_up";
-	}
+	
 	
 	// 이메일 인증 userkey 값을 N에서 Y로
 	@RequestMapping(value = "/login/Email.do", method = RequestMethod.GET)
@@ -475,5 +478,29 @@ public class LoginController {
 		
 		return webHelper.redirect("show.do", "이메일로 변경된 비밀번호를 발송하였습니다. 확인 후 로그인 해주세요.");
 	}
+	
+	@RequestMapping(value = "/login/book_register.do", method = RequestMethod.GET)
+	public ModelAndView bookInterestedRegister(Model model) {
+		int userno = webHelper.getInt("userno");
+		String[] isbnList =webHelper.getStringArray("isbn");
+		for(int i=0; i<isbnList.length;i++) {
+			String isbn= isbnList[i];
+			BookInterested bIInput=new BookInterested();
+			bIInput.setIsbn(isbn);
+			bIInput.setUserno(userno);
+			try {
+				bookInterestedService.addBookInterested(bIInput);
+			}catch(Exception e) {
+				return webHelper.redirect(null, "등록실패");
+			}
+			
+		}
+		
+		
+		model.addAttribute("userno", userno);
+		
+		return webHelper.redirect("show.do", "로그인 화면으로 넘어갑니다~");
+	}
+	
 	
 }
