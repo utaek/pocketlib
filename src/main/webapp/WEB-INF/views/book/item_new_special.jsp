@@ -189,38 +189,7 @@
 	</nav>
 
 	
-	<section class="bg-dark-30 showcase-page-header module parallax-bg"
-		data-background="assets/images/showcase_bg.jpg">
-		<div class="titan-caption">
-			<div class="caption-content">
-				<div class="font-alt mb-30 titan-title-size-1">Powerful.
-					Multipurpose.</div>
-				<div class="font-alt mb-40 titan-title-size-4">100+ Layouts</div>
-				<a class="section-scroll btn btn-border-w btn-round" href="#demos">See
-					Demos</a>
-			</div>
-		</div>
-	</section>
-	<div class="main showcase-page">
-	<section class="module-extra-small bg-dark">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-md-8 col-lg-9">
-						<div class="callout-text font-alt">
-							<h4 style="margin-top: 0px;">Start Creating Beautiful
-								Websites</h4>
-							<p style="margin-bottom: 0px;">Download Titan Free today!</p>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-3">
-						<div class="callout-btn-box">
-							<a class="btn btn-border-w btn-circle"
-								href="https://themewagon.com/themes/titan/">Downlaod Free</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+
 
 		<div class="main">
 			<section class="module-small">
@@ -267,7 +236,7 @@
 								</c:if>
 								<td style="width: 25%; min-width: 20%;">
 									<div class="col-md-12 col-sm-6 col-xs-12">
-										<a class="content-box" href=${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+										<a class="content-box" href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
 											<div class="content-box-image"
 												style="height: 300px; vertical-align: middle;">
 												<img src="${item.cover}"
