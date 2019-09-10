@@ -125,7 +125,7 @@
         <constructor-arg ref="mailSender" />
     </bean>
 
-    <bean id="BookScheduler" class="pocketLib.spring.pocketLibSpring.controller.BookScheduler"/>
+    
 
     
     

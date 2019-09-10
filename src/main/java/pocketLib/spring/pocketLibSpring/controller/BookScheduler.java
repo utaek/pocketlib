@@ -114,7 +114,7 @@ public class BookScheduler {
 						cnt++;
 					}
 					// cnt 총 20되는 거 체크 해야 한다
-					if (cnt >= 20) {
+					if (cnt >= 14) {
 						break;
 					}
 				}

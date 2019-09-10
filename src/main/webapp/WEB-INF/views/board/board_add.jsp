@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html lang="UTF-8" dir="ltr">
+<html lang="en-US" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,11 +16,11 @@
     =============================================
     -->
 <c:choose>
-	<c:when test="${userInfo != null}"> 
-		<title>안녕하세요 ${userInfo.getUserName()}님</title>
+	<c:when test="${userInfo ==null}">
+		<title>ㅎㅇ</title>
 	</c:when>
 	<c:otherwise>
-		<title>ㅎㅇ</title>
+		<title>안녕하세요${userInfo.userName}님</title>
 	</c:otherwise>
 </c:choose>
 <!--  
@@ -28,35 +28,35 @@
     =============================================
     -->
 <link rel="apple-touch-icon" sizes="57x57"
-	href="../assets/images/favicons/apple-icon-57x57.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60"
-	href="../assets/images/favicons/apple-icon-60x60.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72"
-	href="../assets/images/favicons/apple-icon-72x72.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-72x72.png">
 <link rel="apple-touch-icon" sizes="76x76"
-	href="../assets/images/favicons/apple-icon-76x76.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-76x76.png">
 <link rel="apple-touch-icon" sizes="114x114"
-	href="../assets/images/favicons/apple-icon-114x114.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-114x114.png">
 <link rel="apple-touch-icon" sizes="120x120"
-	href="../assets/images/favicons/apple-icon-120x120.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-120x120.png">
 <link rel="apple-touch-icon" sizes="144x144"
-	href="../assets/images/favicons/apple-icon-144x144.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152"
-	href="../assets/images/favicons/apple-icon-152x152.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="180x180"
-	href="../assets/images/favicons/apple-icon-180x180.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/apple-icon-180x180.png">
 <link rel="icon" type="image/png" sizes="192x192"
-	href="../assets/images/favicons/android-icon-192x192.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/android-icon-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="../assets/images/favicons/favicon-32x32.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96"
-	href="../assets/images/favicons/favicon-96x96.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16"
-	href="../assets/images/favicons/favicon-16x16.png">
+	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-16x16.png">
 <link rel="manifest" href="/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage"
-	content="../assets/images/favicons/ms-icon-144x144.png">
+	content="${pageContext.request.contextPath}/assets/images/favicons/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 <!--  
     Stylesheets
@@ -64,7 +64,7 @@
     
     -->
 <!-- Default stylesheets-->
-<link href="../assets/lib/bootstrap/dist/css/bootstrap.min.css"
+<link href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- Template specific stylesheets-->
 <link
@@ -75,26 +75,23 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
 	rel="stylesheet">
-<link href="../assets/lib/animate.css/animate.css" rel="stylesheet">
-<link
-	href="../assets/lib/components-font-awesome/css/font-awesome.min.css"
+<link href="${pageContext.request.contextPath}/assets/lib/animate.css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/lib/components-font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
-<link href="../assets/lib/et-line-font/et-line-font.css"
-	rel="stylesheet">
-<link href="../assets/lib/flexslider/flexslider.css" rel="stylesheet">
-<link
-	href="../assets/lib/owl.carousel/dist/../assets/owl.carousel.min.css"
+<link href="${pageContext.request.contextPath}/assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
-	href="../assets/lib/owl.carousel/dist/../assets/owl.theme.default.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.theme.default.min.css"
 	rel="stylesheet">
-<link href="../assets/lib/magnific-popup/dist/magnific-popup.css"
+<link href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
 	rel="stylesheet">
-<link href="../assets/lib/simple-text-rotator/simpletextrotator.css"
+<link href="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/simpletextrotator.css"
 	rel="stylesheet">
 <!-- Main stylesheet and color file-->
-<link href="../assets/css/style.css" rel="stylesheet">
-<link id="color-scheme" href="../assets/css/colors/default.css"
+<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+<link id="color-scheme" href="${pageContext.request.contextPath}/assets/css/colors/default.css"
 	rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -112,7 +109,7 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="${pageContext.request.contextPath}">pocketLib</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">pocketLib</a>
 			</div>
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -133,11 +130,13 @@
 							<li><a href="#">???????</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1" data-toggle="dropdown">커뮤니티</a>
+						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기 게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
+									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">고객센터</a>
@@ -146,16 +145,16 @@
 							<li><a href="buttons.html">FAQ</a>
 							<li><a href="buttons.html">Email상담</a>
 						</ul></li>
-					
 					<c:choose>
-						<c:when test="${userInfo == null }">
+						<c:when test="${userInfo==null}">
 							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="../02_session/logout.jsp">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+
 				</ul>
 			</div>
 		</div>
