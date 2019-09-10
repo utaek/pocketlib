@@ -507,7 +507,7 @@ public class LoginController {
 		model.addAttribute("userno", userno);		
 
 		if(isbnList != null) {
-			return webHelper.redirect("show.do", "로그인 화면으로 넘어갑니다.");
+			return webHelper.redirect("show.do", "책등록이 다 되었습니다 이제 이메일 인증을 해주세요~.");
 		} else {
 			return webHelper.redirect(null, "책을 한권이상 선택해주세요.");
 		}

@@ -229,7 +229,7 @@
 					<tr>
 						<td><h4>${status.index+1}</h4></td>
 						<td><a
-							href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank={item.customerReviewRank}"
+							href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}"
 							target="_blank"><img src="${item.cover}" style="height:250px;"></a></td>
 						<td>
 							<h3>
