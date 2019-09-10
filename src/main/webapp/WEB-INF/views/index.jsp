@@ -141,6 +141,9 @@
 
 								</c:otherwise>
 							</c:choose>
+								<li><a
+								href="${pageContext.request.contextPath}/book/booksearch.do">책
+									검색</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
