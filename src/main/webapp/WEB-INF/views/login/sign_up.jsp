@@ -12,7 +12,7 @@
 			e.preventDefault();
 			var user_id = $("#userID").val();
 			var url = "${pageContext.request.contextPath}/login/register/duplicate.do?userID=" + user_id;
-			window.open(url, "check_id", "width=400, height=300");
+			window.open(url, "check_id", "width=470, height=180");
 		});
 	});
 </script>

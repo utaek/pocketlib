@@ -24,7 +24,6 @@ import pocketLib.spring.pocketLibSpring.mybatis.service.BookRankService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookReadService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.CustomerService;
-import pocketLib.spring.pocketLibSpring.mybatis.service.impl.BookRankServiceImpl;
 
 @Controller
 public class BookController {

@@ -132,7 +132,7 @@
 	left: 50%;
 	margin-left: -80px;
 }
-popup .popuptext2 {
+.popup .popuptext2 {
 	visibility: hidden;
 	width: 180px;
 	background-color: #555;

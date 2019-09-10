@@ -163,9 +163,7 @@
 
 								</c:otherwise>
 							</c:choose>
-							<li><a
-								href="${pageContext.request.contextPath}/book/booksearch.do">책
-									검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/book/booksearch.do">책 검색</a></li>
 
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
@@ -205,6 +203,7 @@
 				<div class="col-sm-8 col-sm-offset-2">
 					<form role="form" method="get"
 						action="${pageContext.request.contextPath}/book/booksearch.do">
+						<div><h3>책 검색</h3></div>
 						<div class="search-box">
 							<input class="form-control" type="text" id="query" name="query"
 								value="${query}" placeholder="Search..." />
@@ -281,8 +280,7 @@
 												 
 												</c:choose> 
 											(${item.customerReviewRank})
-									
-									
+																		
 									</td>
 								</tr>
 
