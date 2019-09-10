@@ -482,24 +482,35 @@ public class LoginController {
 	@RequestMapping(value = "/login/book_register.do", method = RequestMethod.GET)
 	public ModelAndView bookInterestedRegister(Model model) {
 		int userno = webHelper.getInt("userno");
-		String[] isbnList =webHelper.getStringArray("isbn");
+		String[] isbnList= null;
+		if(webHelper.getStringArray("isbn")!=null) {
+		isbnList =webHelper.getStringArray("isbn",null);
+		}
+		
+		String isbn = null;
+		if(isbnList!=null) {
 		for(int i=0; i<isbnList.length;i++) {
-			String isbn= isbnList[i];
+			isbn= isbnList[i];
 			BookInterested bIInput=new BookInterested();
 			bIInput.setIsbn(isbn);
 			bIInput.setUserno(userno);
 			try {
-				bookInterestedService.addBookInterested(bIInput);
+				if(isbn != null) {
+					bookInterestedService.addBookInterested(bIInput);
+				}								
 			}catch(Exception e) {
 				return webHelper.redirect(null, "등록실패");
-			}
-			
+			}			
+		}	
 		}
 		
-		
-		model.addAttribute("userno", userno);
-		
-		return webHelper.redirect("show.do", "로그인 화면으로 넘어갑니다.");
+		model.addAttribute("userno", userno);		
+
+		if(isbnList != null) {
+			return webHelper.redirect("show.do", "책등록이 다 되었습니다 이제 이메일 인증을 해주세요~.");
+		} else {
+			return webHelper.redirect(null, "책을 한권이상 선택해주세요.");
+		}
 	}
 	
 	

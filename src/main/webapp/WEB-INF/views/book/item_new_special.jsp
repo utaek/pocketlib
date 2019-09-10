@@ -119,7 +119,7 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/04_book/item_new_special.do">pocketLib</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">pocketLib</a>
 			</div>
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -128,8 +128,15 @@
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
+<<<<<<< HEAD
 							<li><a href="${pageContext.request.contextPath}/04_book/bestseller.do">베스트 셀러</a></li>
 							<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
+=======
+							<li><a
+								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
+									셀러</a></li>
+									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
+>>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -151,13 +158,24 @@
 
 								</c:otherwise>
 							</c:choose>
+<<<<<<< HEAD
 							</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">커뮤니티</a>
+=======
+								<li><a
+								href="${pageContext.request.contextPath}/book/booksearch.do">책
+									검색</a></li>
+						</ul></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
+>>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
 						<ul class="dropdown-menu">
-							<li><a href="#">자유게시판</a></li>
-							<li><a href="#">책 후기 게시판</a></li>
-							<li><a href="#">QNA 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
+									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">고객센터</a>
@@ -168,20 +186,21 @@
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a
-								href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="02_session/logout.jsp">로그아웃</a></li>
-							<li><a href="03_mypage/myPage.jsp">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 	
+<<<<<<< HEAD
 	<section class="bg-dark-30 showcase-page-header module parallax-bg"
 		data-background="assets/images/showcase_bg.jpg">
 		<div class="titan-caption">
@@ -196,6 +215,9 @@
 	</section>
 	<div class="main showcase-page">
 	
+=======
+
+>>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
 
 		<div class="main">
 			<section class="module-small">

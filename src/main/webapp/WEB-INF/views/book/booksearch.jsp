@@ -140,8 +140,7 @@
 							<li><a
 								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
 									셀러</a></li>
-									<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
-							
+									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -163,17 +162,18 @@
 
 								</c:otherwise>
 							</c:choose>
-							<li><a
+								<li><a
 								href="${pageContext.request.contextPath}/book/booksearch.do">책
 									검색</a></li>
-
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">커뮤니티</a>
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">자유게시판</a></li>
-							<li><a href="#">책 후기 게시판</a></li>
-							<li><a href="#">QNA 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
+									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">고객센터</a>
@@ -184,27 +184,25 @@
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a
-								href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a
-								href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 	<section class="module">
 		<div class="container">
 			<div class="row mb-60">
 				<div class="col-sm-8 col-sm-offset-2">
 					<form role="form" method="get"
 						action="${pageContext.request.contextPath}/book/booksearch.do">
+						<div><h3>책 검색</h3></div>
 						<div class="search-box">
 							<input class="form-control" type="text" id="query" name="query"
 								value="${query}" placeholder="Search..." />
@@ -232,7 +230,11 @@
 						<td><h4>${status.index+1}</h4></td>
 						<td><a
 							href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}"
+<<<<<<< HEAD
 							><img src="${item.cover}" style="height:250px;"></a></td>
+=======
+							target="_blank"><img src="${item.cover}" style="height:250px;"></a></td>
+>>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
 						<td>
 							<h3>
 								<a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}"
@@ -281,8 +283,7 @@
 												 
 												</c:choose> 
 											(${item.customerReviewRank})
-									
-									
+																		
 									</td>
 								</tr>
 
