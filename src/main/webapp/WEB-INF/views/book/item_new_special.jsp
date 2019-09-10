@@ -128,15 +128,10 @@
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
-<<<<<<< HEAD
-							<li><a href="${pageContext.request.contextPath}/04_book/bestseller.do">베스트 셀러</a></li>
-							<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
-=======
 							<li><a
 								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
 									셀러</a></li>
 									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
->>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -158,18 +153,12 @@
 
 								</c:otherwise>
 							</c:choose>
-<<<<<<< HEAD
-							</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">커뮤니티</a>
-=======
 								<li><a
 								href="${pageContext.request.contextPath}/book/booksearch.do">책
 									검색</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
->>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
 							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
@@ -199,26 +188,8 @@
 		</div>
 	</nav>
 
-	
-<<<<<<< HEAD
-	<section class="bg-dark-30 showcase-page-header module parallax-bg"
-		data-background="assets/images/showcase_bg.jpg">
-		<div class="titan-caption">
-			<div class="caption-content">
-				<div class="font-alt mb-30 titan-title-size-1">Powerful.
-					Multipurpose.</div>
-				<div class="font-alt mb-40 titan-title-size-4">100+ Layouts</div>
-				<a class="section-scroll btn btn-border-w btn-round" href="#demos">See
-					Demos</a>
-			</div>
-		</div>
-	</section>
+
 	<div class="main showcase-page">
-	
-=======
-
->>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
-
 		<div class="main">
 			<section class="module-small">
 				<div class="container">

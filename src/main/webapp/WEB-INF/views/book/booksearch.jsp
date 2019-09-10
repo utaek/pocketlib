@@ -228,13 +228,9 @@
 				<c:forEach var="item" items="${search.item}" varStatus="status">
 					<tr>
 						<td><h4>${status.index+1}</h4></td>
-						<td><a
-							href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}"
-<<<<<<< HEAD
-							><img src="${item.cover}" style="height:250px;"></a></td>
-=======
-							target="_blank"><img src="${item.cover}" style="height:250px;"></a></td>
->>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
+						<td><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}">
+						<img src="${item.cover}" style="height:250px;"></a></td>
+
 						<td>
 							<h3>
 								<a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}"

@@ -237,12 +237,7 @@ to {
 							<li><a
 								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
 									셀러</a></li>
-<<<<<<< HEAD
-										<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
-							
-=======
-									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
->>>>>>> e19787af77b07590bf53a5161298f77002dbcd60
+							<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
