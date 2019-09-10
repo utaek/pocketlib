@@ -137,9 +137,10 @@
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/book/bestseller.do">베스트 셀러</a></li>
-						<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
-							
+							<li><a
+								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
+									셀러</a></li>
+									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -150,22 +151,29 @@
 							<c:choose>
 								<c:when test="${userInfo!=null}">
 
-									<li><a href="${pageContext.request.contextPath}/book/mybookshelf.do">내 책장</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/book/mybookshelf.do">내
+											책장</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="${pageContext.request.contextPath}/login/show.do">내 책장</a></li>
-									
+									<li><a
+										href="${pageContext.request.contextPath}/login/show.do">내
+											책장</a></li>
+
 								</c:otherwise>
 							</c:choose>
-							<li><a href="${pageContext.request.contextPath}/book/booksearch.do">책 검색</a></li>
-
+								<li><a
+								href="${pageContext.request.contextPath}/book/booksearch.do">책
+									검색</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">커뮤니티</a>
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">자유게시판</a></li>
-							<li><a href="#">책 후기 게시판</a></li>
-							<li><a href="#">QNA 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
+									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">고객센터</a>
@@ -176,14 +184,14 @@
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a
-								href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+
 				</ul>
 			</div>
 		</div>
@@ -199,7 +207,7 @@
 
 					<div class="col-sm-4 mb-sm-19 pull-left">
 						<select class="form-control" name="category" value="${category}">
-							<option selected="selected">장르선택</option>
+							<option selected="selected" value=336>장르선택</option>
 							<option value=336>자기계발</option>
 							<option value=170>경제경영</option>
 							<option value=1>소설/시/희곡</option>

@@ -192,7 +192,7 @@ to {
 	function showPopup(frm) {
 		var url = "myreview.do";
 		var title = "myreview";
-		var status = "width=400, height=400";
+		var status = "width=470, height=350";
 
 		window.open("", title, status);
 
@@ -225,12 +225,11 @@ to {
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand"
-					href="${pageContext.request.contextPath}/index.do">pocketLib</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">pocketLib</a>
 			</div>
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="index.jsp">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li><a href="buttons.html">팀 소개</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
@@ -238,8 +237,7 @@ to {
 							<li><a
 								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
 									셀러</a></li>
-										<li><a href="${pageContext.request.contextPath}/book/book_new_special.do">화제의 신간도서</a></li>
-							
+									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -261,21 +259,17 @@ to {
 
 								</c:otherwise>
 							</c:choose>
-							<li><a
-								href="${pageContext.request.contextPath}/book/booksearch.do">책 검색</a></li>
-
-
+								<li><a
+								href="${pageContext.request.contextPath}/book/booksearch.do">책
+									검색</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">커뮤니티</a>
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a
-								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
-									후기 게시판</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
+									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
 									게시판</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
@@ -287,16 +281,14 @@ to {
 						</ul></li>
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a
-								href="${pageContext.request.contextPath}/login/show.do">Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a
-								href="${pageContext.request.contextPath}/loing/logout.do">로그아웃</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
+
 				</ul>
 			</div>
 		</div>
