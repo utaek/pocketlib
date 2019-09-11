@@ -1,5 +1,6 @@
 package pocketLib.spring.pocketLibSpring.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested;
-import pocketLib.spring.pocketLibSpring.mybatis.model.BookRank;
+
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookInterestedService;
-import pocketLib.spring.pocketLibSpring.mybatis.service.BookRankService;
+
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookReadService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.CustomerService;
@@ -42,8 +43,6 @@ public class BookController {
 	@Autowired
 	private BookInterestedService bookInterestedService;
 
-	@Autowired
-	private BookRankService bookRankService;
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
@@ -80,18 +79,10 @@ public class BookController {
 
 		int totalCountbI = 0;
 		int totalCountbR = 0;
-		int cnt = 0;
+		
 
 		if (userInfo != null) {
-			// 해당 책을 고객이 평점 등록했는지 안했는지
-			BookRank bookrank = new BookRank();
-			bookrank.setIsbn(isbn);
-			bookrank.setUserno(userInfo.getUserno());
-			try {
-				cnt=bookRankService.getBookRankCount(bookrank);
-			} catch (Exception e) {
-				return webHelper.redirect(null, e.getLocalizedMessage());
-			}
+			
 
 			// 해당 책이 고객의 읽은책, 관심책 목록에 있는지 없는지 count
 			BookRead bookread = new BookRead();
@@ -114,7 +105,7 @@ public class BookController {
 		}
 		model.addAttribute("isbn", isbn);
 		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("cnt", cnt);
+	
 		model.addAttribute("totalCountbI", totalCountbI);
 		model.addAttribute("totalCountbR", totalCountbR);
 		model.addAttribute("output", output);
@@ -203,6 +194,7 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/book/br_insert.do", method = RequestMethod.POST)
 	public ModelAndView brInsert(Model model, HttpServletRequest request) {
+
 		HttpSession session = request.getSession();
 
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
@@ -215,22 +207,20 @@ public class BookController {
 			userno=userInfo.getUserno();
 		}
 		
+		// 여기서 팝업을 닫고 로그인 페이지로 보내줘야 하는데...
 		if(userno==0) {
-			return webHelper.redirect("../login/show.do", "로그인 후 이용하세요.");
+			return webHelper.redirect(null, "로그인 후 이용하세요.");
 			
 		}
+
 		String isbn = webHelper.getString("isbn");
 
-		BookRead input = new BookRead();
-		input.setIsbn(isbn);
-		input.setUserno(userInfo.getUserno());
-
-		try {
-			bookReadService.addBookRead(input);
-		} catch (Exception e) {
-			return webHelper.redirect(null, e.getLocalizedMessage());
-		}
-		return webHelper.redirect(contextPath + "/book/book_detail.do?isbn=" + input.getIsbn(), "읽은 책 목록에 등록되었습니다");
+		
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("isbn", isbn);
+		
+		String viewPath = "book/br_insert";
+		return new ModelAndView(viewPath);
 
 	}
 
@@ -299,6 +289,8 @@ public class BookController {
 		bi.setUserno(userno);
 		br.setUserno(userno);
 
+	
+		
 		List<Book> BR = null;
 		List<Book> BI = null;
 
@@ -311,7 +303,7 @@ public class BookController {
 		}
 
 		model.addAttribute("userInfo", userInfo);
-
+		
 		model.addAttribute("BR", BR);
 		model.addAttribute("BI", BI);
 
@@ -322,43 +314,7 @@ public class BookController {
 	}
 
 	
-	/*
-	 * 평점 등록
-	 * 
-	 */
-	@RequestMapping(value = "/book/myreview.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView review(Model model, HttpServletRequest request) {
-
-		HttpSession session = request.getSession();
-
-		Customer userInfo = (Customer) session.getAttribute("userInfo");
-		int userno = 0;
-		if (userInfo == null) {
-			userInfo= null;
-		
-		}
-		if(userInfo!=null) {
-			userno=userInfo.getUserno();
-		}
-		
-		// 여기서 팝업을 닫고 로그인 페이지로 보내줘야 하는데...
-		if(userno==0) {
-			return webHelper.redirect(null, "로그인 후 이용하세요.");
-			
-		}
-
-		String isbn = webHelper.getString("isbn");
-
-		
-
-
-		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("isbn", isbn);
-		
-		String viewPath = "book/myreview";
-		return new ModelAndView(viewPath);
-
-	}
+	
 
 	/**
 	 * 평점등록 ok
@@ -376,19 +332,30 @@ public class BookController {
 		String isbn = webHelper.getString("isbn");
 		int value = webHelper.getInt("value");
 
-		BookRank input = new BookRank();
+		String date =null;
+		if (date == null) {
+	         Calendar calendar = Calendar.getInstance();
+	         calendar.add(Calendar.DAY_OF_MONTH, 0);
+	         date = String.format("%04d%02d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
+	               calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
+	               calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+	      }
+	      String regdate = date.replace("-", "");
+		BookRead input = new BookRead();
 		input.setIsbn(isbn);
 		input.setUserno(userno);
 		input.setValue(value);
-
+		input.setReg_date(regdate);
+		
+		
 		int cnt = 0;
 		try {
-			cnt = bookRankService.getBookRankCount(input);
+			cnt = bookReadService.getBookReadCount(input);
 			if (cnt == 0) {
-				bookRankService.addBookRank(input);
+				bookReadService.addBookRead(input);
 
 			} else {
-				bookRankService.editBookRank(input);
+				bookReadService.editBookRead(input);
 			}
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());

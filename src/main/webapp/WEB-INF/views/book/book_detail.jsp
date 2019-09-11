@@ -190,8 +190,8 @@ to {
 
 <script language="javascript">
 	function showPopup(frm) {
-		var url = "myreview.do";
-		var title = "myreview";
+		var url = "br_insert.do";
+		var title = "br_insert";
 		var status = "width=470, height=350";
 
 		window.open("", title, status);
@@ -359,40 +359,7 @@ to {
 
 											</c:choose> (${output.customerReviewRank})
 
-											<div class="popup" onmouseover="m_over()">
-												<form name="form">
-											<input type="hidden" name="isbn" value="${isbn}">
-												<!-- 로그인 안 한 상태면 팝업 안 열고 로그인 페이지로 이동시키기 -->
-												
-													<c:choose>
-														<c:when test="${userInfo==null}">
-															<a href="${pageContext.request.contextPath}/login/show.do">
-															<input type="button" class="btn btn-g btn-round btn-xs"
-																value="평점등록" onclick="alert('로그인 후 이용하세요');" /></a>
-															<span class="popuptext" id="myPopup">평점을 등록해보세요! </span>
-														
-														</c:when>
-														<c:when test="${cnt==0 && userInfo!=null}">
-
-															<input type="button" class="btn btn-g btn-round btn-xs"
-																value="평점등록" onclick="javascript:showPopup(this.form);" />
-															<span class="popuptext" id="myPopup">평점을 등록해보세요! </span>
-
-														</c:when>
-
-														<c:when test="${cnt>0 && userInfo!=null}">
-
-															<input type="button" class="btn btn-g btn-round btn-xs"
-																value="평점 재등록"
-																onclick="javascript:showPopup(this.form);" />
-															<span class="popuptext2" id="myPopup">평점을 수정할 수
-																있습니다! </span>
-															
-
-														</c:when>
-													</c:choose>
-												</form>
-											</div>
+											
 										</td>
 									</tr>
 
@@ -449,6 +416,15 @@ to {
 							<!-- 읽은책 등록 버튼 -->
 
 							<c:choose>
+								<c:when test="${userInfo==null}">
+									<a href="${pageContext.request.contextPath}/login/show.do">
+										<input type="button" class="btn btn-d btn-round"
+										value="읽은책 등록" onclick="alert('로그인 후 이용하세요');" />
+									</a>
+
+								</c:when>
+
+
 								<c:when test="${totalCountbR>0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_delete.do">
@@ -463,9 +439,13 @@ to {
 								<c:when test="${totalCountbR==0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_insert.do">
+
+
 										<input type="hidden" name="isbn" value="${output.isbn}">
-										<input type="submit" class="btn btn-d btn-round"
-											value="읽은책 등록">
+										<input type="button" class="btn btn-d btn-round"
+											value="읽은책 등록" onclick="javascript:showPopup(this.form);" />
+
+
 									</form>
 								</c:when>
 							</c:choose>
