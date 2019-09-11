@@ -1,6 +1,7 @@
 package pocketLib.spring.pocketLibSpring.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,8 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import pocketLib.spring.pocketLibSpring.helper.RetrofitHelper;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
+import pocketLib.spring.pocketLibSpring.mybatis.model.BookSearching;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Searching;
+import pocketLib.spring.pocketLibSpring.mybatis.service.BookSearchingService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.SearchingService;
 import pocketLib.spring.pocketLibSpring.retrofit.Service.AladinService;
@@ -36,10 +39,13 @@ public class RetrofitController {
 	SqlSession sqlSession;
 
 	@Autowired
-	private BookService bookService;
+	BookService bookService;
 
 	@Autowired
 	SearchingService searchingService;
+	
+	@Autowired
+	BookSearchingService bookSearchingService;
 
 	@RequestMapping(value = "/book/bestseller.do", method = RequestMethod.GET)
 	public String bestseller(Model model, HttpServletRequest request) {
@@ -205,15 +211,17 @@ public class RetrofitController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		List<Book> bookSearchingList =null;
 		
 		if (totalCount > 0) {
 			try {
 				searchingService.addQueryValue(input);
+				bookSearchingList=bookService.getBookSearchingList(input);
 
 			} catch (Exception e) {
 				e.getLocalizedMessage();
 			}
+			model.addAttribute("search",bookSearchingList);
 		} else {
 			try {
 				searchingService.addQueryValue(input);
@@ -244,6 +252,7 @@ public class RetrofitController {
 				}
 			}
 			Book book = new Book();
+			BookSearching bookSearching = new BookSearching();
 
 			if (search != null) {
 				for (AladinBook.Item item : search.item) {
@@ -259,17 +268,22 @@ public class RetrofitController {
 					book.setPubDate(item.pubDate);
 					book.setCover(item.cover);
 					book.setCustomerReviewRank(item.customerReviewRank);
+					bookSearching.setIsbn(item.isbn);
+					bookSearching.setQueryid(input.getQueryid());
 
 					try {
 						bookService.addBook(book);
+						bookSearchingService.addIntoBookSearching(bookSearching);
+						
 					} catch (Exception e) {
 						e.getLocalizedMessage();
 					}
+					
 				}
 			}
 
 			model.addAttribute("userInfo", userInfo);
-			model.addAttribute("search", search);
+			model.addAttribute("search", search.item);
 		}
 		
 		String viewPath = "book/booksearch";

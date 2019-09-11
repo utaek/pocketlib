@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BookSearchingMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="BookSearchingMap"
+		type="pocketLib.spring.pocketLibSpring.mybatis.model.Searching">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property ="bookSearchingId" column ="booksearchingid"/>
+		<result property="isbn" column="isbn" />
+		<result property="queryid" column="queryid" />
+
+	</resultMap>
+
+	<!-- isbn 없으면 insert 하기 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertItem"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookSearching"
+		useGeneratedKeys="true" keyProperty="bookSearchingId">
+		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+		insert ignore into book_searching (isbn,queryid) values (#{isbn},#{queryid});
+	</insert>
+
+	
+	
+	
+
+</mapper>

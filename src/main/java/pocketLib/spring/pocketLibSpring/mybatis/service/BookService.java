@@ -1,11 +1,12 @@
 package pocketLib.spring.pocketLibSpring.mybatis.service;
 
 import java.util.List;
-import java.util.Map;
 
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
+import pocketLib.spring.pocketLibSpring.mybatis.model.BookSearching;
+import pocketLib.spring.pocketLibSpring.mybatis.model.Searching;
 
 
 public interface BookService {
@@ -15,6 +16,8 @@ public interface BookService {
 	public List<Book> getBookList(Book input) throws Exception;
 
 	public List<Book> getReadList(BookRead input) throws Exception;
+	
+	public List<Book> getBookSearchingList(Searching input) throws Exception;
 	
 
 	public List<Book> getInterestedList(BookInterested input) throws Exception;

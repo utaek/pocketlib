@@ -208,7 +208,7 @@
 					<col style="width: 30%;">
 					<col style="width: 65%;">
 				</colgroup>
-				<c:forEach var="item" items="${search.item}" varStatus="status">
+				<c:forEach var="item" items="${search}" varStatus="status">
 					<tr>
 						<td><h4>${status.index+1}</h4></td>
 						<td><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}&customerReviewRank=${item.customerReviewRank}">

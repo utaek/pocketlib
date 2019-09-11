@@ -3,8 +3,9 @@ package pocketLib.spring.pocketLibSpring.mybatis.model;
 import lombok.Data;
 
 @Data
-public class Searching {
+public class BookSearching {
+	private int bookSearchingId;
+	private String isbn;
 	private int queryid;
-	private String queryValue;
-	private int querycnt;
+
 }

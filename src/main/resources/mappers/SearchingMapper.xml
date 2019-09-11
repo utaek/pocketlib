@@ -8,16 +8,18 @@
 	<resultMap id="SearchingMap"
 		type="pocketLib.spring.pocketLibSpring.mybatis.model.Searching">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property="queryValue" column="queryValue" />
+		<result property ="queryid" column ="queryid"/>
+		<result property="queryValue" column="queryvalue" />
 		<result property="querycnt" column="querycnt" />
 
 	</resultMap>
 
 	<!-- isbn 없으면 insert 하기 데이터 저장을 위한 기능 정의 -->
 	<insert id="insertItem"
-		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Searching">
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Searching"
+		useGeneratedKeys="true" keyProperty="queryid">
 		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
-		insert into searching (queryValue) values ('#{queryValue}') on
+		insert into searching (queryvalue) values (#{queryValue}) on
 		duplicate key update querycnt = querycnt+1;
 	</insert>
 
