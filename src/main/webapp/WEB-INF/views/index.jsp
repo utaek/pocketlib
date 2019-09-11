@@ -154,13 +154,8 @@
 							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
 									게시판</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">고객센터</a>
-						<ul class="dropdown-menu">
-							<li><a href="buttons.html">공지사항</a>
-							<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a>
-							<li><a href="buttons.html">Email상담</a>
-						</ul></li>
+					<li><a href="${pageContext.request.contextPath}/">FAQ</a></li>
+						
 					<c:choose>
 						<c:when test="${userInfo==null}">
 							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
