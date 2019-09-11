@@ -846,4 +846,10 @@ public class BoardController {
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
 		return webHelper.redirect("board_view.do?boardCate="+ boardCate +"&boardNo=" + boardno, "수정되었습니다.");
 	}
+	@RequestMapping(value = "/board/FAQ.do", method = RequestMethod.GET)
+	public String FAQ(Model model) {
+		
+	
+		return "board/FAQ";
+	}
 }
