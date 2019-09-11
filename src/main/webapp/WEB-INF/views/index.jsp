@@ -154,10 +154,9 @@
 							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
 									게시판</a></li>
 						</ul></li>
-					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
 						
-							
-					
+					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
+
 					<c:choose>
 						<c:when test="${userInfo==null}">
 							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>

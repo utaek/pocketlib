@@ -13,9 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 public class MailHelper {
     // --> import org.springframework.mail.javamail.JavaMailSender;
     JavaMailSender mailSender;
+    String fromAddress;
 
-    public MailHelper(JavaMailSender sender) {
+    public MailHelper(JavaMailSender sender, String fromAddress) {
         this.mailSender = sender;
+        this.fromAddress = fromAddress;
     }
 
     /**
@@ -42,6 +44,7 @@ public class MailHelper {
         helper.setSubject(subject);
         helper.setText(content, true);
         helper.setTo(new InternetAddress(receiver));
+        helper.setFrom(new InternetAddress(fromAddress));
         mailSender.send(message);
     }
 }

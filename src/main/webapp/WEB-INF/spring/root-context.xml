@@ -120,10 +120,12 @@
         </property>
     </bean>
 
-    <bean id="mailHelper" class="pocketLib.spring.pocketLibSpring.helper.MailHelper" scope="singleton">
+        <bean id="mailHelper" class="pocketLib.spring.pocketLibSpring.helper.MailHelper" scope="singleton">
         <qualifier value="mail" />
         <constructor-arg ref="mailSender" />
+        <constructor-arg value="#{config['smtpUsername']}" />
     </bean>
+
 
     
 

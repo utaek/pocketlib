@@ -190,8 +190,8 @@ to {
 
 <script language="javascript">
 	function showPopup(frm) {
-		var url = "myreview.do";
-		var title = "myreview";
+		var url = "br_insert.do";
+		var title = "br_insert";
 		var status = "width=470, height=350";
 
 		window.open("", title, status);
@@ -230,16 +230,12 @@ to {
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="buttons.html">팀 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
-							<li><a
-								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
-									셀러</a></li>
+							<li><a href="${pageContext.request.contextPath}/book/bestseller.do">베스트셀러</a></li>
 							<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
-							<li><a href="#">작가별 추천</a></li>
-							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
@@ -247,38 +243,25 @@ to {
 						<ul class="dropdown-menu">
 							<c:choose>
 								<c:when test="${userInfo!=null}">
-
-									<li><a
-										href="${pageContext.request.contextPath}/book/mybookshelf.do">내
-											책장</a></li>
+									<li><a href="${pageContext.request.contextPath}/book/mybookshelf.do">내 책장</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a
-										href="${pageContext.request.contextPath}/login/show.do">내
-											책장</a></li>
+									<li><a href="${pageContext.request.contextPath}/login/show.do">내 책장</a></li>
 
 								</c:otherwise>
 							</c:choose>
-								<li><a
-								href="${pageContext.request.contextPath}/book/booksearch.do">책
-									검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/book/booksearch.do">책 검색</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
+						href="${pageContext.request.contextPath}/board/board_list.do"
+						data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
-									게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
-									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA 게시판</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
-						data-toggle="dropdown">고객센터</a>
-						<ul class="dropdown-menu">
-							<li><a href="buttons.html">공지사항</a>
-							<li><a href="buttons.html">FAQ</a>
-							<li><a href="buttons.html">Email상담</a>
-						</ul></li>
+					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
+
 					<c:choose>
 						<c:when test="${userInfo==null}">
 							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
@@ -376,40 +359,7 @@ to {
 
 											</c:choose> (${output.customerReviewRank})
 
-											<div class="popup" onmouseover="m_over()">
-												<form name="form">
-											<input type="hidden" name="isbn" value="${isbn}">
-												<!-- 로그인 안 한 상태면 팝업 안 열고 로그인 페이지로 이동시키기 -->
-												
-													<c:choose>
-														<c:when test="${userInfo==null}">
-															<a href="${pageContext.request.contextPath}/login/show.do">
-															<input type="button" class="btn btn-g btn-round btn-xs"
-																value="평점등록" onclick="alert('로그인 후 이용하세요');" /></a>
-															<span class="popuptext" id="myPopup">평점을 등록해보세요! </span>
-														
-														</c:when>
-														<c:when test="${cnt==0 && userInfo!=null}">
-
-															<input type="button" class="btn btn-g btn-round btn-xs"
-																value="평점등록" onclick="javascript:showPopup(this.form);" />
-															<span class="popuptext" id="myPopup">평점을 등록해보세요! </span>
-
-														</c:when>
-
-														<c:when test="${cnt>0 && userInfo!=null}">
-
-															<input type="button" class="btn btn-g btn-round btn-xs"
-																value="평점 재등록"
-																onclick="javascript:showPopup(this.form);" />
-															<span class="popuptext2" id="myPopup">평점을 수정할 수
-																있습니다! </span>
-															
-
-														</c:when>
-													</c:choose>
-												</form>
-											</div>
+											
 										</td>
 									</tr>
 
@@ -466,6 +416,15 @@ to {
 							<!-- 읽은책 등록 버튼 -->
 
 							<c:choose>
+								<c:when test="${userInfo==null}">
+									<a href="${pageContext.request.contextPath}/login/show.do">
+										<input type="button" class="btn btn-d btn-round"
+										value="읽은책 등록" onclick="alert('로그인 후 이용하세요');" />
+									</a>
+
+								</c:when>
+
+
 								<c:when test="${totalCountbR>0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_delete.do">
@@ -480,9 +439,13 @@ to {
 								<c:when test="${totalCountbR==0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_insert.do">
+
+
 										<input type="hidden" name="isbn" value="${output.isbn}">
-										<input type="submit" class="btn btn-d btn-round"
-											value="읽은책 등록">
+										<input type="button" class="btn btn-d btn-round"
+											value="읽은책 등록" onclick="javascript:showPopup(this.form);" />
+
+
 									</form>
 								</c:when>
 							</c:choose>
