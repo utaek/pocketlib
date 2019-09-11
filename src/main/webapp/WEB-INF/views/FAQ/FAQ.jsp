@@ -62,7 +62,8 @@
     
     -->
 <!-- Default stylesheets-->
-<link href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- Template specific stylesheets-->
 <link
@@ -73,23 +74,35 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/animate.css/animate.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/components-font-awesome/css/font-awesome.min.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/animate.css/animate.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/components-font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/lib/et-line-font/et-line-font.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.theme.default.min.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/simpletextrotator.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/simpletextrotator.css"
 	rel="stylesheet">
 <!-- Main stylesheet and color file-->
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
-<link id="color-scheme" href="${pageContext.request.contextPath}/assets/css/colors/default.css"
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet">
+<link id="color-scheme"
+	href="${pageContext.request.contextPath}/assets/css/colors/default.css"
 	rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -119,7 +132,9 @@
 							<li><a
 								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
 									셀러</a></li>
-									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/book/item_new_special.do">화제의
+									신간도서</a></li>
 							<li><a href="#">작가별 추천</a></li>
 							<li><a href="#">장르별 추천</a></li>
 							<li><a href="#">맞춤 추천</a></li>
@@ -141,30 +156,37 @@
 
 								</c:otherwise>
 							</c:choose>
-								<li><a
+							<li><a
 								href="${pageContext.request.contextPath}/book/booksearch.do">책
 									검색</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
+						href="${pageContext.request.contextPath}/board/board_list.do"
+						data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
-									게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
+									후기 게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
 									게시판</a></li>
 						</ul></li>
 					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
-						
-							
-					
+
+
+
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -172,98 +194,147 @@
 			</div>
 		</div>
 	</nav>
-	<section class="home-section home-parallax home-fade" id="home">
-		<div class="hero-slider">
-			<ul class="slides">
-				<li class="bg-dark-30 bg-dark"
-					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-8.jpg);">
-					<div class="titan-caption">
-						<div class="caption-content">
-							<div class="font-alt mb-30 titan-title-size-1">Hello &amp;
-								welcome</div>
-							<div class="font-alt mb-40 titan-title-size-4">We are Titan</div>
-							<a class="section-scroll btn btn-border-w btn-round"
-								href="#about">Learn More</a>
-						</div>
-					</div>
-				</li>
-				<li class="bg-dark-30 bg-dark"
-					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-9.jpg);">
-					<div class="titan-caption">
-						<div class="caption-content">
-							<div class="font-alt mb-30 titan-title-size-2">
-								Titan is creative multipurpose html template for<br />web
-								developers who change the world
-							</div>
-							<a class="btn btn-border-w btn-round" href="about">Learn More</a>
-						</div>
-					</div>
-				</li>
-				<li class="bg-dark-30 bg-dark"
-					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-10.jpg);">
-					<div class="titan-caption">
-						<div class="caption-content">
-							<div class="font-alt mb-30 titan-title-size-1">We build
-								brands that build business</div>
-							<div class="font-alt mb-40 titan-title-size-3">We are
-								Amazing</div>
-							<a class="section-scroll btn btn-border-w btn-round"
-								href="#about">Learn More</a>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</section>
 	<div class="main">
-		<section class="module-medium">
+		<section class="module bg-dark-30"
+			data-background="${pageContext.request.contextPath}/assets/images/01.jpg">
 			<div class="container">
-				<ul class="works-grid works-grid-gut works-hover-d" id="works-grid">
-					<li class="work-item illustration webdesign"><a
-						href="portfolio_single_featured_image1.html">
-							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/portrait.jpg"
-									alt="Portfolio Item" />
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<h1 class="module-title font-alt mb-0">FAQ</h1>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="module">
+			<div class="container">
+				<div class="row">
+					<div class="row mb-60">
+						<div class="col-sm-8 col-sm-offset-2" style="margin-left: 5%; width: 100%;">
+						
+						<div style="float: right;">
+									<a href="${pageContext.request.contextPath}/book/booksearch.do">
+										<button type="button" class="btn btn-g btn-round ">
+
+											<span class="icon-notebook"></span> 책 추가하기
+										</button>
+									</a>
+								</div>
+					
+						</div>
+						<div class="col-sm-8 col-sm-offset-2"
+							style="margin-left: 5%; width: 100%;">
+							<h4 class="font-alt mb-0">My bookshelf</h4>
+							<hr class="divider-w mt-10 mb-20">
+							<div role="tabpanel">
+								<ul class="nav nav-tabs font-alt" role="tablist">
+									<li class="active"><a href="#support" data-toggle="tab"
+										aria-expanded="true"> <span class="icon-book-open"></span>읽은
+											책
+									</a></li>
+									<li><a href="#sales" data-toggle="tab"
+										aria-expanded="false"> <span class="icon-notebook"></span>관심책
+									</a></li>
+								</ul>
+
+								<div class="tab-content">
+									<div class="tab-pane active" id="support">
+										<!-- 읽은 책list  -->
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#support1">자주묻는 1번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="support1">
+												<div class="panel-body">정수연</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#support2">자주묻는 2번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="support2">
+												<div class="panel-body">최우택</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#support3">자주묻는 3번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="support3">
+												<div class="panel-body">송수협</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#support4">자주묻는 4번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="support4">
+												<div class="panel-body">박장호</div>
+											</div>
+									</div>
+	
+								<div class="tab-pane" id="sales">
+										<!-- 관심 책list  -->
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#sales">1번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="sales">
+												<div class="panel-body">정수연</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#sales">자주묻2번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="sales">
+												<div class="panel-body">최우택d</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#sales">자주묻는 3번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="sales">
+												<div class="panel-body">송수협</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title font-alt">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion" href="#sales">자주묻는 4번질문 </a>
+												</h4>
+											</div>
+											<div class="panel-collapse collapse" id="sales">
+												<div class="panel-body">박장호</div>
+											</div>
+									</div>
+								</div>	
 							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Portrait</h3>
-								<div class="work-descr">Lorem ipsum</div>
-							</div>
-					</a></li>
-					<li class="work-item marketing photography"><a
-						href="portfolio_single_featured_image2.html">
-							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/landscape.jpg"
-									alt="Portfolio Item" />
-							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Landscape</h3>
-								<div class="work-descr">Dolor sit</div>
-							</div>
-					</a></li>
-					<li class="work-item illustration photography"><a
-						href="portfolio_single_featured_slider1.html">
-							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/architecture.jpg"
-									alt="Portfolio Item" />
-							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Architecture</h3>
-								<div class="work-descr">Amet Consectetur</div>
-							</div>
-					</a></li>
-					<li class="work-item marketing photography"><a
-						href="portfolio_single_featured_slider2.htmll">
-							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/lifestyle.jpg"
-									alt="Portfolio Item" />
-							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Life Style</h3>
-								<div class="work-descr">Adipisicing elit</div>
-							</div>
-					</a></li>
-				</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 		<div class="module-small bg-dark">
@@ -311,7 +382,7 @@
 							<ul class="widget-posts">
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-1.jpg"
+										<a href="#"><img src="assets/images/rp-1.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
@@ -323,7 +394,7 @@
 								</li>
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-2.jpg"
+										<a href="#"><img src="assets/images/rp-2.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
@@ -360,25 +431,34 @@
 				</div>
 			</div>
 		</footer>
-		<div class="scroll-up">
-			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
-		</div>
 	</div>
-	</main>
+	<div class="scroll-up">
+		<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+	</div>
+
 	<!--  
     JavaScripts
     =============================================
-    -->
-	<script src="${pageContext.request.contextPath}/assets/lib/jquery/dist/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/wow/dist/wow.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/isotope/dist/isotope.pkgd.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/flexslider/jquery.flexslider.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/smoothscroll.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    --> <script
+		src="${pageContext.request.contextPath}/assets/lib/jquery/dist/jquery.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/wow/dist/wow.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/isotope/dist/isotope.pkgd.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/flexslider/jquery.flexslider.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/smoothscroll.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/plugins.js"></script>
