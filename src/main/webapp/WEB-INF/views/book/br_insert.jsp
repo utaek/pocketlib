@@ -104,8 +104,9 @@
 <script language="javascript">
 function rank_reg() {
 	alert("평점이 등록되었습니다.");
-	
+	opener.location.reload();
 	window.close();
+	
 }
 </script>
 

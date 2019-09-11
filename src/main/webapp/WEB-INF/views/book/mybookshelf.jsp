@@ -237,12 +237,10 @@
 																		<div class="col-md-12 col-sm-6 col-xs-12">
 																			<a class="content-box"
 																				href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
-																				<div class="content-box-image"
-																					style="height: 300px; vertical-align: middle;">
+																				<div class="content-box-image"	style="height: 350px; vertical-align: middle;">
 																					<img src="${item.cover}"
 																						style="height: 200px; margin-top: 20px">
-																					<h4 class="content-box-title font-serif">${item.title}
-																					</h4>
+																					<h4 class="content-box-title font-serif">${item.title}</h4>
 																					<h5>나의 평점 ${item.value}</h5>
 																				</div>
 

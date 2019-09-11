@@ -17,12 +17,12 @@ import pocketLib.spring.pocketLibSpring.helper.RetrofitHelper;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
-
+import pocketLib.spring.pocketLibSpring.mybatis.model.Searching;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
+import pocketLib.spring.pocketLibSpring.mybatis.service.SearchingService;
 import pocketLib.spring.pocketLibSpring.retrofit.Service.AladinService;
 import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBook;
 import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBookList;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -34,19 +34,21 @@ public class RetrofitController {
 	RetrofitHelper retrofitHelper;
 	@Autowired
 	SqlSession sqlSession;
-	
+
 	@Autowired
 	private BookService bookService;
-	
-	
+
+	@Autowired
+	SearchingService searchingService;
+
 	@RequestMapping(value = "/book/bestseller.do", method = RequestMethod.GET)
 	public String bestseller(Model model, HttpServletRequest request) {
 		Retrofit retrofit = retrofitHelper.getRetrofit(AladinService.BASE_URL);
 		HttpSession session = request.getSession();
 
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
-		if(userInfo==null) {
-			userInfo= null;
+		if (userInfo == null) {
+			userInfo = null;
 		}
 		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
 		AladinService aladinService = retrofit.create(AladinService.class);
@@ -79,7 +81,6 @@ public class RetrofitController {
 			e.printStackTrace();
 		}
 
-
 		Book book = new Book();
 		for (AladinBookList.Item item : aladinBookList.item) {
 			book.setIsbn(item.isbn);
@@ -100,11 +101,11 @@ public class RetrofitController {
 				e.getLocalizedMessage();
 			}
 		}
-		
-		model.addAttribute("userInfo",userInfo);
+
+		model.addAttribute("userInfo", userInfo);
 		model.addAttribute(categoryId);
 		model.addAttribute(aladinBookList);
-		
+
 		return "book/bestseller";
 
 	}
@@ -115,8 +116,8 @@ public class RetrofitController {
 		HttpSession session = request.getSession();
 
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
-		if(userInfo==null) {
-			userInfo= null;
+		if (userInfo == null) {
+			userInfo = null;
 		}
 		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
 		AladinService aladinService = retrofit.create(AladinService.class);
@@ -146,9 +147,8 @@ public class RetrofitController {
 		try {
 			aladinBookList = call.execute().body();
 		} catch (IOException e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
-		
 
 		Book book = new Book();
 		for (AladinBookList.Item item : aladinBookList.item) {
@@ -170,10 +170,10 @@ public class RetrofitController {
 				e.getLocalizedMessage();
 			}
 		}
-		model.addAttribute("userInfo",userInfo);
+		model.addAttribute("userInfo", userInfo);
 		model.addAttribute(categoryId);
 		model.addAttribute(aladinBookList);
-		
+
 		return "book/item_new_special";
 
 	}
@@ -184,67 +184,94 @@ public class RetrofitController {
 		HttpSession session = request.getSession();
 
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
-		
+
 		if (userInfo == null) {
-			userInfo= null;
+			userInfo = null;
 		}
-	
+
 		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
 		AladinService aladinService = retrofit.create(AladinService.class);
 
+		int totalCount = 0;
 
-		//검색키워드 받기
+		// 검색키워드 받기
 		String query = webHelper.getString("query", "");
 
-		//검색 결과 저장할 beans 객체 선언
-		AladinBook search = null;
-		String ttbkey = "ttbfreda70890100001";
-		String queryType = "Title";
-		int maxResults = 10;
-		String cover = "Big";
-		int start = 1;
-		String searchTarget = "Book";
-		String output = "js";
-		int version = 20131101;
-
-		//검색어 존재할 경우 검색결과받기
-		if (!query.equals("")) {
-
-			Call<AladinBook> call = aladinService.getAladinBookSearch(ttbkey, query, queryType, maxResults, cover,
-					start, searchTarget, output, version);
-			try {
-				search = call.execute().body();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		Book book = new Book();
+		Searching input = new Searching();
+		input.setQueryValue(query);
 		
-		if(search!=null) {
-		for (AladinBook.Item item : search.item) {
-			book.setIsbn(item.isbn);
-			book.setTitle(item.title);
-			book.setAuthor(item.author);
-			book.setDescription(item.description);
-			book.setPriceSales(item.priceSales);
-			book.setPriceStandard(item.priceStandard);
-			book.setPublisher(item.publisher);
-			book.setCategoryId(item.categoryId);
-			book.setCategoryName(item.categoryName);
-			book.setPubDate(item.pubDate);
-			book.setCover(item.cover);
-			book.setCustomerReviewRank(item.customerReviewRank);
+		try {
+			totalCount = searchingService.queryCount(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		if (totalCount > 0) {
 			try {
-				bookService.addBook(book);
+				searchingService.addQueryValue(input);
+
 			} catch (Exception e) {
 				e.getLocalizedMessage();
 			}
-		}
+		} else {
+			try {
+				searchingService.addQueryValue(input);
+
+			} catch (Exception e) {
+				e.getLocalizedMessage();
+			}
+			// 검색 결과 저장할 beans 객체 선언
+			AladinBook search = null;
+			String ttbkey = "ttbfreda70890100001";
+			String queryType = "Title";
+			int maxResults = 50;
+			String cover = "Big";
+			int start = 1;
+			String searchTarget = "Book";
+			String output = "js";
+			int version = 20131101;
+
+			// 검색어 존재할 경우 검색결과받기
+			if (!query.equals("")) {
+
+				Call<AladinBook> call = aladinService.getAladinBookSearch(ttbkey, query, queryType, maxResults, cover,
+						start, searchTarget, output, version);
+				try {
+					search = call.execute().body();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			Book book = new Book();
+
+			if (search != null) {
+				for (AladinBook.Item item : search.item) {
+					book.setIsbn(item.isbn);
+					book.setTitle(item.title);
+					book.setAuthor(item.author);
+					book.setDescription(item.description);
+					book.setPriceSales(item.priceSales);
+					book.setPriceStandard(item.priceStandard);
+					book.setPublisher(item.publisher);
+					book.setCategoryId(item.categoryId);
+					book.setCategoryName(item.categoryName);
+					book.setPubDate(item.pubDate);
+					book.setCover(item.cover);
+					book.setCustomerReviewRank(item.customerReviewRank);
+
+					try {
+						bookService.addBook(book);
+					} catch (Exception e) {
+						e.getLocalizedMessage();
+					}
+				}
+			}
+
+			model.addAttribute("userInfo", userInfo);
+			model.addAttribute("search", search);
 		}
 		
-		model.addAttribute("userInfo",userInfo);
-		model.addAttribute("search", search);
-	
 		String viewPath = "book/booksearch";
 		return new ModelAndView(viewPath);
 

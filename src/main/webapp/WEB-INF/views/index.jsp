@@ -62,7 +62,8 @@
     
     -->
 <!-- Default stylesheets-->
-<link href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- Template specific stylesheets-->
 <link
@@ -73,23 +74,35 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/animate.css/animate.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/components-font-awesome/css/font-awesome.min.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/animate.css/animate.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/components-font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/lib/et-line-font/et-line-font.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.theme.default.min.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/simpletextrotator.css"
+<link
+	href="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/simpletextrotator.css"
 	rel="stylesheet">
 <!-- Main stylesheet and color file-->
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
-<link id="color-scheme" href="${pageContext.request.contextPath}/assets/css/colors/default.css"
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet">
+<link id="color-scheme"
+	href="${pageContext.request.contextPath}/assets/css/colors/default.css"
 	rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -112,16 +125,12 @@
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="buttons.html">팀 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
-							<li><a
-								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
-									셀러</a></li>
-									<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
-							<li><a href="#">작가별 추천</a></li>
-							<li><a href="#">장르별 추천</a></li>
+							<li><a href="${pageContext.request.contextPath}/book/bestseller.do">베스트셀러</a></li>
+							<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
 							<li><a href="#">맞춤 추천</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
@@ -129,32 +138,27 @@
 						<ul class="dropdown-menu">
 							<c:choose>
 								<c:when test="${userInfo!=null}">
-
-									<li><a
-										href="${pageContext.request.contextPath}/book/mybookshelf.do">내
-											책장</a></li>
+									<li><a href="${pageContext.request.contextPath}/book/mybookshelf.do">내 책장</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a
-										href="${pageContext.request.contextPath}/login/show.do">내
-											책장</a></li>
+									<li><a href="${pageContext.request.contextPath}/login/show.do">내 책장</a></li>
 
 								</c:otherwise>
 							</c:choose>
-								<li><a
-								href="${pageContext.request.contextPath}/book/booksearch.do">책
-									검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/book/booksearch.do">책 검색</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						href="${pageContext.request.contextPath}/board/board_list.do" data-toggle="dropdown">커뮤니티</a>
+						href="${pageContext.request.contextPath}/board/board_list.do"
+						data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기
-									게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
-									게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA 게시판</a></li>
 						</ul></li>
+<<<<<<< HEAD
 						
+=======
+>>>>>>> f853f59bf94f0308cdde4fdc68f44fc4d0a40eb0
 					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
 
 					<c:choose>
@@ -221,7 +225,8 @@
 					<li class="work-item illustration webdesign"><a
 						href="portfolio_single_featured_image1.html">
 							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/portrait.jpg"
+								<img
+									src="${pageContext.request.contextPath}/assets/images/photography/portrait.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -232,7 +237,8 @@
 					<li class="work-item marketing photography"><a
 						href="portfolio_single_featured_image2.html">
 							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/landscape.jpg"
+								<img
+									src="${pageContext.request.contextPath}/assets/images/photography/landscape.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -243,7 +249,8 @@
 					<li class="work-item illustration photography"><a
 						href="portfolio_single_featured_slider1.html">
 							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/architecture.jpg"
+								<img
+									src="${pageContext.request.contextPath}/assets/images/photography/architecture.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -254,7 +261,8 @@
 					<li class="work-item marketing photography"><a
 						href="portfolio_single_featured_slider2.htmll">
 							<div class="work-image">
-								<img src="${pageContext.request.contextPath}/assets/images/photography/lifestyle.jpg"
+								<img
+									src="${pageContext.request.contextPath}/assets/images/photography/lifestyle.jpg"
 									alt="Portfolio Item" />
 							</div>
 							<div class="work-caption font-alt">
@@ -310,7 +318,8 @@
 							<ul class="widget-posts">
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-1.jpg"
+										<a href="#"><img
+											src="${pageContext.request.contextPath}/assets/images/rp-1.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
@@ -322,7 +331,8 @@
 								</li>
 								<li class="clearfix">
 									<div class="widget-posts-image">
-										<a href="#"><img src="${pageContext.request.contextPath}/assets/images/rp-2.jpg"
+										<a href="#"><img
+											src="${pageContext.request.contextPath}/assets/images/rp-2.jpg"
 											alt="Post Thumbnail" /></a>
 									</div>
 									<div class="widget-posts-body">
@@ -368,16 +378,26 @@
     JavaScripts
     =============================================
     -->
-	<script src="${pageContext.request.contextPath}/assets/lib/jquery/dist/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/wow/dist/wow.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/isotope/dist/isotope.pkgd.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/flexslider/jquery.flexslider.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/smoothscroll.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/jquery/dist/jquery.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/wow/dist/wow.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/isotope/dist/isotope.pkgd.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/flexslider/jquery.flexslider.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/smoothscroll.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/plugins.js"></script>
