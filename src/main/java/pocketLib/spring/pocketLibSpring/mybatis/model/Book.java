@@ -19,6 +19,8 @@ public class Book {
 	private String categoryName;
 	private String publisher;
 	private int customerReviewRank;
+	private int value;
+	private String reg_date;
 	
 	private static int offset;
 	private static int listCount;

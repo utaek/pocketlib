@@ -1,7 +1,7 @@
 package pocketLib.spring.pocketLibSpring.mybatis.service.impl;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,6 +145,10 @@ public class BookServiceImpl implements BookService {
 	        } 
 	        return result;
 	}
+	
+	
+
+
 
 	@Override
 	public List<Book> getInterestedList(BookInterested input) throws Exception {
