@@ -114,7 +114,7 @@
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="buttons.html">팀 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">

@@ -61,6 +61,23 @@
 
    
     </select>
+    
+    <select id="selectListQuery" 
+            parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book" 
+            resultMap="bookMap">
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+	select isbn, title, author, description, pubDate,  priceSales, priceStandard, cover, categoryId, categoryName, publisher,customerReviewRank from book
+		<where>
+			<if test="title != null and title !=''">
+				AND(title LIKE concat('%', #{title}, '%')
+			</if>
+			<if test="description != null and description !=''">
+				OR description LIKE concat('%', #{description}, '%')) 
+			</if>
+		</where>
+
+    </select>
    <!-- 관심책과 inner join? -->
    
     <select id="InterestedList" 
