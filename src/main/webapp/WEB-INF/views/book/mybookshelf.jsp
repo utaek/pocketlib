@@ -243,7 +243,7 @@
 																						style="height: 200px; margin-top: 20px">
 																					<h4 class="content-box-title font-serif">${item.title}
 																					</h4>
-																					
+																					<h5>나의 평점 ${item.value}</h5>
 																				</div>
 
 																			</a>
