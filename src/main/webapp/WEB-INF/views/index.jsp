@@ -105,6 +105,7 @@
 	href="${pageContext.request.contextPath}/assets/css/colors/default.css"
 	rel="stylesheet">
 </head>
+
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
 	<main>
@@ -129,8 +130,11 @@
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/book/bestseller.do">베스트셀러</a></li>
-							<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/book/bestseller.do">베스트셀러</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/book/item_new_special.do">화제의
+									신간도서</a></li>
 							<li><a href="#">맞춤 추천</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="#"
@@ -138,36 +142,47 @@
 						<ul class="dropdown-menu">
 							<c:choose>
 								<c:when test="${userInfo!=null}">
-									<li><a href="${pageContext.request.contextPath}/book/mybookshelf.do">내 책장</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/book/mybookshelf.do">내
+											책장</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="${pageContext.request.contextPath}/login/show.do">내 책장</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/login/show.do">내
+											책장</a></li>
 
 								</c:otherwise>
 							</c:choose>
-							<li><a href="${pageContext.request.contextPath}/book/booksearch.do">책 검색</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/book/booksearch.do">책
+									검색</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						href="${pageContext.request.contextPath}/board/board_list.do"
 						data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기 게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA 게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
+									후기 게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
-<<<<<<< HEAD
-						
-=======
->>>>>>> f853f59bf94f0308cdde4fdc68f44fc4d0a40eb0
+
 					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
 
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -219,60 +234,88 @@
 		</div>
 	</section>
 	<div class="main">
-		<section class="module-medium">
-			<div class="container">
-				<ul class="works-grid works-grid-gut works-hover-d" id="works-grid">
-					<li class="work-item illustration webdesign"><a
-						href="portfolio_single_featured_image1.html">
-							<div class="work-image">
-								<img
-									src="${pageContext.request.contextPath}/assets/images/photography/portrait.jpg"
-									alt="Portfolio Item" />
-							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Portrait</h3>
-								<div class="work-descr">Lorem ipsum</div>
-							</div>
-					</a></li>
-					<li class="work-item marketing photography"><a
-						href="portfolio_single_featured_image2.html">
-							<div class="work-image">
-								<img
-									src="${pageContext.request.contextPath}/assets/images/photography/landscape.jpg"
-									alt="Portfolio Item" />
-							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Landscape</h3>
-								<div class="work-descr">Dolor sit</div>
-							</div>
-					</a></li>
-					<li class="work-item illustration photography"><a
-						href="portfolio_single_featured_slider1.html">
-							<div class="work-image">
-								<img
-									src="${pageContext.request.contextPath}/assets/images/photography/architecture.jpg"
-									alt="Portfolio Item" />
-							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Architecture</h3>
-								<div class="work-descr">Amet Consectetur</div>
-							</div>
-					</a></li>
-					<li class="work-item marketing photography"><a
-						href="portfolio_single_featured_slider2.htmll">
-							<div class="work-image">
-								<img
-									src="${pageContext.request.contextPath}/assets/images/photography/lifestyle.jpg"
-									alt="Portfolio Item" />
-							</div>
-							<div class="work-caption font-alt">
-								<h3 class="work-title">Life Style</h3>
-								<div class="work-descr">Adipisicing elit</div>
-							</div>
-					</a></li>
-				</ul>
+		<section class="module-medium" >
+			<div class="container" id="container"
+				style="font-family: 'overwatch'; src: url('fonts/koverwatch.woff2');">
+				<div class="CSV" >
+
+				<script src="https://d3js.org/d3.v3.min.js"></script>
+				<script
+					src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
+					type="text/JavaScript"></script>
+
+				<script>
+        var width = 1200,
+            height = 400
+
+        var svg = d3.select("div.CSV").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        d3.csv("${pageContext.request.contextPath}/assets/searching.csv", function (data) {
+            showCloud(data)
+            setInterval(function(){
+                 showCloud(data)
+            },2000) 
+        });
+        //scale.linear: 선형적인 스케일로 표준화를 시킨다. 
+        //domain: 데이터의 범위, 입력 크기
+        //range: 표시할 범위, 출력 크기 
+        //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
+        wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
+        var keywords = ["${cnt1}", "${cnt2}", "${cnt3}"]
+        var svg = d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+
+        function showCloud(data) {
+            d3.layout.cloud().size([width, height])
+                //클라우드 레이아웃에 데이터 전달
+                .words(data)
+                .rotate(function (d) {
+                    return d.text.length > 3 ? 0 : 0;
+                })
+                //스케일로 각 단어의 크기를 설정
+                .fontSize(function (d) {
+                    return wordScale(d.frequency);
+                })
+                //클라우드 레이아웃을 초기화 > end이벤트 발생 > 연결된 함수 작동  
+                .on("end", draw)
+                .start();
+
+            function draw(words) { 
+                var cloud = svg.selectAll("text").data(words)
+                //Entering words
+                cloud.enter()
+                    .append("text")
+                    .style("font-family", "overwatch")
+                    .style("fill", function (d) {
+                        return (keywords.indexOf(d.text) > -1 ? "#fbc280" : "#000000");
+                    })
+                    .style("fill-opacity", .5)
+                    .attr("text-anchor", "middle") 
+                    .attr('font-size', 1)
+                    .text(function (d) {
+                        return d.text;
+                    }); 
+                cloud
+                    .transition()
+                    .duration(600)
+                    .style("font-size", function (d) {
+                        return d.size + "px";
+                    })
+                    .attr("transform", function (d) {
+                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                    })
+                    .style("fill-opacity", 1); 
+            }
+        }
+    </script>
+
+			</div>
 			</div>
 		</section>
+
+
 		<div class="module-small bg-dark">
 			<div class="container">
 				<div class="row">
@@ -373,6 +416,7 @@
 			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
 		</div>
 	</div>
+
 	</main>
 	<!--  
     JavaScripts

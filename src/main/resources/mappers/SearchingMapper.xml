@@ -29,5 +29,13 @@
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		select count(*) from searching where queryValue = #{queryValue};
 	</select>
+	
+	<select id="selectCSV"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Searching"
+		resultMap="SearchingMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		select  queryvalue , querycnt from searching order by querycnt desc;
+		
+	</select>
 
 </mapper>

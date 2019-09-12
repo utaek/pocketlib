@@ -20,10 +20,6 @@
 		useGeneratedKeys="true" keyProperty="bookSearchingId">
 		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
 		insert ignore into book_searching (isbn,queryid) values (#{isbn},#{queryid});
-	</insert>
-
-	
-	
-	
+	</insert>	
 
 </mapper>

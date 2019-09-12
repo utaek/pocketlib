@@ -1,5 +1,7 @@
 package pocketLib.spring.pocketLibSpring.mybatis.service.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,4 +47,16 @@ public class SearchingServiceImpl implements SearchingService{
 			} 
 			return result;
 		}
+
+	@Override
+	public List<Searching> CSVList(Searching input) throws Exception {
+		List<Searching> SearchingList=null;
+		try {
+			SearchingList = sqlSession.selectList("SearchingMapper.selectCSV",input);
+		}catch(Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		return SearchingList;
+	}
 }
