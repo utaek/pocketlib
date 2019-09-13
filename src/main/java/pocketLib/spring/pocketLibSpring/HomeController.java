@@ -52,43 +52,7 @@ public class HomeController {
 			userInfo = null;
 		}
 		
-		List<Searching> searchingList = null;
-		try {
-			searchingList = searchingService.CSVList(null);
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-
-		ArrayList<Searching> list = (ArrayList<Searching>) searchingList;
-
-		BufferedWriter bufWriter = null;
-		try {
-			bufWriter = Files.newBufferedWriter(Paths.get("C:/Choiutaek/workspace-jsp/pocketlib/src/main/webapp/WEB-INF/views/assets/searching.csv"), Charset.forName("UTF-8"));
-			bufWriter.write("text,frequency");
-			bufWriter.newLine();
-			for (int i = 0; i < list.size(); i++) {
-
-				bufWriter.write(list.get(i).getQueryValue());
-				bufWriter.write(",");
-				bufWriter.write(Integer.toString(list.get(i).getQuerycnt()*10));
-				bufWriter.newLine();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (bufWriter != null) {
-					bufWriter.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		model.addAttribute("cnt1", list.get(0).getQueryValue());
-		model.addAttribute("cnt2", list.get(1).getQueryValue());
-		model.addAttribute("cnt3", list.get(2).getQueryValue());
+		
 		
 		return "index";
 	}

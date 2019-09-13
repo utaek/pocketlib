@@ -262,7 +262,7 @@
         //range: 표시할 범위, 출력 크기 
         //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
         wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
-        var keywords = ["${cnt1}", "${cnt2}", "${cnt3}"]
+        var keywords = ["1", "2", "3"]
         var svg = d3.select("svg")
                     .append("g")
                     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")

@@ -50,11 +50,14 @@
 		</interceptor>
 	</interceptors>
 	
-	<beans:bean id="bookScheduler" class="pocketLib.spring.pocketLibSpring.controller.BookScheduler"/>
+	<beans:bean id="bookScheduler" class="pocketLib.spring.pocketLibSpring.scheduler.BookScheduler"/>
+	<beans:bean id="csvScheduler" class="pocketLib.spring.pocketLibSpring.scheduler.CsvScheduler"/>
 
 	<task:scheduled-tasks>
 		<task:scheduled ref="bookScheduler" method="getBook"
-			cron="0 23 16 * * ?" />
+			cron="0 0 15 * * ?" />
+		<task:scheduled ref="csvScheduler" method="getCsv"
+			cron="0 0 15 * * ?" />
 	</task:scheduled-tasks>
 
 </beans:beans>
