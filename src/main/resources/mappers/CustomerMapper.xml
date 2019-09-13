@@ -26,7 +26,7 @@
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer"
 		useGeneratedKeys="true" keyProperty="userno">
 		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
-		INSERT INTO customer (userid, password, username, birthday, email,
+		INSERT ignore INTO customer (userid, password, username, birthday, email,
 		gender, userkey)
 		VALUES (#{userId}, #{password}, #{userName}, #{birthday}, #{email},
 		#{gender}, #{userkey});
