@@ -138,10 +138,21 @@ public class BookController {
 			
 		}
 		String isbn = webHelper.getString("isbn");
-
+		
+		String date = null;
+		if (date == null) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.DAY_OF_MONTH, 0);
+			date = String.format("%04d%02d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
+					calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
+					calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+		}
+		String regdate = date.replace("-", "");
+		
 		BookInterested input = new BookInterested();
 		input.setIsbn(isbn);
 		input.setUserno(userno);
+		input.setReg_date(regdate);
 
 		try {
 			bookInterestedService.addBookInterested(input);

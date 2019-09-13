@@ -10,7 +10,6 @@ public class Book {
 	private String title;
 	private String author;
 	private String description;
-	
 	private String pubDate;
 	private int priceSales;
 	private int priceStandard;
@@ -21,6 +20,7 @@ public class Book {
 	private int customerReviewRank;
 	private int value;
 	private String reg_date;
+	private int count;
 	
 	private static int offset;
 	private static int listCount;

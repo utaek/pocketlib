@@ -10,6 +10,8 @@
         <result property="bINo" column="bINo" />
         <result property="userno" column="userno" />
         <result property="isbn" column="isbn" />
+        <result property="reg_date" column="reg_date" />
+        
     </resultMap>
     
     <!-- 단일행 조회를 위한 기능 정의 -->
@@ -59,7 +61,7 @@
             useGeneratedKeys="true"
             keyProperty="bINo">
         <!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
-    insert into BookInterested (userno, isbn) values (#{userno}, #{isbn});
+    insert into BookInterested (userno, isbn,reg_date) values (#{userno}, #{isbn}, #{reg_date});
     
     </insert>
     

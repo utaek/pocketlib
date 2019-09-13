@@ -2,6 +2,7 @@ package pocketLib.spring.pocketLibSpring.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -487,6 +488,16 @@ public class LoginController {
 		isbnList =webHelper.getStringArray("isbn",null);
 		}
 		
+		String date =null;
+		if (date == null) {
+	         Calendar calendar = Calendar.getInstance();
+	         calendar.add(Calendar.DAY_OF_MONTH, 0);
+	         date = String.format("%04d%02d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
+	               calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
+	               calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+	      }
+	      String regdate = date.replace("-", "");
+	      
 		String isbn = null;
 		if(isbnList!=null) {
 		for(int i=0; i<isbnList.length;i++) {
@@ -494,6 +505,8 @@ public class LoginController {
 			BookInterested bIInput=new BookInterested();
 			bIInput.setIsbn(isbn);
 			bIInput.setUserno(userno);
+			bIInput.setReg_date(regdate);
+			
 			try {
 				if(isbn != null) {
 					bookInterestedService.addBookInterested(bIInput);

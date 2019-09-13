@@ -7,6 +7,7 @@ public class BookInterested {
 	private int bINo;
 	private int userno;
 	private String isbn;
+	private String reg_date;
 
 	private static int offset;
 	private static int listCount;

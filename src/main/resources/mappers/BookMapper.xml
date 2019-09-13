@@ -59,6 +59,7 @@
 		<result property="bINo" column="bINo" />
 		<result property="userno" column="userno" />
 		<result property="isbn" column="isbn" />
+		<result property="reg_date" column="reg_date" />
 	</resultMap>
 
 

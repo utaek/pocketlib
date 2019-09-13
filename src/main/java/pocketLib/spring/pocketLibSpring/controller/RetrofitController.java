@@ -202,9 +202,7 @@ public class RetrofitController {
 
 		// 검색키워드 받기
 		String query = webHelper.getString("query", "");
-		if(query == "" || query.equals(null)) {
-			return new ModelAndView("book/booksearch");
-		}
+		
 		Searching input = new Searching();
 		input.setQueryValue(query);
 		

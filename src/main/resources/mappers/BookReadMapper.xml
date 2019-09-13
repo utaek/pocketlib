@@ -42,9 +42,6 @@
 
 	select bRNo, userno, isbn, value, reg_date from bookRead;
 
-
-
-
     </select>
     
     <!-- 데이터 수 조회를 위한 기능 정의 -->

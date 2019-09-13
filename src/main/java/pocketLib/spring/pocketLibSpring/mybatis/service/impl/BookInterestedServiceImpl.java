@@ -30,7 +30,6 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 			log.error(e.getLocalizedMessage());
 			 throw new Exception("저장된 데이터가 없습니다.");
 		}catch(Exception e) {
-			   sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 저장에 실패했습니다.");
 		} 
@@ -45,11 +44,9 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	                throw new NullPointerException("result=null");
 	            }
 	        } catch (NullPointerException e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("조회된 데이터가 없습니다.");
 	        } catch (Exception e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
 	        } 
@@ -64,11 +61,9 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	                throw new NullPointerException("result=null");
 	            }
 	        } catch (NullPointerException e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("조회된 데이터가 없습니다.");
 	        } catch (Exception e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
 	        } 
@@ -80,7 +75,6 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	        try {
 	            result = sqlSession.selectOne("BookInterestedMapper.selectCount", input);
 	        } catch (Exception e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 조회에 실패했습니다.");
 	        } 
@@ -96,11 +90,9 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	                throw new NullPointerException("result=0");
 	            }
 	        } catch (NullPointerException e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("수정된 데이터가 없습니다.");
 	        } catch (Exception e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 수정에 실패했습니다.");
 	        } 
@@ -117,11 +109,9 @@ public class BookInterestedServiceImpl implements BookInterestedService {
 	                throw new NullPointerException("result=0");
 	            }
 	        } catch (NullPointerException e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("삭제된 데이터가 없습니다.");
 	        } catch (Exception e) {
-	            sqlSession.rollback();
 	            log.error(e.getLocalizedMessage());
 	            throw new Exception("데이터 삭제에 실패했습니다.");
 	        } 
