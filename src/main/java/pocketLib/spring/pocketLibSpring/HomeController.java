@@ -58,7 +58,7 @@ public class HomeController {
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-
+		/**
 		ArrayList<Searching> list = (ArrayList<Searching>) searchingList;
 
 		BufferedWriter bufWriter = null;
@@ -88,7 +88,7 @@ public class HomeController {
 		}
 		model.addAttribute("cnt1", list.get(0).getQueryValue());
 		model.addAttribute("cnt2", list.get(1).getQueryValue());
-		model.addAttribute("cnt3", list.get(2).getQueryValue());
+		model.addAttribute("cnt3", list.get(2).getQueryValue());**/
 		
 		return "index";
 	}

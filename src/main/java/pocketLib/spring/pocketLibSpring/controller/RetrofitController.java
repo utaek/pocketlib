@@ -202,9 +202,12 @@ public class RetrofitController {
 
 		// 검색키워드 받기
 		String query = webHelper.getString("query", "");
-
+		if(query == "" || query.equals(null)) {
+			return new ModelAndView("book/booksearch");
+		}
 		Searching input = new Searching();
 		input.setQueryValue(query);
+		
 		
 		try {
 			totalCount = searchingService.queryCount(input);
@@ -241,7 +244,7 @@ public class RetrofitController {
 			int version = 20131101;
 
 			// 검색어 존재할 경우 검색결과받기
-			if (!query.equals("")) {
+			if (!query.equals(null)) {
 
 				Call<AladinBook> call = aladinService.getAladinBookSearch(ttbkey, query, queryType, maxResults, cover,
 						start, searchTarget, output, version);
