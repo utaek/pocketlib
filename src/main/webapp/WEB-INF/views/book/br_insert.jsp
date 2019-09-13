@@ -83,10 +83,10 @@
 	href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.theme.default.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"

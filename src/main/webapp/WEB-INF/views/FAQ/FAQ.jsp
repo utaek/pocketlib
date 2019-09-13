@@ -87,10 +87,10 @@
 	href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.theme.default.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
@@ -125,26 +125,22 @@
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="buttons.html">팀 소개</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
+					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
+					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/book/bestseller.do">베스트
-									셀러</a></li>
+								href="${pageContext.request.contextPath}/book/bestseller.do">베스트셀러</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/book/item_new_special.do">화제의
 									신간도서</a></li>
-							<li><a href="#">작가별 추천</a></li>
-							<li><a href="#">장르별 추천</a></li>
-							<li><a href="#">맞춤 추천</a></li>
+							<li><a href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">맞춤 추천</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
+					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/mybookshelf.do"
 						data-toggle="dropdown">독서관리</a>
 						<ul class="dropdown-menu">
 							<c:choose>
 								<c:when test="${userInfo!=null}">
-
 									<li><a
 										href="${pageContext.request.contextPath}/book/mybookshelf.do">내
 											책장</a></li>
@@ -173,9 +169,8 @@
 								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
 									게시판</a></li>
 						</ul></li>
+
 					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
-
-
 
 					<c:choose>
 						<c:when test="${userInfo==null}">

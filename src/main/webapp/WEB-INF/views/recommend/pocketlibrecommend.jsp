@@ -134,44 +134,62 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
+					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/book/bestseller.do">베스트셀러</a></li>
-							<li><a href="${pageContext.request.contextPath}/book/item_new_special.do">화제의 신간도서</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/book/bestseller.do">베스트셀러</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/book/item_new_special.do">화제의
+									신간도서</a></li>
 							<li><a href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">맞춤 추천</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
+					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/mybookshelf.do"
 						data-toggle="dropdown">독서관리</a>
 						<ul class="dropdown-menu">
 							<c:choose>
 								<c:when test="${userInfo!=null}">
-									<li><a href="${pageContext.request.contextPath}/book/mybookshelf.do">내 책장</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/book/mybookshelf.do">내
+											책장</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="${pageContext.request.contextPath}/login/show.do">내 책장</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/login/show.do">내
+											책장</a></li>
 
 								</c:otherwise>
 							</c:choose>
-							<li><a href="${pageContext.request.contextPath}/book/booksearch.do">책 검색</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/book/booksearch.do">책
+									검색</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						href="${pageContext.request.contextPath}/board/board_list.do"
 						data-toggle="dropdown">커뮤니티</a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책 후기 게시판</a></li>
-							<li><a href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA 게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=1">자유게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
+									후기 게시판</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+									게시판</a></li>
 						</ul></li>
+
 					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
 
 					<c:choose>
 						<c:when test="${userInfo==null}">
-							<li><a href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/show.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -181,12 +199,12 @@
 	</nav>
 	<div class="main">
 	<hr class="divider-w">
-        <section class="module">
+        <section class="module-small">
           <div class="container">
             <div class="row">
-              <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="module-title font-alt">Exclusive products</h2>
-                <div class="module-subtitle font-serif">The languages only differ in their grammar, their pronunciation and their most common words.</div>
+              <div class="col-sm-7 col-sm-offset-2">
+                <h2 class="module-title font-alt">PocketLib 인기 도서</h2>
+                <div class="module-subtitle font-serif">최근 한달 동안 내 책장에 많이 추가된 도서 목록입니다.</div>
               </div>
             </div>
             <div class="row">
@@ -196,7 +214,31 @@
                   <div class="col-sm-12">
                     <div class="ex-product"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
                     	<img src="${item.cover}" alt="Leather belt" style="height:250px; width:180px;"/></a>
-                      <h4 class="shop-item-title font-alt"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}"><span>${status.index+1}</span></a></h4>
+                      <h4 class="shop-item-title font-alt"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}"><span class="btn btn-d btn-xs">${status.index+1}</span></a></h4>
+                    </div>
+                  </div>
+                </div>
+                </c:forEach>
+                </div>
+              </div>
+          </div>
+        </section>
+        <section class="module-small">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-7 col-sm-offset-2">
+                <h2 class="module-title font-alt">ㅇㅇㅇ와 비슷한 도서</h2>
+                <div class="module-subtitle font-serif">최근에 읽으신 책과 비슷한 분류의 도서 목록입니다.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="owl-carousel text-center" data-items="3" data-pagination="false" data-navigation="false">
+              <c:forEach var="item" items="${output}" varStatus="status">
+                <div class="owl-item">
+                  <div class="col-sm-12">
+                    <div class="ex-product"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+                    	<img src="${item.cover}" alt="Leather belt" style="height:250px; width:180px;"/></a>
+                      <h4 class="shop-item-title font-alt"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}"><span class="btn btn-d btn-xs">${status.index+1}</span></a></h4>
                     </div>
                   </div>
                 </div>

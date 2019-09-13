@@ -87,10 +87,10 @@
 	href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.carousel.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/${pageContext.request.contextPath}/assets/owl.theme.default.min.css"
+	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
@@ -127,7 +127,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
+					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
 							<li><a
@@ -135,9 +135,9 @@
 							<li><a
 								href="${pageContext.request.contextPath}/book/item_new_special.do">화제의
 									신간도서</a></li>
-							<li><a href="#">맞춤 추천</a></li>
+							<li><a href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">맞춤 추천</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="#"
+					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/mybookshelf.do"
 						data-toggle="dropdown">독서관리</a>
 						<ul class="dropdown-menu">
 							<c:choose>
