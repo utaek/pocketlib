@@ -127,7 +127,8 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/bestseller.do"
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
 							<li><a
@@ -135,9 +136,12 @@
 							<li><a
 								href="${pageContext.request.contextPath}/book/item_new_special.do">화제의
 									신간도서</a></li>
-							<li><a href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">맞춤 추천</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">맞춤
+									추천</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/mybookshelf.do"
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/book/mybookshelf.do"
 						data-toggle="dropdown">독서관리</a>
 						<ul class="dropdown-menu">
 							<c:choose>
@@ -234,17 +238,17 @@
 		</div>
 	</section>
 	<div class="main">
-		<section class="module-medium" >
+		<section class="module-medium">
 			<div class="container" id="container"
 				style="font-family: 'overwatch'; src: url('fonts/koverwatch.woff2');">
-				<div class="CSV" >
+				<div class="CSV">
 
-				<script src="https://d3js.org/d3.v3.min.js"></script>
-				<script
-					src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
-					type="text/JavaScript"></script>
+					<script src="https://d3js.org/d3.v3.min.js"></script>
+					<script
+						src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
+						type="text/JavaScript"></script>
 
-				<script>
+					<script>
         var width = 1200,
             height = 400
 
@@ -311,10 +315,49 @@
         }
     </script>
 
-			</div>
+				</div>
 			</div>
 		</section>
+		
+		
+		<section class="module">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<c:forEach var="list" items="${bigList}" varStatus="status">
+						<table class="table table-hover" align="center"
+							style="width: 70%; text-align: center;">
+							<colgroup>
+								<col style="width: 20%;">
+								<col style="width: 80%;">
+							</colgroup>
 
+
+							<div class="alert alert-success" role="alert">
+								${months[status.index]} 의 인기도서 <span><i
+									class="icon-quote"></i></span>
+							</div>
+
+
+							<tbody>
+								<tr>
+
+									<c:forEach var="item" items="${list}" varStatus="status">
+										<td>${status.index+1}위</td>
+										<td><a
+											href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+												${item.title}</a></td>
+								</tr>
+
+							</tbody>
+					</c:forEach>
+
+					</c:forEach>
+					</table>
+
+
+				</div>
+			</div>
+		</section>
 
 		<div class="module-small bg-dark">
 			<div class="container">

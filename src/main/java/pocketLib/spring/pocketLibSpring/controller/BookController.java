@@ -1,5 +1,6 @@
 package pocketLib.spring.pocketLibSpring.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -375,4 +376,109 @@ public class BookController {
 		String viewPath = "book/book_detail";
 		return new ModelAndView(viewPath);
 	}
+	
+	
+	@RequestMapping(value = "/book/bookstat.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView bookstat(Model model, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+
+		Customer userInfo = (Customer) session.getAttribute("userInfo");
+
+		if(userInfo==null) {
+			webHelper.redirect("/login/show.do", "로그인 후 이용하세요");
+		}
+		
+		
+		//---------고객의 읽은 책-------------
+		BookRead input = new BookRead();
+		input.setUserno(userInfo.getUserno());
+
+		
+		
+		// 총 읽은 책 권 수 불러오기
+		int br_cnt = 0;
+		try {
+			br_cnt = bookReadService.getBookReadAllCount(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		
+		// reg_date 불러오기
+
+		List<BookRead> BR = null;
+		
+		try {
+			BR = bookReadService.getCountby_reg_date(input);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		List<String> reglist= new ArrayList<String>(BR.size());
+		List<String> cntlist =new ArrayList<String>(BR.size());
+		List<String> totalcntlist =new ArrayList<String>(BR.size());
+		int total=0;
+		for(int i=0; i<BR.size();i++) {
+		
+			reglist.add('"'+BR.get(i).getTerm()+'"');
+			cntlist.add(String.valueOf(BR.get(i).getCount()));
+			
+			total= total+BR.get(i).getCount();
+			totalcntlist.add(String.valueOf(total));
+		}
+		
+		
+		String termStr = String.join(",", reglist);
+		String cntStr =String.join(",", cntlist);
+		String totalStr = String.join(",", totalcntlist);
+		
+		
+		model.addAttribute("br_cnt", br_cnt);
+		model.addAttribute("totalStr", totalStr);
+		model.addAttribute("termStr", termStr);
+		model.addAttribute("cntlist", cntStr);
+
+		
+		
+		//---------다음 그래프---------------
+		
+		List<Book> BookCate= null;
+		
+		try {
+			BookCate = bookService.getBookReadCate(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
+		List<String> catelist= new ArrayList<String>(BR.size());
+		List<String> catecntlist =new ArrayList<String>(BR.size());
+		
+		for(int i=0; i<BookCate.size();i++) {
+		
+			catelist.add('"'+BookCate.get(i).getCate()+'"');
+			catecntlist.add(String.valueOf(BookCate.get(i).getCount()));
+		
+		}
+		
+		
+		String catelistStr = String.join(",", catelist);
+		String catecntlistStr =String.join(",", catecntlist);
+
+
+		model.addAttribute("maxlength",BookCate.get(0).getCount());
+		
+		model.addAttribute("catelistStr", catelistStr);
+		model.addAttribute("catecntlistStr", catecntlistStr);
+		
+		
+		String viewPath = "book/bookstat";
+		return new ModelAndView(viewPath);
+
+	}
+	
+	
 }

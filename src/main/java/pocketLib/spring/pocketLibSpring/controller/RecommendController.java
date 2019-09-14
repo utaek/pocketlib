@@ -1,5 +1,6 @@
 package pocketLib.spring.pocketLibSpring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Board;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
+import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
 import pocketLib.spring.pocketLibSpring.mybatis.service.RecommendService;
 
@@ -46,9 +48,46 @@ public class RecommendController {
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		model.addAttribute("output", output);
+		
+	
+	
+		BookRead input = new BookRead();
+		input.setUserno(userInfo.getUserno());
+		Book top = new Book();
+		
+		try {
+			top=recommendService.getTopOne(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 현종이가 만들어준 sql query 에서 나온 top one의 categoryId
+		int categoryId= top.getCategoryId();
+		String isbn =top.getIsbn();
+		
+		
+		Book input2 = new Book();
+		input2.setIsbn(isbn);
+		input2.setCategoryId(categoryId);
+		
+		List<Book> randomBook = new ArrayList<Book>();
+		try {
+			randomBook = recommendService.getselectRandombyCate(input2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+		
+		model.addAttribute("output", output);	
+		model.addAttribute("randomBook", randomBook);
 		model.addAttribute("userInfo", userInfo);
 		
-		return new ModelAndView("recommend/pocketlibrecommend");
+		String viewPath = "recommend/pocketlibrecommend";
+		
+		return new ModelAndView(viewPath);
+		
 	}
+	
+	
 }

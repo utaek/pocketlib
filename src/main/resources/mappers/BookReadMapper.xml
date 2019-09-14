@@ -12,6 +12,8 @@
         <result property="isbn" column="isbn" />
          <result property="value" column="value" />
         <result property="reg_date" column="reg_date" />
+        	<result property="count" column="count" />
+		<result property="term" column="term" />
     </resultMap>
     
     <!-- 단일행 조회를 위한 기능 정의 -->
@@ -54,6 +56,39 @@
     </select>
     
     
+    	<!-- 데이터 수 조회를 위한 기능 정의 -->
+	<select id="selectCountbyReg_date"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
+		resultMap="BookReadMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		select
+		date_format(reg_date, '%Y-%m') as term,
+		count(*) as count
+		from bookread
+		where userno=#{userno}
+		group by date_format(reg_date, '%Y-%m')
+
+	</select>
+
+
+
+
+	<!-- 데이터 수 조회를 위한 기능 정의 -->
+	<select id="AllCount"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
+		resultType="int">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		select count(*) from bookRead where userno=#{userno};
+
+	</select>
+
+
+
+    
+    
+    
+    
+    
     <!-- 데이터 저장을 위한 기능 정의 -->
     <insert id="insertItem" 
             parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead" 
@@ -76,5 +111,8 @@
         <!-- 이 안에서 처리할 SQL문을 명시한다. -->
     update bookRead set value=#{value} where userno=#{userno} and isbn=#{isbn};
     </update>
+    
+    
+    
     
 </mapper>

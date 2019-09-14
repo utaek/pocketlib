@@ -21,6 +21,8 @@
 		<result property="publisher" column="publisher" />
 		<result property="customerReviewRank" column="customerReviewRank" />
 		<result property="count" column="count" />
+			<result property="cate" column="cate" />
+	
 	</resultMap>
 	
 	<!-- isbn 없으면 insert 하기 데이터 저장을 위한 기능 정의 -->
@@ -33,6 +35,10 @@
 		<result property="isbn" column="isbn" />
 		<result property="value" column="value" />
 		<result property="reg_date" column="reg_date" />
+		<result property="count" column="count" />
+		<result property="term" column="term" />
+		
+		
 	</resultMap>
 
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
@@ -71,4 +77,60 @@
 
     </select>
 
+
+<!-- 지난 5달의 상위 10개 인기도서 -->
+	<select id="selectAllCountbyReg_date"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
+		resultMap="bookMap">
+
+		select
+		book.isbn,
+		book.title,
+
+		count(*) as count
+		from bookread
+		INNER JOIN book ON book.isbn = bookread.isbn
+		where
+		date_format(bookread.reg_date, '%Y-%m')=#{reg_date}
+		group by
+		date_format(bookread.reg_date, '%Y-%m'),bookread.isbn
+		order by count
+		desc limit 10;
+
+
+	</select>
+	
+		<!-- 다중행 조회를 위한 기능 정의 -->
+	<select id="selectRandombyCate"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
+		resultMap="bookMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+		select isbn, title, cover from book
+		where categoryId=#{categoryId} and isbn!=#{isbn}
+		order by rand();
+	</select>
+
+
+<!-- 상위 하나의 categoryId 뽑기 -->
+	<select id="selectTopOne"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
+		resultMap="bookMap">
+		SELECT
+		book.categoryId,
+		book.isbn
+		FROM
+		bookread
+		INNER JOIN book
+		ON bookread.isbn = book.isbn
+		WHERE
+		bookread.userNo = #{userno} AND
+		bookread.value > 6
+		ORDER BY
+		bookread.reg_date DESC,
+		bookread.value
+		DESC
+		LIMIT 1;
+
+	</select>
 </mapper>

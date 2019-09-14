@@ -227,7 +227,7 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-7 col-sm-offset-2">
-                <h2 class="module-title font-alt">ㅇㅇㅇ와 비슷한 도서</h2>
+                <h2 class="module-title font-alt">${userInfo.userName}님의 취향과 비슷한 도서</h2>
                 <div class="module-subtitle font-serif">최근에 읽으신 책과 비슷한 분류의 도서 목록입니다.</div>
               </div>
             </div>
@@ -247,7 +247,34 @@
               </div>
           </div>
         </section>
+          <section class="module-small">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-7 col-sm-offset-2">
+                <h2 class="module-title font-alt">${userInfo.userName}님이 최근 읽은 책 중 평점 높은 도서의 카테고리 </h2>
+                <div class="module-subtitle font-serif">그 책의 카테고리가 속한 랜덤 책은 아래입니다.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="owl-carousel text-center" data-items="4" data-pagination="false" data-navigation="false">
+              <c:forEach var="item" items="${randomBook}" varStatus="status">
+                <div class="owl-item">
+                  <div class="col-sm-12">
+                    <div class="ex-product"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+                    	<img src="${item.cover}" alt="Leather belt" style="height:250px; width:180px;"/></a>
+                      <h4 class="shop-item-title font-alt"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}"><span class="btn btn-d btn-xs">${status.index+1}</span></a></h4>
+                    </div>
+                  </div>
+                </div>
+                </c:forEach>
+                </div>
+              </div>
+          </div>
+        </section>
+        
         </div>
+
+
 
 		<div class="module-small bg-dark">
 			<div class="container">

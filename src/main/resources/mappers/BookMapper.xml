@@ -21,6 +21,8 @@
 		<result property="publisher" column="publisher" />
 		<result property="customerReviewRank"
 			column="customerReviewRank" />
+	<result property="cate" column="cate" />
+		<result property="count" column="count" />
 
 	</resultMap>
 	<resultMap id="SearchingMap"
@@ -50,6 +52,9 @@
 		<result property="isbn" column="isbn" />
 		<result property="value" column="value" />
 		<result property="reg_date" column="reg_date" />
+			<result property="count" column="count" />
+		<result property="term" column="term" />
+		
 	</resultMap>
 
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
@@ -173,5 +178,22 @@
 
 	</select>
 
+	<!-- 읽은책과 join해서 읽은 책 목록의 categoryName 가져오기 -->
+	<select id="bookReadCate"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
+		resultMap="bookMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 
+		SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(book.categoryName, '>' , 2),
+		'>', -1) as cate,
+		count(*) as count
+		from book
+		inner join bookread
+		on
+		book.isbn=bookread.isbn
+		where bookread.userno=#{userno}
+		group by cate
+		order by count desc
+		limit 6;
+	</select>
 </mapper>

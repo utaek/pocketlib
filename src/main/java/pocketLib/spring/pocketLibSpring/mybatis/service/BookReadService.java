@@ -13,8 +13,15 @@ public interface BookReadService {
 
 	public List<BookRead> getBookReadList(BookRead input) throws Exception;
 
+	public List<BookRead> getCountby_reg_date(BookRead input) throws Exception;
+
+	
 	public int getBookReadCount(BookRead input) throws Exception;
 
+	public int getBookReadAllCount(BookRead input) throws Exception;
+
+	
+	
 	public int addBookRead(BookRead input) throws Exception;
 
 	public int editBookRead(BookRead input) throws Exception;
