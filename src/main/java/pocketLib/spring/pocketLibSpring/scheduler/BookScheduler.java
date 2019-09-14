@@ -106,7 +106,7 @@ public class BookScheduler {
 					book.setCover(item.cover);
 					
 					try {
-						bookService.addBook(book);
+						bookService.addBestseller(book);
 					} catch (Exception e) {
 						e.getLocalizedMessage();
 					}

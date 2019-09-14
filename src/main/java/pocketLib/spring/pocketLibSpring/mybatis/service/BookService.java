@@ -29,6 +29,10 @@ public interface BookService {
 	public int editBook(Book input) throws Exception;
 
 	public int deleteBook(Book input) throws Exception;
+	
+	public int addBestseller(Book input) throws Exception;
+	
+	public List<Book> getBestsellerList(Book input) throws Exception;
 
 	
 	

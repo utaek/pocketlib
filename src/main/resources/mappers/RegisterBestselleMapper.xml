@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RegisterBestsellerMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="RegisterBestsellerMap"
+		type="pocketLib.spring.pocketLibSpring.mybatis.model.Book">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="isbn" column="isbn" />
+		<result property="title" column="title" />
+		<result property="author" column="author" />
+		<result property="description" column="description" />
+		<result property="pubDate" column="pubDate" />
+		<result property="priceSales" column="priceSales" />
+		<result property="priceStandard" column="priceStandard" />
+		<result property="cover" column="cover" />
+		<result property="categoryId" column="categoryId" />
+		<result property="categoryName" column="categoryName" />
+		<result property="publisher" column="publisher" />
+		<result property="customerReviewRank"
+			column="customerReviewRank" />
+	</resultMap>
+
+	<!-- 다중행 조회를 위한 기능 정의 -->
+	<select id="selectBestsellerList"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
+		resultMap="RegisterBestsellerMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+		select isbn, title, author, description, pubDate, priceSales,
+		priceStandard, cover, categoryId, categoryName,
+		publisher,customerReviewRank from registerBestseller ORDER BY rand() LIMIT 100;
+
+
+	</select>
+
+	<!-- isbn 없으면 insert 하기 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertBestseller"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book">
+		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+		insert ignore into registerBestseller (isbn, title, author, description, pubDate,
+		priceSales, priceStandard, cover, categoryId, categoryName,
+		publisher,customerReviewRank)
+		values (#{isbn},#{title}, #{author},#{description}, #{pubDate},
+		#{priceSales}, #{priceStandard}, #{cover}, #{categoryId},
+		#{categoryName},#{publisher},#{customerReviewRank});
+	</insert>
+
+</mapper>

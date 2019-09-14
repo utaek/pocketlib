@@ -198,7 +198,7 @@ public class LoginController {
 		List<Book> bookList=null;
 		try {
 			customerService.addCustomer(input);
-			bookList= bookService.getBookList(null);
+			bookList= bookService.getBestsellerList(null);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 

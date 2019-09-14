@@ -55,9 +55,9 @@
 
 	<task:scheduled-tasks>
 		<task:scheduled ref="bookScheduler" method="getBook"
-			cron="0 0 15 * * ?" />
+			cron="0 0 0/12 * * ?" />
 		<task:scheduled ref="csvScheduler" method="getCsv"
-			cron="0 0 15 * * ?" />
+			cron="0 0 0/1 * * ?" />
 	</task:scheduled-tasks>
 
 </beans:beans>
