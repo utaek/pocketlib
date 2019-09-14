@@ -33,7 +33,7 @@ public class CsvScheduler {
 
 		BufferedWriter bufWriter = null;
 		try {
-			bufWriter = Files.newBufferedWriter(Paths.get("C:/Choiutaek/workspace-jsp/pocketlib/src/main/webapp/WEB-INF/views/assets/searching.csv"), Charset.forName("UTF-8"));
+			bufWriter = Files.newBufferedWriter(Paths.get("../pocketlib/src/main/webapp/WEB-INF/views/assets/searching.csv"), Charset.forName("UTF-8"));
 			bufWriter.write("text,frequency");
 			bufWriter.newLine();
 			for (int i = 0; i < list.size(); i++) {
