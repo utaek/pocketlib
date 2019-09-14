@@ -134,6 +134,35 @@ public class BookReadServiceImpl implements BookReadService {
 	        return result;
 	}
 
+
+	@Override
+	public List<BookRead> getCountby_reg_date(BookRead input) throws Exception {
+		List<BookRead> result = null;
+        
+        try {
+            result = sqlSession.selectList("BookReadMapper.selectCountbyReg_date", input);
+        } catch (Exception e) {
+           log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 조회에 실패했습니다.");
+        } 
+        return result;
+	}
+
+
+	@Override
+	public int getBookReadAllCount(BookRead input) throws Exception {
+		int result = 0;
+        
+        try {
+            result = sqlSession.selectOne("BookReadMapper.AllCount", input);
+        } catch (Exception e) {
+           log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 조회에 실패했습니다.");
+        } 
+        
+        return result;
+	}
+
 	
 }
 

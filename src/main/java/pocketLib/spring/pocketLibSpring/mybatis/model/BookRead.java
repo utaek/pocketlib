@@ -9,7 +9,9 @@ public class BookRead {
 	private String isbn;
 	private int value;
 	private String reg_date;
-	
+	private String term;
+	private int count;
+
 	private static int offset;
 	private static int listCount;
 
@@ -26,9 +28,8 @@ public class BookRead {
 	}
 
 	public static void setListCount(int listCount) {
-		
+
 		BookRead.listCount = listCount;
 	}
 
 }
-

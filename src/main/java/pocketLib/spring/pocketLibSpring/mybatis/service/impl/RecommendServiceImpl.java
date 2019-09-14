@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
+import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
 import pocketLib.spring.pocketLibSpring.mybatis.service.RecommendService;
 
 @Service
@@ -25,12 +26,59 @@ public class RecommendServiceImpl implements RecommendService{
            
         } catch (NullPointerException e) {
            log.error(e.getLocalizedMessage());
-            throw new Exception("whghl된 데이터가 없습니다.");
+            throw new Exception("조회된 데이터가 없습니다.");
         } catch (Exception e) {
             log.error(e.getLocalizedMessage());
-            throw new Exception("데이터 whghl에 실패했습니다.");
+            throw new Exception("데이터 조회에 실패했습니다.");
         } 
         return result;
+	}
+
+
+	@Override
+	public List<Book> getAllCountby_reg_date(BookRead input) throws Exception {
+		List<Book> result = null;
+
+		try {
+			result = sqlSession.selectList("RecommendMapper.selectAllCountbyReg_date", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<Book> getselectRandombyCate(Book input) throws Exception {
+		List<Book> result = null;
+
+		try {
+			result = sqlSession.selectList("RecommendMapper.selectRandombyCate", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public Book getTopOne(BookRead input) throws Exception {
+		Book result = null;
+		try {
+			result = sqlSession.selectOne("RecommendMapper.selectTopOne", input);
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		return result;
 	}
 	
 }

@@ -21,6 +21,9 @@ public class Book {
 	private int value;
 	private String reg_date;
 	private int count;
+	private String cate;
+	private String term;
+	
 	
 	private static int offset;
 	private static int listCount;

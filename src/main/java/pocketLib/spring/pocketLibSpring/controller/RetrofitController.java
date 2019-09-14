@@ -203,6 +203,7 @@ public class RetrofitController {
 		// 검색키워드 받기
 		String query = webHelper.getString("query", "");
 		
+		
 		Searching input = new Searching();
 		input.setQueryValue(query);
 		
