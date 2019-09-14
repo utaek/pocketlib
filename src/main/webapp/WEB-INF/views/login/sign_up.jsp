@@ -369,7 +369,7 @@
 							<tr>
 								<td>이메일</td>
 								<td colspan="8"><input class="form-control" id="email"
-									type="email" name="email" placeholder="Email" maxlength="20" /></td>
+									type="email" name="email" placeholder="Email" maxlength="40" /></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="9"><input
