@@ -108,7 +108,7 @@
 
 		select isbn, title, cover from book
 		where categoryId=#{categoryId} and isbn!=#{isbn}
-		order by rand();
+		order by rand() limit 24;
 	</select>
 
 

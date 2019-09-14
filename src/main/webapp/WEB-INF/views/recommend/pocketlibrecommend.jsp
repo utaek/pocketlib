@@ -230,7 +230,7 @@
             <div class="row">
               <div class="col-sm-7 col-sm-offset-2">
                 <h2 class="module-title font-alt">${userInfo.userName}님을 위한 맞춤 추천 </h2>
-                <div class="module-subtitle font-serif">그 책의 카테고리가 속한 랜덤 책은 아래입니다.</div>
+                <div class="module-subtitle font-serif">${userInfo.userName}님이 최근 읽으신 책과 비슷한 카테고리의 도서 목록입니다.</div>
               </div>
             </div>
             <div class="row">

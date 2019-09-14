@@ -308,7 +308,7 @@ to {
 							<div class="popup" onmouseover="m_over()" style="float: right;">
 								<form name="form">
 								<button type="button" class="btn btn-d btn-round "onclick="javascript:showPopup(this.form);">
-								   나의 책 통계 <span class="icon-presentation"></span></button></a>
+								    <span class="icon-presentation"> </span> 나의 책 통계</button></a>
 								<span class="popuptext" id="myPopup">확인해봐요</span>
 								</form>
 							</div>
