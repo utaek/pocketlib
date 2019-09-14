@@ -208,7 +208,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="owl-carousel text-center" data-items="3" data-pagination="false" data-navigation="false">
+              <div class="owl-carousel text-center" data-items="4" data-pagination="false" data-navigation="false">
               <c:forEach var="item" items="${output}" varStatus="status">
                 <div class="owl-item">
                   <div class="col-sm-12">
@@ -232,7 +232,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="owl-carousel text-center" data-items="3" data-pagination="false" data-navigation="false">
+              <div class="owl-carousel text-center" data-items="4" data-pagination="false" data-navigation="false">
               <c:forEach var="item" items="${output}" varStatus="status">
                 <div class="owl-item">
                   <div class="col-sm-12">
