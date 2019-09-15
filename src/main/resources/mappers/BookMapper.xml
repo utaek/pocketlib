@@ -21,23 +21,23 @@
 		<result property="publisher" column="publisher" />
 		<result property="customerReviewRank"
 			column="customerReviewRank" />
-	<result property="cate" column="cate" />
+		<result property="cate" column="cate" />
 		<result property="count" column="count" />
 
 	</resultMap>
 	<resultMap id="SearchingMap"
 		type="pocketLib.spring.pocketLibSpring.mybatis.model.Searching">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property ="queryid" column ="queryid"/>
+		<result property="queryid" column="queryid" />
 		<result property="queryValue" column="queryvalue" />
 		<result property="querycnt" column="querycnt" />
 
 	</resultMap>
-	
+
 	<resultMap id="BookSearchingMap"
 		type="pocketLib.spring.pocketLibSpring.mybatis.model.Searching">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property ="bookSearchingId" column ="booksearchingid"/>
+		<result property="bookSearchingId" column="booksearchingid" />
 		<result property="isbn" column="isbn" />
 		<result property="queryid" column="queryid" />
 
@@ -52,9 +52,9 @@
 		<result property="isbn" column="isbn" />
 		<result property="value" column="value" />
 		<result property="reg_date" column="reg_date" />
-			<result property="count" column="count" />
+		<result property="count" column="count" />
 		<result property="term" column="term" />
-		
+
 	</resultMap>
 
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
@@ -139,8 +139,10 @@
 		insert ignore into book (isbn, title, author, description, pubDate,
 		priceSales, priceStandard, cover, categoryId, categoryName,
 		publisher,customerReviewRank)
-		values (#{isbn},#{title}, #{author},#{description}, #{pubDate},
-		#{priceSales}, #{priceStandard}, #{cover}, #{categoryId},
+		values (#{isbn},#{title},
+		#{author},#{description}, #{pubDate},
+		#{priceSales}, #{priceStandard},
+		#{cover}, #{categoryId},
 		#{categoryName},#{publisher},#{customerReviewRank});
 	</insert>
 

@@ -8,7 +8,7 @@
 	<resultMap id="BookSearchingMap"
 		type="pocketLib.spring.pocketLibSpring.mybatis.model.Searching">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property ="bookSearchingId" column ="booksearchingid"/>
+		<result property="bookSearchingId" column="booksearchingid" />
 		<result property="isbn" column="isbn" />
 		<result property="queryid" column="queryid" />
 
@@ -19,7 +19,8 @@
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookSearching"
 		useGeneratedKeys="true" keyProperty="bookSearchingId">
 		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
-		insert ignore into book_searching (isbn,queryid) values (#{isbn},#{queryid});
-	</insert>	
+		insert ignore into book_searching (isbn,queryid) values
+		(#{isbn},#{queryid});
+	</insert>
 
 </mapper>
