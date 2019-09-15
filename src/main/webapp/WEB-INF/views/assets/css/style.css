@@ -175,7 +175,7 @@ a,
 }
 
 .module-extra-small {
-  padding:0px;
+  padding:20px;
 }
 
 .module-medium {
@@ -210,7 +210,15 @@ a,
   border-top: 1px solid #202020;
   margin: 0;
 }
-
+.hr {
+	display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+}
 /* Half-image */
 .side-image {
   position: absolute;
