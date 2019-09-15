@@ -203,9 +203,9 @@
 						<div class="caption-content">
 							<div class="font-alt mb-30 titan-title-size-1">Hello &amp;
 								welcome</div>
-							<div class="font-alt mb-40 titan-title-size-4">We are Titan</div>
+							<div class="font-alt mb-40 titan-title-size-4">pocketLib</div>
 							<a class="section-scroll btn btn-border-w btn-round"
-								href="#about">Learn More</a>
+								href="#about">about us</a>
 						</div>
 					</div>
 				</li>
@@ -214,10 +214,9 @@
 					<div class="titan-caption">
 						<div class="caption-content">
 							<div class="font-alt mb-30 titan-title-size-2">
-								Titan is creative multipurpose html template for<br />web
-								developers who change the world
+								맞춤 추천을 받아보세요.<br />pocketLib이 도서를 추천해드립니다.
 							</div>
-							<a class="btn btn-border-w btn-round" href="about">Learn More</a>
+							<a class="btn btn-border-w btn-round" href="about">Recommend</a>
 						</div>
 					</div>
 				</li>
@@ -225,12 +224,10 @@
 					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-10.jpg);">
 					<div class="titan-caption">
 						<div class="caption-content">
-							<div class="font-alt mb-30 titan-title-size-1">We build
-								brands that build business</div>
-							<div class="font-alt mb-40 titan-title-size-3">We are
-								Amazing</div>
+							<div class="font-alt mb-30 titan-title-size-1">나만의 서재에 책을 등록해보세요.</div>
+							<div class="font-alt mb-40 titan-title-size-3">My pocketLib</div>
 							<a class="section-scroll btn btn-border-w btn-round"
-								href="#about">Learn More</a>
+								href="#about">My pocketLib</a>
 						</div>
 					</div>
 				</li>
