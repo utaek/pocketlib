@@ -102,11 +102,11 @@
 	
 		<!-- 다중행 조회를 위한 기능 정의 -->
 	<select id="selectRandombyCate"
-		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
 		resultMap="bookMap">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 
-		select isbn, title, cover from book
+		select isbn, cover from book
 		where categoryId=#{categoryId} and isbn!=#{isbn}
 		order by rand() limit 24;
 	</select>
@@ -132,5 +132,40 @@
 		DESC
 		LIMIT 1;
 
+	</select>
+	
+	<select id="selectinterestedOne"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
+		resultMap="bookMap">
+		SELECT
+		book.categoryId,
+		book.isbn
+		FROM
+		bookinterested
+		INNER JOIN book
+		ON bookinterested.isbn = book.isbn
+		WHERE
+		bookinterested.userNo = #{userno}
+		ORDER BY
+		rand()
+		LIMIT 1;
+	</select>
+	
+	<select id="selectinterestedCate"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
+		resultMap="bookMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+		select isbn, cover from book
+		where categoryId=#{categoryId} and isbn!=#{isbn}
+		order by rand() limit 24;
+	</select>
+	
+	<select id="selectValueList"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
+		resultMap="bookMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+
+		select book.isbn,book.cover from bookread inner join book on bookread.isbn= book.isbn group by isbn order by (count(*))desc, avg(value) desc;
 	</select>
 </mapper>

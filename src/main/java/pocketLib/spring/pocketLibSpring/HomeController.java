@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -85,9 +86,11 @@ public class HomeController {
 
 		List<String[]> tmpList = new ArrayList<String[]>();
 		BufferedReader br = null;
-
+		
+		ServletContext context = request.getSession().getServletContext();
+		String path = context.getRealPath("/WEB-INF/views/assets/searching.csv");
 		try {
-			br = Files.newBufferedReader(Paths.get("C:/JangHo_park/workspace-jsp/pocketlib/src/main/webapp/WEB-INF/views/assets/searching.csv"));
+			br = Files.newBufferedReader(Paths.get(path));
 			Charset.forName("UTF-8");
 			String line = "";
 			while ((line = br.readLine()) != null) {

@@ -203,7 +203,7 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-7 col-sm-offset-2">
-                <h2 class="module-title font-alt">PocketLib 인기 도서</h2>
+                <h2 class="module-title font-alt">지금 뜨는 도서</h2>
                 <div class="module-subtitle font-serif">최근 한달 동안 내 책장에 많이 추가된 도서 목록입니다.</div>
               </div>
             </div>
@@ -223,6 +223,32 @@
               </div>
           </div>
         </section>
+        
+        <section class="module-small">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-7 col-sm-offset-2">
+                <h2 class="module-title font-alt">PocketLib 인기 도서</h2>
+                <div class="module-subtitle font-serif">PocketLib에서 가장 인기있는 도서 목록입니다.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="owl-carousel text-center" data-items="4" data-pagination="false" data-navigation="false">
+              <c:forEach var="item" items="${output2}" varStatus="status">
+                <div class="owl-item">
+                  <div class="col-sm-12">
+                    <div class="ex-product"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+                    	<img src="${item.cover}" alt="Leather belt" style="height:250px; width:180px;"/></a>
+                      <h4 class="shop-item-title font-alt"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}"><span class="btn btn-d btn-xs">${status.index+1}</span></a></h4>
+                    </div>
+                  </div>
+                </div>
+                </c:forEach>
+                </div>
+              </div>
+          </div>
+        </section>
+        
         <c:choose>
         	<c:when test="${userInfo!=null}">
         	 <section class="module-small">
@@ -264,12 +290,37 @@
         </section>
         	</c:otherwise>
         </c:choose>
-         
         
+
+        	<c:if test="${userInfo!=null}">
+        	 <section class="module-small">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-7 col-sm-offset-2">
+                <h2 class="module-title font-alt">${userInfo.userName}님을 위한 관심 도서 추천 </h2>
+                <div class="module-subtitle font-serif">${userInfo.userName}님이 선택하신 관심 도서와 비슷한 카테고리의 도서 목록입니다.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="owl-carousel text-center" data-items="4" data-pagination="false" data-navigation="false">
+              <c:forEach var="item" items="${InterestedBook}" varStatus="status">
+                <div class="owl-item">
+                  <div class="col-sm-12">
+                    <div class="ex-product"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+                    	<img src="${item.cover}" alt="Leather belt" style="height:250px; width:180px;"/></a>
+                      <h4 class="shop-item-title font-alt"><a href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}"><span class="btn btn-d btn-xs">${status.index+1}</span></a></h4>
+                    </div>
+                  </div>
+                </div>
+                </c:forEach>
+                </div>
+              </div>
+          </div>
+        </section>
+        	</c:if>
+ 
         
         </div>
-
-
 
 		<div class="module-small bg-dark">
 			<div class="container">
