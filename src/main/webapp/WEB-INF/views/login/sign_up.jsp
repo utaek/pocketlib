@@ -228,7 +228,7 @@
 							<tr>
 								<td style="width: 110px;">아이디</td>
 								<td colspan="6"><input class="form-control" type="text"
-									id="userID" name="userID" maxlength="20" placeholder="UserID"
+									id="userID" name="userID" maxlength="20" placeholder="5~20자의 영문자, 숫자만 사용가능합니다."
 									onkeydown="inputIdChk();"></td>
 								<td colspan="2"><button id="check_user_id"
 										class="btn btn-border-d btn-round" value="uncheck">중복체크</button></td>
@@ -237,20 +237,20 @@
 							<tr>
 								<td>비밀번호</td>
 								<td colspan="8"><input class="form-control" id="password"
-									type="password" name="password" placeholder="Password"
+									type="password" name="password" placeholder="비밀번호(8자이상)"
 									maxlength="20" /></td>
 							</tr>
 							<tr>
 								<td>비밀번호 확인</td>
 								<td colspan="8"><input class="form-control" type="password"
 									id="password1" name="password1" maxlength="20"
-									placeholder="Password"></td>
+									placeholder="비밀번호 재입력"></td>
 							</tr>
 							<tr>
 								<td>이름</td>
 								<td colspan="6"><input class="form-control" type="text"
 									id="userName" name="userName" maxlength="20"
-									placeholder="UserName"></td>
+									placeholder="필수 정보입니다."></td>
 								<td>성별</td>
 								<td>
 									<div class="form-group"
@@ -369,7 +369,7 @@
 							<tr>
 								<td>이메일</td>
 								<td colspan="8"><input class="form-control" id="email"
-									type="email" name="email" placeholder="Email" maxlength="40" /></td>
+									type="email" name="email" placeholder="인증을 위해 사용 가능한 Email을 입력해주세요." maxlength="40" /></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="9"><input

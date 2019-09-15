@@ -197,7 +197,7 @@
 		<section class="module-small">
 		<form method="get" action="${pageContext.request.contextPath}/login/book_register.do">
 			<div class="container">
-				<h3>흥미롭게 읽었던 책 5권을 선택해주세요.</h3>
+				<h3>관심있는 책을 1권 이상 자유롭게 선택해주세요.</h3>
 			</div>
 			<hr style="border: solid 1px black; width: 70%" />
 			<table class="table table-hover" align="center"
@@ -239,7 +239,7 @@
 			<div class="footer_1" style="background: #2f2f2f;">
 				<p class="btn-list mb-0">
 					<input	type="hidden" id="userno" name="userno" value="${input.userno}">
-					<button class="btn btn-border-w btn-circle" type="submit">완성ㅎㅎ</button>
+					<button class="btn btn-border-w btn-circle" type="submit">확인</button>
 				</p>
 
 			</div>

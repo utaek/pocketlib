@@ -1,22 +1,19 @@
 package pocketLib.spring.pocketLibSpring.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSessionFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pocketLib.spring.pocketLibSpring.helper.MailHelper;
@@ -30,10 +27,6 @@ import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookInterestedService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.CustomerService;
-import pocketLib.spring.pocketLibSpring.retrofit.Service.AladinService;
-import pocketLib.spring.pocketLibSpring.retrofit.model.AladinBookList;
-import retrofit2.Call;
-import retrofit2.Retrofit;
 
 @Controller
 public class LoginController {
@@ -178,14 +171,7 @@ public class LoginController {
 			return webHelper.redirect(null, "이메일 주소를 입력하세요.");
 		}
 
-		try {
-			mailHelper.sendMail(email, "PocketLib 회원가입 인증 메일입니다.", "<h2>안녕하세요. PocketLib 회원가입 인증 메일입니다.</h2>" 
-					+ "<h3>" + userName + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
-					+ "<a href='http://localhost:8080" + request.getContextPath() + "/login/Email.do?userID="+ userId +"&userName=" + userName + "&userkey=" + userkey + "'>인증하기</a></p>");
-		}catch(Exception e) {
-			e.printStackTrace();
-			return webHelper.redirect(null, "메일 발송에 실패했습니다.");
-		}
+		
 
 		Customer input = new Customer();
 		input.setUserId(userId);
@@ -195,22 +181,11 @@ public class LoginController {
 		input.setEmail(email);
 		input.setGender(gender);
 		input.setUserkey(userkey);
-		List<Book> bookList=null;
-		try {
-			customerService.addCustomer(input);
-			bookList= bookService.getBestsellerList(null);
-		} catch (Exception e) {
-			return webHelper.redirect(null, e.getLocalizedMessage());
-
-		}
-
 		
-	
-		model.addAttribute("userName", userName);
 		model.addAttribute("input",input);
-		model.addAttribute("bookList",bookList);
 		
-		return new ModelAndView("login/book_sign_up");
+		
+		return webHelper.redirect("tmp", "hh");
 	
 	}
 
@@ -524,6 +499,32 @@ public class LoginController {
 		} else {
 			return webHelper.redirect(null, "책을 한권이상 선택해주세요.");
 		}
+	}
+	
+	@RequestMapping(value = "/login/tmp.do", method = RequestMethod.GET)
+	public ModelAndView tmp(Model model,@RequestParam(value="input", defaultValue="0") Customer input, HttpServletRequest request) {
+		try {
+			mailHelper.sendMail(input.getEmail(), "PocketLib 회원가입 인증 메일입니다.", "<h2>안녕하세요. PocketLib 회원가입 인증 메일입니다.</h2>" 
+					+ "<h3>" + input.getUserName() + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
+					+ "<a href='http://localhost:8080" + request.getContextPath() + "/login/Email.do?userID="+ input.getUserId() +"&userName=" + input.getUserName() + "&userkey=" + input.getUserkey() + "'>인증하기</a></p>");
+		}catch(Exception e) {
+			e.printStackTrace();
+			return webHelper.redirect(null, "메일 발송에 실패했습니다.");
+		}
+
+		List<Book> bookList=null;
+		try {
+			customerService.addCustomer(input);
+			bookList= bookService.getBestsellerList(null);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+
+		}
+
+		model.addAttribute("userName", input.getUserName());
+		model.addAttribute("bookList",bookList);
+		
+		return new ModelAndView("login/book_sign_up");
 	}
 	
 	
