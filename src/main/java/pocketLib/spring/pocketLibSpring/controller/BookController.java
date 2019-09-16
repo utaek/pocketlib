@@ -98,13 +98,19 @@ public class BookController {
 
 			try {
 				totalCountbI = bookInterestedService.getBookInterestedCount(bookinterested);
+		
+			} catch (Exception e) {
+				return webHelper.redirect(null, e.getLocalizedMessage());
+			}
+			try {
 				totalCountbR = bookReadService.getBookReadCount(bookread);
-
 			} catch (Exception e) {
 				return webHelper.redirect(null, e.getLocalizedMessage());
 			}
 
 		}
+		
+		
 		model.addAttribute("isbn", isbn);
 		model.addAttribute("userInfo", userInfo);
 	
