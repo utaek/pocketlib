@@ -269,8 +269,9 @@
         //domain: 데이터의 범위, 입력 크기
         //range: 표시할 범위, 출력 크기 
         //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
+
         wordScale = d3.scale.linear().domain([0, 1000]).range([0, 200]).clamp(true);
-        var keywords = ["${rank1}", "${rank2}", "${rank3}"]
+
         var svg = d3.select("svg")
                     .append("g")
                     .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");

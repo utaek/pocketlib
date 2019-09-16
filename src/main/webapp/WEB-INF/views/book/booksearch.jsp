@@ -130,7 +130,7 @@
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/aboutUs/aboutUs.do">팀 소개</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
@@ -199,7 +199,7 @@
 			<div class="row mb-60">
 				<div class="col-sm-8 col-sm-offset-2">
 					<form role="form" method="get"
-						action="${pageContext.request.contextPath}/book/booksearch.do">
+						action="${pageContext.request.contextPath}/book/searchresult.do">
 						<div><h3>책 검색</h3></div>
 						<div class="search-box">
 							<input class="form-control" type="text" id="query" name="query"
