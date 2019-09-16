@@ -216,7 +216,7 @@ public class RetrofitController {
 		String query = webHelper.getString("query", "");
 		
 		if(regexHelper.isValue(query)) {
-			if(regexHelper.isKor(query)) {
+			if(regexHelper.isKeyword(query)) {
 				Searching input = new Searching();
 				input.setQueryValue(query);
 				
@@ -299,10 +299,6 @@ public class RetrofitController {
 		}else {
 			return webHelper.redirect("booksearch.do", "검색어를 입력하세요");
 		}
-		
-		
-		
-		
-		
+
 	}
 }

@@ -58,7 +58,14 @@ public class RegexHelper {
         }
         return result;
     }
-
+   
+    public boolean isKeyword(String str) {
+        boolean result = false;
+        if (isValue(str)) {
+            result = Pattern.matches("[가-힣a-zA-Z0-9 ]*$", str);
+        }
+        return result;
+    }
     /**
      * 영문과 숫자로만 구성되었는지에 대한 형식 검사
      * 
