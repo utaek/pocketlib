@@ -49,7 +49,6 @@ public class BoardController {
 		if (userInfo == null) {
 			userInfo = null;
 		}
-
 		String keyword = webHelper.getString("keyword", "");
 		int nowPage = webHelper.getInt("page", 1);
 		int boardCate = webHelper.getInt("boardCate", 1);
