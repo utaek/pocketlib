@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -224,7 +224,8 @@
 					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-10.jpg);">
 					<div class="titan-caption">
 						<div class="caption-content">
-							<div class="font-alt mb-30 titan-title-size-1">나만의 서재에 책을 등록해보세요.</div>
+							<div class="font-alt mb-30 titan-title-size-1">나만의 서재에 책을
+								등록해보세요.</div>
 							<div class="font-alt mb-40 titan-title-size-3">My pocketLib</div>
 							<a class="section-scroll btn btn-border-w btn-round"
 								href="#about">My pocketLib</a>
@@ -241,20 +242,12 @@
 				<div class="CSV">
 
 					<script src="https://d3js.org/d3.v3.min.js"></script>
-					<script
-						src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-					<script src="https://d3js.org/d3.v3.js"></script>
-					
+				
 					<script
 						src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
 						type="text/JavaScript"></script>
 
 					<script>
-		 var body = d3.select("body"),
-			    length = 100,
-			    color = d3.scale.linear().domain([1,length])
-			      .interpolate(d3.interpolateHcl)
-			      .range([d3.rgb("#6192E8"), d3.rgb('#DF53A4')]);
 
         var width = 1200,
             height = 400
@@ -300,11 +293,8 @@
                     .append("text")
                     .style("font-family", "overwatch")
                     .style("fill", function (d) {
-                    	  min = Math.ceil(0);
-                    	  max = Math.floor(100);
-                    	  
-                    	 return color( Math.floor(Math.random() * (max - min + 1)) + min);
-                  })
+                    	 return (keywords.indexOf(d.text) > -1 ? "#fbc280" : "#000000");
+                    })
                     .style("fill-opacity", .5)
                     .attr("text-anchor", "middle") 
                     .attr('font-size', 1)
@@ -321,15 +311,15 @@
                         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
                     })
                     .style("fill-opacity", 1); 
-            }
+                     }
         }
     </script>
 
 				</div>
 			</div>
 		</section>
-		
-		
+
+
 		<section class="module">
 			<div class="row">
 				<div class="col-sm-8 col-sm-offset-2">
@@ -341,30 +331,30 @@
 								<col style="width: 80%;">
 							</colgroup>
 
-							<c:if test="${list[status.index] != null}">
-							<div class="alert alert-success" role="alert">
-								${months[status.index]} 의 인기도서 <span><i
-									class="icon-quote"></i></span>
-							</div>
+							<c:if test="${fn:length(list)>0}">
+								<div class="alert alert-success" role="alert">
+								<h4 class="font-al mb-0">
+							
+									<strong>${months[status.index]} 의 인기도서</strong> <span><i
+										class="icon-quote"></i></span>
+								</div>
+
+
+								<tbody>
+									<tr>
+
+										<c:forEach var="item" items="${list}" varStatus="status">
+											<td>${status.index+1}위</td>
+											<td><a
+												href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+													${item.title}</a></td>
+									</tr>
+
+								</tbody>
+								</c:forEach>
 							</c:if>
-
-							<tbody>
-								<tr>
-
-									<c:forEach var="item" items="${list}" varStatus="status">
-										<td>${status.index+1}위</td>
-										<td><a
-											href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
-												${item.title}</a></td>
-								</tr>
-
-							</tbody>
-					</c:forEach>
-
-					</c:forEach>
-					</table>
-
-
+							</c:forEach>
+						</table>
 				</div>
 			</div>
 		</section>
@@ -374,63 +364,63 @@
 				<div class="row">
 					<div class="col-sm-9">
 						<div>
-							<a href="${pageContext.request.contextPath}" class="font-alt" style="font-size:14px; padding-right:10px;">About pocketLib</a>
-					
-										
-							<a href="${pageContext.request.contextPath}" class="font-alt" style="font-size:14px; padding-right:10px;">이용약관</a>
-					
-										
-							<a href="${pageContext.request.contextPath}" class="font-alt" style="font-size:14px; padding-right:10px;">개인정보취급방침</a>
-					
-										
-							<a href="${pageContext.request.contextPath}/board/FAQ.do" class="font-alt" style="font-size:14px; padding-right:10px;">고객센터</a>
-					
-										
-							<a href="https://github.com/utaek/pocketlib" target="_blank" class="font-alt" style="font-size:14px; padding-right:10px;">Github</a>
-							
+							<a href="${pageContext.request.contextPath}" class="font-alt"
+								style="font-size: 14px; padding-right: 10px;">About
+								pocketLib</a> <a href="${pageContext.request.contextPath}"
+								class="font-alt" style="font-size: 14px; padding-right: 10px;">이용약관</a>
+
+
+							<a href="${pageContext.request.contextPath}" class="font-alt"
+								style="font-size: 14px; padding-right: 10px;">개인정보취급방침</a> <a
+								href="${pageContext.request.contextPath}/board/FAQ.do"
+								class="font-alt" style="font-size: 14px; padding-right: 10px;">고객센터</a>
+
+
+							<a href="https://github.com/utaek/pocketlib" target="_blank"
+								class="font-alt" style="font-size: 14px; padding-right: 10px;">Github</a>
+
 						</div>
-						<hr style="margin: 8px 0;"/>
-						
+						<hr style="margin: 8px 0;" />
+
 						<div class="widget-title font-alt">
 							<p>
-								<span style="padding-right:10px;">
-							  		<Strong style="font-size:12px;">팀명</Strong>: pocketLib	
-							  	</span>
-							  	<span style="padding-right:10px;">
-							  		<Strong style="font-size:12px;">Email</Strong>: oooo@ooooo.com
-							  	</span>
+								<span style="padding-right: 10px;"> <Strong
+									style="font-size: 12px;">팀명</Strong>: pocketLib
+								</span> <span style="padding-right: 10px;"> <Strong
+									style="font-size: 12px;">Email</Strong>: oooo@ooooo.com
+								</span>
 							</p>
-							
+
 						</div>
 						<hr class="divider-d">
-						<div class ="font-alt">
-							<span class="">
-								pocketLib은 BootStrap 기반 오픈소스와 Spring Framework로 만들어졌습니다.<br/>
-								자세한 내용은 <a href="https://github.com/utaek/pocketlib" target="_blank">Github</a>에서 확인 하실 수 있습니다.
+						<div class="font-alt">
+							<span class=""> pocketLib은 BootStrap 기반 오픈소스와 Spring
+								Framework로 만들어졌습니다.<br /> 자세한 내용은 <a
+								href="https://github.com/utaek/pocketlib" target="_blank">Github</a>에서
+								확인 하실 수 있습니다.
 							</span>
 						</div>
 					</div>
-					
-			</div>
-		</div>
-		
-		<footer class="footer bg-dark">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="copyright font-alt">
-							&copy; 2019&nbsp;<a href="${pageContext.request.contextPath}">pocektLib</a>, All Rights
-							Reserved
-						</p>
-					</div>
+
 				</div>
 			</div>
-		</footer>
-		<div class="scroll-up">
-			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
-		</div>
-	</div>
 
+			<footer class="footer bg-dark">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6">
+							<p class="copyright font-alt">
+								&copy; 2019&nbsp;<a href="${pageContext.request.contextPath}">pocektLib</a>,
+								All Rights Reserved
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<div class="scroll-up">
+				<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+			</div>
+		</div>
 	</main>
 	<!--  
     JavaScripts
