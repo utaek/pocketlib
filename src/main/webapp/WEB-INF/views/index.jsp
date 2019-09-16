@@ -14,14 +14,9 @@
     Document Title
     =============================================
     -->
-<c:choose>
-	<c:when test="${userInfo ==null}">
-		<title>ㅎㅇ</title>
-	</c:when>
-	<c:otherwise>
-		<title>안녕하세요${userInfo.userName}님</title>
-	</c:otherwise>
-</c:choose>
+
+		<title>pocketLib</title>
+
 <!--  
     Favicons
     =============================================

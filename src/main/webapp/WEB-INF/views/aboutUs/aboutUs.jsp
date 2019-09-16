@@ -14,14 +14,9 @@
     Document Title
     =============================================
     -->
-<c:choose>
-	<c:when test="${userInfo ==null}">
-		<title>ㅎㅇ</title>
-	</c:when>
-	<c:otherwise>
-		<title>안녕하세요${userInfo.userName}님</title>
-	</c:otherwise>
-</c:choose>
+
+		<title>About Us | pocketLib</title>
+	
 <!--  
     Favicons
     =============================================
@@ -196,7 +191,7 @@
 		</div>
 	</nav>
       <div class="main">
-        <section class="module bg-dark-60 about-page-header" data-background="assets/images/about_bg.jpg">
+        <section class="module bg-dark-60 about-page-header" data-background="${pageContext.request.contextPath}/assets/images/about_bg1.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
