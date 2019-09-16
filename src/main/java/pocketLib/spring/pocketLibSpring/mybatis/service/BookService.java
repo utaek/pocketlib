@@ -24,7 +24,10 @@ public interface BookService {
 	
 	public List<Book> getBookReadCate(BookRead input) throws Exception;
 	
-
+	public Book totalPriceofBookInterested(BookInterested input) throws Exception;
+	
+	public Book totalPriceofBookRead(BookRead input) throws Exception;
+	
 	
 	public int getBookCount(Book input) throws Exception;
 

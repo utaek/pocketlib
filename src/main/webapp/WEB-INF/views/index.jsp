@@ -242,10 +242,20 @@
 
 					<script src="https://d3js.org/d3.v3.min.js"></script>
 					<script
+						src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+					<script src="https://d3js.org/d3.v3.js"></script>
+					
+					<script
 						src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
 						type="text/JavaScript"></script>
 
 					<script>
+		 var body = d3.select("body"),
+			    length = 100,
+			    color = d3.scale.linear().domain([1,length])
+			      .interpolate(d3.interpolateHcl)
+			      .range([d3.rgb("#6192E8"), d3.rgb('#DF53A4')]);
+
         var width = 1200,
             height = 400
 
@@ -290,8 +300,11 @@
                     .append("text")
                     .style("font-family", "overwatch")
                     .style("fill", function (d) {
-                        return (keywords.indexOf(d.text) > -1 ? "#fbc280" : "#000000");
-                    })
+                    	  min = Math.ceil(0);
+                    	  max = Math.floor(100);
+                    	  
+                    	 return color( Math.floor(Math.random() * (max - min + 1)) + min);
+                  })
                     .style("fill-opacity", .5)
                     .attr("text-anchor", "middle") 
                     .attr('font-size', 1)

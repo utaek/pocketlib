@@ -25,7 +25,7 @@
 	</select>
 
 
-	<!-- 단일행 조회를 위한 기능 정의 -->
+	<!-- 유저의 관심책 목록 조회 -->
 	<select id="selectItembyUserId"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested"
 		resultMap="BookInterestedMap">
@@ -46,7 +46,7 @@
 
 	</select>
 
-	<!-- 데이터 수 조회를 위한 기능 정의 -->
+	<!-- 유저가 해당 도서를 관심책에 등록했는지 여부를 판단하기 위해 -->
 	<select id="selectCount"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested"
 		resultType="int">
@@ -56,6 +56,15 @@
 
 	</select>
 
+
+<!-- 유저가 등록한 관심 책 총 개수 -->
+	<select id="AllCount"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested"
+		resultType="int">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		select count(*) from bookInterested where userno=#{userno};
+
+	</select>
 
 	<!-- 데이터 저장을 위한 기능 정의 -->
 	<insert id="insertItem"

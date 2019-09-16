@@ -14,6 +14,8 @@ public interface BookInterestedService {
 
 	public int getBookInterestedCount(BookInterested input) throws Exception;
 
+	public int getBookInterestedAllCount(BookInterested input) throws Exception;
+	
 	public int addBookInterested(BookInterested input) throws Exception;
 
 	public int editBookInterested(BookInterested input) throws Exception;

@@ -94,7 +94,7 @@
 	</select>
 
 
-	<!-- 관심책과 inner join? -->
+	<!-- 유저의 관심책 목록받기 -->
 
 	<select id="InterestedList"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
@@ -107,7 +107,7 @@
 	</select>
 
 
-	<!-- 읽은책과 inner join? -->
+	<!-- 유저의 읽은책 목록받기 -->
 	<select id="ReadList"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
 		resultMap="bookMap">
@@ -132,7 +132,7 @@
 	</select>
 
 
-	<!-- isbn 없으면 insert 하기 데이터 저장을 위한 기능 정의 -->
+	<!-- isbn 없으면 insert 하기  -->
 	<insert id="insertItem"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book">
 		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
@@ -180,7 +180,7 @@
 
 	</select>
 
-	<!-- 읽은책과 join해서 읽은 책 목록의 categoryName 가져오기 -->
+	<!-- 유저가 읽은 책의 categoryName (depth 1 번째의 카테고리 네임) 가져오기 -->
 	<select id="bookReadCate"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
 		resultMap="bookMap">
@@ -193,9 +193,31 @@
 		inner join bookread
 		on
 		book.isbn=bookread.isbn
-		where bookread.userno=#{userno}
-		group by cate
-		order by count desc
-		limit 6;
+		where bookread.userno=#{userno} and
+		SUBSTRING_INDEX(SUBSTRING_INDEX(book.categoryName, '>' , 2), '>', -1)
+		in ('경제경영','과학','사회과학','소설/시/희곡','에세이','역사' ,'인문학','자기계발')
+		group by cate;
+	</select>
+	
+	<!-- 유저가 등록한 관심책의 총 정가 -->
+	<select id="totalPriceofBookInterested"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
+		resultMap="bookMap">
+
+		select sum(priceStandard) as priceStandard from book
+		join bookinterested
+		on book.isbn=bookinterested.isbn
+		where userno=#{userno};
+	</select>
+	
+	<!-- 유저가 등록한 읽은책의 총 정가 -->
+	<select id="totalPriceofBookRead"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
+		resultMap="bookMap">
+
+		select sum(priceStandard) as priceStandard from book
+		join bookread
+		on book.isbn=bookread.isbn
+		where userno=#{userno};
 	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package pocketLib.spring.pocketLibSpring.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -390,23 +391,46 @@ public class BookController {
 		}
 		
 		
-		//---------고객의 읽은 책-------------
 		BookRead input = new BookRead();
 		input.setUserno(userInfo.getUserno());
-
+		BookInterested input2 = new BookInterested();
+		input2.setUserno(userInfo.getUserno());
 		
 		
-		// 총 읽은 책 권 수 불러오기
+		
+		// 읽은 책 총 권 수 불러오기
 		int br_cnt = 0;
 		try {
 			br_cnt = bookReadService.getBookReadAllCount(input);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// 관심 책 총 권 수 불러오기
+		int bi_cnt = 0;
+		try {
+			bi_cnt = bookInterestedService.getBookInterestedAllCount(input2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		// 읽은 책 , 관심 책 총 정가 불러오기
+				Book priceofbookread = null;
+				Book priceofbookinterested = null;
 
+				try {
+					priceofbookread = bookService.totalPriceofBookRead(input);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				try {
+					priceofbookinterested = bookService.totalPriceofBookInterested(input2);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		
-		
-		// reg_date 불러오기
+		// 월별 독서량 불러오기
 
 		List<BookRead> BR = null;
 		
@@ -430,20 +454,40 @@ public class BookController {
 			totalcntlist.add(String.valueOf(total));
 		}
 		
-		
+		int avg = 0;
+		if (reglist.size() > 0) {
+			avg = total / (reglist.size());
+		}
+		int howlong = 0;
+		if (avg > 0) {
+			howlong = bi_cnt / avg;
+		}
 		String termStr = String.join(",", reglist);
 		String cntStr =String.join(",", cntlist);
 		String totalStr = String.join(",", totalcntlist);
 		
-		
-		model.addAttribute("br_cnt", br_cnt);
-		model.addAttribute("totalStr", totalStr);
-		model.addAttribute("termStr", termStr);
-		model.addAttribute("cntlist", cntStr);
+		model.addAttribute("avg", avg); // 유저의 월 평균 읽은 책
+		model.addAttribute("br_cnt", br_cnt); // 유저의 읽은 책 총 개수
+		model.addAttribute("bi_cnt", bi_cnt); // 유저의 관심 책 총 개수
+		model.addAttribute("howlong", howlong);
 
+		if (priceofbookread != null) {  // 유저의 읽은 책 총 정가
+
+			model.addAttribute("priceofbookread", priceofbookread.getPriceStandard()); // 읽은 책 총 정가
+		}
+
+		if (priceofbookinterested != null) { // 유저의 관심 책 총 정가
+
+			model.addAttribute("priceofbookinterested", priceofbookinterested.getPriceStandard()); // 관심 책 총 정가
+
+		}
+		
+		model.addAttribute("totalStr", totalStr);// 누적 읽은 책 권수
+		model.addAttribute("cntlist", cntStr); // 기간 별 읽은 책 권수
+		model.addAttribute("termStr", termStr); // 기간 ex ) 2019-09
 		
 		
-		//---------다음 그래프---------------
+		//------- radar chart---------------
 		
 		List<Book> BookCate= null;
 		
@@ -452,28 +496,42 @@ public class BookController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		String[] catelist = new String[8];
+		catelist[0] = '"' + "경제경영" + '"';
+		catelist[1] = '"' + "과학" + '"';
+		catelist[2] = '"' + "사회과학" + '"';
+		catelist[3] = '"' + "소설/시/희곡" + '"';
+		catelist[4] = '"' + "에세이" + '"';
+		catelist[5] = '"' + "역사" + '"';
+		catelist[6] = '"' + "인문학" + '"';
+		catelist[7] = '"' + "자기계발" + '"';
 
-		List<String> catelist= new ArrayList<String>(BR.size());
-		List<String> catecntlist =new ArrayList<String>(BR.size());
+		String[] catecntlist = new String[8];
 		
-		for(int i=0; i<BookCate.size();i++) {
-		
-			catelist.add('"'+BookCate.get(i).getCate()+'"');
-			catecntlist.add(String.valueOf(BookCate.get(i).getCount()));
-		
+		// 8개 카테고리 중 count가 가장 높은 것 sort로 찾을 배열
+		int[] foundMax = new int[8]; 
+		for (int i = 0; i < catelist.length; i++) {
+
+			for (int j = 0; j < BookCate.size(); j++) {
+				if (('"' + BookCate.get(j).getCate() + '"').equals(catelist[i]) && BookCate.get(j).getCount() > 0) {
+					catecntlist[i] = String.valueOf(BookCate.get(j).getCount());
+					foundMax[i] = BookCate.get(j).getCount();
+				}
+			}
+			if (catecntlist[i] == null) {
+				catecntlist[i] = String.valueOf(0);
+				foundMax[i] = 0;
+			}
 		}
-		
-		
+		Arrays.sort(foundMax);
+		int max = foundMax[7]; //마지막이 max
+
 		String catelistStr = String.join(",", catelist);
 		String catecntlistStr =String.join(",", catecntlist);
 
-
-		model.addAttribute("maxlength",BookCate.get(0).getCount());
-		
+		model.addAttribute("max", Math.floor(max * 1.5)); // 1.5 곱해서 소수점 버림
 		model.addAttribute("catelistStr", catelistStr);
 		model.addAttribute("catecntlistStr", catecntlistStr);
-		
 		
 		String viewPath = "book/bookstat";
 		return new ModelAndView(viewPath);

@@ -114,111 +114,145 @@
 	<div class="main">
 		<section class="module">
 			<div class="container">
-				<h4 class="font-alt mb-0">독서 통계</h4>
-				<hr class="divider-w mt-10 mb-20">
+				<div class="row multi-columns-row post-columns">
+					<div class="col-md-6 col-lg-6">
+						<div class="post">
+							<div class="post-header font-alt">
+								<h2 class="post-title">MY BOOK STAT</h2>
 
-				<span>지금까지 읽은 책 수 ->${br_cnt} </span>
+								<div class="post-meta">POCKETLIB 이 ${userInfo.userName} 님의
+									독서 데이터를 수집해 통계 데이터를 보여줍니다.</div>
+							</div>
+							<div class="post-entry">
+								<b>${userInfo.userName} 님</b>은 현재 월 평균 <strong>${avg}권</strong>의
+								책을 읽고 계십니다. <br> 지금까지 독서에 투자하신 비용은 <strong>${priceofbookread}원</strong>입니다.
+								<br> <b>${userInfo.userName} 님</b>께서 아직 읽지 않으신 관심 책은 총 <strong>${bi_cnt}권</strong>이며
+								<br> 금액으로 환산하면 총 <strong>${priceofbookinterested}원</strong>
+								입니다. <br> 약 <strong> ${howlong}개월</strong> 안에 눈여겨 보고 계신 도서를
+								모두 읽으실 수 있겠네요!
+							</div>
+						</div>
+					</div>
+				</div>
 
-				<c:forEach var="item1" items="${CateName}" varStatus="status">
-					<span>${item1}</span>
+			</div>
+			<div class="container">
+				<div class="row multi-columns-row post-columns">
+					<div class="col-md-6 col-lg-6">
+						<div class="post">
+							<div class="post-header font-alt">
+								<h2 class="post-title">GRAPH 1</h2>
 
-				</c:forEach>
+								<div class="post-meta">
+									POCKETLIB 이 수집한 ${userInfo.userName} 님의 독서량 데이터입니다. <br>
+									지금까지 총 ${br_cnt} 권의 책을 읽으셨군요!
+								</div>
+							</div>
+							<div class="post-entry">
+								<div id="splineChart"></div>
+						<script>
+						var chart1= bb.generate({
+							bindto: "#splineChart",
+							data: {
+							// 데이터들 설정 [이름, 값1, 값2, 값3 ... 값n]
+		   					 	x: 'x',
+								columns: [			
+									['x', "가입일", ${termStr}], //columns movieNm, x축 movieNm,
+									['월별 독서량',0, ${cntlist}],
+									['누적 독서량',0, ${totalStr}],
+								],			
+								types: {
+									'월별 독서량' : "spline",	
+									'누적 독서량' : "spline"
+								},
+								colors: {
+							     	'월별 독서량': "#679EE9",
+			   					 	'누적 독서량': function(d) {
+			     				   		return "#5BC186";
+			    					 }
+			 			 		}
+							},
+							axis:{
+								x: {
+									type: "category",		// 종류
+									height: 150,			// x축 텍스트 영역의 높이
+									tick: {					// x축의 텍스트 속성
+										rotate: -45,						
+										}
+									}
+								}
+							});
+						</script>
 
-				<br> <br>
-
-				<c:forEach var="item2" items="${catesplit}" varStatus="status">
-
-
-					<span>${item2}</span>
-
-				</c:forEach>
-
-				<br> <br> <span> 읽은 책 권 수 추이 </span>
-
-				<div id="splineChart"></div>
-
-				<script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row multi-columns-row post-columns">
+					<div class="col-md-6 col-lg-6">
+						<div class="post">
+							<div class="post-header font-alt">
+								<h2 class="post-title">GRAPH 2</h2>
+								<div class="post-meta">
+									POCKETLIB 이 수집한 ${userInfo.userName} 님의 선호 분야입니다. <br>
+								</div>
+							</div>
+							<div class="post-entry">
+								<div id="radarLevel"></div>
+							<script>	
+							var chart2 = bb.generate({
+								data: {
+								    x: "x",
+									    columns: [
+											["x", ${catelistStr}],
+											["카테고리 별 읽은 책 권 수", ${catecntlistStr}]
+										 ],
+								    type: "radar",
+								    color: function(color, d) {
+						   			 	return "#BD6694";
+						    		}
+						  		},
+						 		radar: {
+								    level: {
+								      depth: ${max},
+								      show: false,
+								      text: {
+								        format: function(x) { return x ; }
+								      }
+								    },
+								    axis: {
+								    	max:${max},
+								    text: {
+								    	position: {
+							         		x: -15,
+									        y: -5
+							       		 }
+								      }
+								    }
+								  },
+							  bindto: "#radarLevel"
+							});
+						</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
-				var chart1= bb.generate({
-					bindto: "#splineChart",
-				data: {
-				// 데이터들 설정 [이름, 값1, 값2, 값3 ... 값n]
-		    	x: 'x',
-				columns: [
-				
-					['x', "가입일", ${termStr}], //columns movieNm, x축 movieNm,
-					
-					['읽은 책 권 수 추이',0, ${cntlist}],
-					['총 읽은 권 수 추이',0, ${totalStr}],
-				],
-				
-				types: {
-					'읽은 책 권 수 추이' : "spline",	
-					'총 읽은 권 수 추이' : "spline"
-				}
-			},
-			axis:{
-				x: {
-					type: "category",		// 종류
-					height: 150,			// x축 텍스트 영역의 높이
-					tick: {					// x축의 텍스트 속성
-						rotate: -45,
-						
-					}
-				}
-			}
-		});
-	</script>
-
-
-	
-				<div id="radarLevel"></div>
-
-				<script>
-		
-				var chart2 = bb.generate({
-					 data: {
-						    x: "x",
-						    columns: [
-							["x", ${catelistStr}],
-							["카테고리 별 읽은 책 권 수", ${catecntlistStr}]
-							 ],
-						    type: "radar"
-						  },
-						  radar: {
-						    level: {
-						      depth: ${maxlength},
-						      show: false,
-						      text: {
-						        format: function(x) { return x + "권"; }
-						      }
-						    },
-						    axis: {
-						      text: {
-						        position: {
-						          x: -15,
-						          y: -5
-						        }
-						      }
-						    }
-						  },
-						  bindto: "#radarLevel"
-				});
-				</script>
-
-
-
-				<form>
-
-					<button type="submit" class="btn btn-g btn-round btn-xs"
-						onclick="window.close();">닫기</button>
-
-				</form>
-
+			<div class="container">
+				<div class="row multi-columns-row post-columns">
+					<div class="col-md-6 col-lg-6">
+						<form>
+							<button type="submit" class="btn btn-g btn-round btn-xs"
+								onclick="window.close();">close</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</section>
 	</div>
-
 </body>
 </html>
 
