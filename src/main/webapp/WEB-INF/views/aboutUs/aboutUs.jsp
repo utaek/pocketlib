@@ -262,7 +262,7 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="module-title font-alt">Meet Our Team</h2>
+                <h2 class="module-title font-alt">Team</h2>
                 <div class="module-subtitle font-alt">pocketLib Developers</div>
               </div>
             </div>

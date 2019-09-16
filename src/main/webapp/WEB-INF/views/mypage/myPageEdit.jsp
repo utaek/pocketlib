@@ -6,14 +6,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<c:choose>
-	<c:when test="${userInfo ==null}">
-		<title>ㅎㅇ</title>
-	</c:when>
-	<c:otherwise>
-		<title>안녕하세요${userInfo.userName}님</title>
-	</c:otherwise>
-</c:choose>
+<title>Edit Infomation | pocketLib</title>
+
 <!--  
     Favicons
     =============================================
@@ -159,7 +153,7 @@
 								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
 									후기 게시판</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">Q&A
 									게시판</a></li>
 						</ul></li>
 

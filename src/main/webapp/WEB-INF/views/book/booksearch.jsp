@@ -171,7 +171,7 @@
 								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
 									후기 게시판</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">Q&A
 									게시판</a></li>
 						</ul></li>
 
@@ -290,7 +290,7 @@
 	</section>
 
 
-	<div class="module-extra-small bg-dark">
+	<div class="module-small bg-dark">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-9">

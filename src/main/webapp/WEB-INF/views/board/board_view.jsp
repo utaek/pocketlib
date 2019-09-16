@@ -42,7 +42,7 @@
 
 <c:choose>
 	<c:when test="${boardCate ==1}">
-		<title>Coummnity > ${output.title} | pocketLib</title>
+		<title>Community > ${output.title} | pocketLib</title>
 	</c:when>
 	<c:when test="${boardCate ==2}">
 		<title>Book Review Board > ${output.title} | pocketLib</title>
@@ -183,7 +183,7 @@
 								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
 									후기 게시판</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">Q&A
 									게시판</a></li>
 						</ul></li>
 

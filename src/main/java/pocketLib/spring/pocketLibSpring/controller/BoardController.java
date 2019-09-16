@@ -847,7 +847,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/FAQ.do", method = RequestMethod.GET)
-	public String FAQ(Model model) {
+	public String FAQ() {
 		
 	
 		return "board/FAQ";
