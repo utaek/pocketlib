@@ -199,7 +199,7 @@
 			<div class="row mb-60">
 				<div class="col-sm-8 col-sm-offset-2">
 					<form role="form" method="get"
-						action="${pageContext.request.contextPath}/book/booksearch.do">
+						action="${pageContext.request.contextPath}/book/searchresult.do">
 						<div><h3>책 검색</h3></div>
 						<div class="search-box">
 							<input class="form-control" type="text" id="query" name="query"

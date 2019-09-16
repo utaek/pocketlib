@@ -184,7 +184,16 @@ public class RetrofitController {
 
 	}
 
-	@RequestMapping(value = "/book/booksearch.do", method = RequestMethod.GET)
+	
+	
+	@RequestMapping(value= "/book/booksearch.do")
+		public String searchbar() {
+		
+			return "book/booksearch";
+	}
+		
+	
+	@RequestMapping(value = "/book/searchresult.do", method = RequestMethod.GET)
 	public ModelAndView booksearch(Model model, HttpServletRequest request) {
 		Retrofit retrofit = retrofitHelper.getRetrofit(AladinService.BASE_URL);
 		HttpSession session = request.getSession();
@@ -194,7 +203,6 @@ public class RetrofitController {
 		if (userInfo == null) {
 			userInfo = null;
 		}
-
 		// Service 객체를 생성한다. 구현체는 Retrofit이 자동으로 생성해 준다.
 		AladinService aladinService = retrofit.create(AladinService.class);
 
@@ -227,7 +235,6 @@ public class RetrofitController {
 		} else {
 			try {
 				searchingService.addQueryValue(input);
-
 			} catch (Exception e) {
 				e.getLocalizedMessage();
 			}
@@ -241,10 +248,8 @@ public class RetrofitController {
 			String searchTarget = "Book";
 			String output = "js";
 			int version = 20131101;
-
 			// 검색어 존재할 경우 검색결과받기
 			if (!query.equals(null)) {
-
 				Call<AladinBook> call = aladinService.getAladinBookSearch(ttbkey, query, queryType, maxResults, cover,
 						start, searchTarget, output, version);
 				try {
@@ -255,7 +260,6 @@ public class RetrofitController {
 			}
 			Book book = new Book();
 			BookSearching bookSearching = new BookSearching();
-
 			if (search != null) {
 				for (AladinBook.Item item : search.item) {
 					book.setIsbn(item.isbn);
@@ -272,24 +276,18 @@ public class RetrofitController {
 					book.setCustomerReviewRank(item.customerReviewRank);
 					bookSearching.setIsbn(item.isbn);
 					bookSearching.setQueryid(input.getQueryid());
-
 					try {
 						bookService.addBook(book);
 						bookSearchingService.addIntoBookSearching(bookSearching);
-						
 					} catch (Exception e) {
 						e.getLocalizedMessage();
 					}
-					
 				}
 			}
-
 			model.addAttribute("userInfo", userInfo);
 			model.addAttribute("search", search.item);
 		}
-		
 		String viewPath = "book/booksearch";
 		return new ModelAndView(viewPath);
-
 	}
 }
