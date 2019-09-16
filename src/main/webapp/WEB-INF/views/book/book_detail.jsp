@@ -443,7 +443,7 @@ to {
 								</c:when>
 
 
-								<c:when test="${totalCountbR>0}">
+								<c:when test="${userInfo!=null && totalCountbR>0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_delete.do">
 										<input type="hidden" name="isbn" value="${output.isbn}">
