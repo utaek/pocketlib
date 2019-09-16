@@ -7,6 +7,31 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
+<script>
+  	function edit_box(){
+  		$(".cmt_edit_box").click(function() {
+  	   		var clickedID = this.id;
+  	   	 	$("."+clickedID).css("display","block");
+  	  	});
+  	}
+  	function edit_box_visible(){
+  		$(".cmt_edit_box_visible").click(function() {
+  	   		var clickedID = this.id;
+  	   		$("."+clickedID).css("display","none");
+  	  	});
+  	}function reply_box(){
+  		$(".cmt_reply_box").click(function() {
+  	   		var clickedID = this.id;
+  	   	 	$("."+clickedID).css("display","block");
+  	  	});
+  	}
+  	function reply_box_visible(){
+  		$(".cmt_reply_box_visible").click(function() {
+  	   		var clickedID = this.id;
+  	   		$("."+clickedID).css("display","none");
+  	  	});
+  	}
+ </script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -189,7 +214,7 @@
 							${output.userId }
 						</div>
 						<div class="col-sm-1 mb-sm-2">
-							<i class="fa fa-comment">${output.hits }</i>
+							<i class="fa fa-comment">${commentList.size()}</i>
 						</div>
 						<div class="col-sm-1 mb-sm-2">
 							<i class="fa fa-eye">${output.hits }</i>

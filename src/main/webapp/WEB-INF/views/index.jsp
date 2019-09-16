@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -126,7 +127,7 @@
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/aboutUs/aboutUs.do">팀 소개</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
@@ -216,7 +217,7 @@
 							<div class="font-alt mb-30 titan-title-size-2">
 								맞춤 추천을 받아보세요.<br />pocketLib이 도서를 추천해드립니다.
 							</div>
-							<a class="btn btn-border-w btn-round" href="about">Recommend</a>
+							<a class="btn btn-border-w btn-round" href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">Recommend</a>
 						</div>
 					</div>
 				</li>
@@ -228,7 +229,7 @@
 								등록해보세요.</div>
 							<div class="font-alt mb-40 titan-title-size-3">My pocketLib</div>
 							<a class="section-scroll btn btn-border-w btn-round"
-								href="#about">My pocketLib</a>
+								href="${pageContext.request.contextPath}/book/mybookshelf.do">My pocketLib</a>
 						</div>
 					</div>
 				</li>
@@ -242,12 +243,19 @@
 				<div class="CSV">
 
 					<script src="https://d3js.org/d3.v3.min.js"></script>
+				 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+				  <script src="https://d3js.org/d3.v3.js"></script>
 				
 					<script
 						src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
 						type="text/JavaScript"></script>
 
 					<script>
+				var body = d3.select("body"),
+				    length = 100,
+				    color = d3.scale.linear().domain([1,length])
+				      .interpolate(d3.interpolateHcl)
+				      .range([d3.rgb("#6192E8"), d3.rgb('#DF53A4')]);
 
         var width = 1200,
             height = 400
@@ -255,7 +263,8 @@
         var svg = d3.select("div.CSV").append("svg")
             .attr("width", width)
             .attr("height", height);
-        d3.csv("${pageContext.request.contextPath}/assets/searching.csv", function (data) {
+        d3.csv("${pageContext.request.contextPath}/searching.csv", function (data) {
+        	console.log(data);
             showCloud(data)
             setInterval(function(){
                  showCloud(data)
@@ -265,10 +274,12 @@
         //domain: 데이터의 범위, 입력 크기
         //range: 표시할 범위, 출력 크기 
         //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
-        wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
+
+        wordScale = d3.scale.linear().domain([0, 1000]).range([0, 200]).clamp(true);
+
         var svg = d3.select("svg")
                     .append("g")
-                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+                    .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
 
         function showCloud(data) {
             d3.layout.cloud().size([width, height])
@@ -292,7 +303,12 @@
                     .append("text")
                     .style("font-family", "overwatch")
                     .style("fill", function (d) {
-                    	 return (keywords.indexOf(d.text) > -1 ? "#fbc280" : "#000000");
+                    	  min = Math.ceil(0);
+                    	  max = Math.floor(100);
+                    	  
+                    	 return color( Math.floor(Math.random() * (max - min + 1)) + min);
+                    	
+                    	
                     })
                     .style("fill-opacity", .5)
                     .attr("text-anchor", "middle") 
