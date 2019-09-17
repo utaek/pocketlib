@@ -14,10 +14,21 @@
 			var url = "${pageContext.request.contextPath}/login/register/duplicate.do?userID=" + user_id;
 			window.open(url, "check_id", "width=470, height=180");
 		});
+		
+		$("#form").submit(function() {
+			if (document.form.check_user_id.value == "check") {
+				$("#btn-submit").prop('disabled', true);
+			}
+		});
+		
+
+		$("#btn-submit").prop('disabled', false);
 	});
 </script>
 <script>
 	function checksubmit() {
+		$("#btn-submit").prop('disabled', false);
+		console.log($("#btn-submit").prop('disabled'));
 		if (document.form.check_user_id.value == "uncheck") {
 			alert("중복체크해주세요");
 			return false;
@@ -213,7 +224,7 @@
 		<section class="module">
 			<div class="container">
 			
-				<form method="post" action="${pageContext.request.contextPath}/login/registerOk.do" name="form"
+				<form method="post" id="form" action="${pageContext.request.contextPath}/login/registerOk.do" name="form"
 					onsubmit='return checksubmit();'>
 					<table class="table table-hover">
 						<thead>
@@ -368,7 +379,7 @@
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="9"><input
-									class="btn btn-b btn-round" type="submit" value="회원가입" /></td>
+									class="btn btn-b btn-round" id="btn-submit" type="submit" value="회원가입" /></td>
 							</tr>
 						</tbody>
 					</table>
