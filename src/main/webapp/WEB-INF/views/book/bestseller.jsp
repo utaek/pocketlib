@@ -64,11 +64,12 @@
 				</form>
 
 			</div>
+			</section>
 
-			<div class="container">
+				<div class="container">
 
 				<h3>${aladinBookList.searchCategoryName}분야베스트셀러</h3>
-
+</div>
 				<c:if test="${aladinBookList!=null}">
 					<hr style="border: solid 1px black; width: 70%" />
 
@@ -149,9 +150,9 @@
 					</table>
 				</c:if>
 			</div>
-		</section>
+		
 		<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
-	</div>
+	
 	</main>
 	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 

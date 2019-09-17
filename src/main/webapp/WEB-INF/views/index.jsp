@@ -91,10 +91,10 @@
 				    length = 100,
 				    color = d3.scale.linear().domain([1,length])
 				      .interpolate(d3.interpolateHcl)
-				      .range([d3.rgb("#6192E8"), d3.rgb('#DF53A4')]);
+				      .range([d3.rgb("#1a87ff"), d3.rgb('#f0f097')]);
 
         var width = 1200,
-            height = 400
+            height =400
 
         var svg = d3.select("div.CSV").append("svg")
             .attr("width", width)
@@ -111,7 +111,7 @@
         //range: 표시할 범위, 출력 크기 
         //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
 
-        wordScale = d3.scale.linear().domain([0, 1000]).range([0, 200]).clamp(true);
+        wordScale = d3.scale.linear().domain([0, 1000]).range([0, 170]).clamp(true);
 
         var svg = d3.select("svg")
                     .append("g")
