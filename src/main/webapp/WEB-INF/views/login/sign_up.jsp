@@ -16,17 +16,18 @@
 									+ user_id;
 							window.open(url, "check_id",
 									"width=470, height=180");
-						})
+						
 						
 	});
 	
 	$("#form").submit(function(){
 		if(document.form.check_user_id.value=="check"){
-			$("#btn-submit").prop('disabled', true);}
+			$("#btn-submit").prop('disabled', true);
+			}
 		});
 
 	$("#btn-submit").prop('disabled', false);
-	
+	});
 </script>
 <script>
 	function checksubmit() {
@@ -75,7 +76,7 @@
 		<section class="module">
 			<div class="container">
 
-				<form method="post"
+				<form method="post" id="form"
 					action="${pageContext.request.contextPath}/login/registerOk.do"
 					name="form" onsubmit='return checksubmit();'>
 		
