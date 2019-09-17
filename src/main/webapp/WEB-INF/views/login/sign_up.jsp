@@ -21,6 +21,13 @@
 						})
 						
 	});
+	
+	${("#form").submit(function(){
+		if(document.form.check_user_id.value=="check"){
+			$("#btn-submit").prop('disabled', true);}
+		}
+	});
+	
 </script>
 <script>
 	function checksubmit() {
@@ -34,10 +41,12 @@
 		}
 	}
 </script>
+
 <script>
 	function inputIdChk() {
 		document.form.check_user_id.value = "uncheck";
 	}
+	
 </script>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
