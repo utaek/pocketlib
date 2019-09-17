@@ -49,54 +49,11 @@
 	href="${pageContext.request.contextPath}/assets/images/rp-2.png">
 
 
-<!--  
-    Stylesheets
-    =============================================
-    
-    -->
-<!-- Default stylesheets-->
-<link
-	href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- Template specific stylesheets-->
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Volkhov:400i"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/animate.css/animate.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/components-font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/et-line-font/et-line-font.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/flexslider/flexslider.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/magnific-popup/dist/magnific-popup.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/assets/lib/simple-text-rotator/simpletextrotator.css"
-	rel="stylesheet">
-<!-- Main stylesheet and color file-->
-<link href="${pageContext.request.contextPath}/assets/css/style.css"
-	rel="stylesheet">
-<link id="color-scheme"
-	href="${pageContext.request.contextPath}/assets/css/colors/default.css"
-	rel="stylesheet">
+<!-- favicon -->
+<%@ include file="/WEB-INF/views/inc/favicon.jsp"%>
+<!-- Stylesheets -->
+<%@ include file="/WEB-INF/views/inc/style.jsp"%>
+
 
 <script src="//d3js.org/d3.v5.min.js"></script>
 <link rel="stylesheet"
@@ -118,7 +75,7 @@
 					<div class="col-md-6 col-lg-6">
 						<div class="post">
 							<div class="post-header font-alt">
-								<h2 class="post-title">MY BOOK STAT</h2>
+								<h2 class="post-title">MY BOOK STAT  </h2>
 
 								<div class="post-meta">POCKETLIB 이 ${userInfo.userName} 님의
 									독서 데이터를 수집해 통계 데이터를 보여줍니다.</div>
@@ -128,7 +85,7 @@
 								책을 읽고 계십니다. <br> 지금까지 독서에 투자하신 비용은 <strong>${priceofbookread}원</strong>입니다.
 								<br> <b>${userInfo.userName} 님</b>께서 아직 읽지 않으신 관심 책은 총 <strong>${bi_cnt}권</strong>이며
 								<br> 금액으로 환산하면 총 <strong>${priceofbookinterested}원</strong>
-								입니다. <br> 약 <strong> ${howlong}개월</strong> 안에 눈여겨 보고 계신 도서를
+								입니다. <br> 약 <strong> ${howlong+1}개월</strong> 안에 눈여겨 보고 계신 도서를
 								모두 읽으실 수 있겠네요!
 							</div>
 						</div>
@@ -141,7 +98,7 @@
 					<div class="col-md-6 col-lg-6">
 						<div class="post">
 							<div class="post-header font-alt">
-								<h2 class="post-title">GRAPH 1</h2>
+								<h2 class="post-title">GRAPH 1 <span class="icon-linegraph"> </span> </h2>
 
 								<div class="post-meta">
 									POCKETLIB 이 수집한 ${userInfo.userName} 님의 독서량 데이터입니다. <br>
@@ -194,7 +151,7 @@
 					<div class="col-md-6 col-lg-6">
 						<div class="post">
 							<div class="post-header font-alt">
-								<h2 class="post-title">GRAPH 2</h2>
+								<h2 class="post-title">GRAPH 2 <span class="icon-genius"> </span> </h2>
 								<div class="post-meta">
 									POCKETLIB 이 수집한 ${userInfo.userName} 님의 선호 분야입니다. <br>
 								</div>
