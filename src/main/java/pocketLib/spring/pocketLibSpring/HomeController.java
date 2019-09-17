@@ -2,8 +2,10 @@ package pocketLib.spring.pocketLibSpring;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -24,11 +27,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
+import pocketLib.spring.pocketLibSpring.mybatis.model.Searching;
 import pocketLib.spring.pocketLibSpring.mybatis.service.RecommendService;
+import pocketLib.spring.pocketLibSpring.mybatis.service.SearchingService;
 
 /**
  * Handles requests for the application home page.
@@ -38,6 +44,9 @@ public class HomeController {
 
 	@Autowired
 	RecommendService recommendService;
+	
+	@Autowired
+	SearchingService searchingservice;
 
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -83,43 +92,44 @@ public class HomeController {
 		model.addAttribute("months", months);
 		model.addAttribute("userInfo", userInfo);
 
-
-		List<String[]> tmpList = new ArrayList<String[]>();
-		BufferedReader br = null;
-		
-		ServletContext context = request.getSession().getServletContext();
-		String path = context.getRealPath("/WEB-INF/views/assets/searching.csv");
-		try {
-			br = Files.newBufferedReader(Paths.get(path));
-			Charset.forName("UTF-8");
-			String line = "";
-			while ((line = br.readLine()) != null) {
-				// CSV 1행을 저장하는 리스트
-				String[] array = line.split(",");
-				// 배열에서 리스트 반환
-				tmpList.add(array);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null) {
-					br.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		String[] rank1 = tmpList.get(1);
-		String[] rank2 = tmpList.get(2);
-		String[] rank3 = tmpList.get(3);
- 		model.addAttribute("rank1",rank1[0] );
-		model.addAttribute("rank2", rank2[0]);
-		model.addAttribute("rank3", rank3[0]);
-
 		return "index";
+	}
+	
+	@RequestMapping(value = "/aboutUs/aboutUs.do", method = RequestMethod.GET)
+	public String aboutUs() {
+		
+		return "aboutUs/aboutUs";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/searching.csv", method = RequestMethod.GET)
+	public void searching(HttpServletResponse response) {
+		response.setContentType("text/csv");
+		response.setCharacterEncoding("utf-8");
+		
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		List<Searching> searchingList = null;
+		try {
+			searchingList = searchingservice.CSVList(null);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+
+		ArrayList<Searching> list = (ArrayList<Searching>) searchingList;
+
+		out.println("text,frequency");
+		for (int i = 0; i < list.size(); i++) {
+			out.print(list.get(i).getQueryValue());
+			out.print(",");
+			out.println(Integer.toString(list.get(i).getQuerycnt()*100));
+		}
 	}
 
 }

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -13,14 +14,9 @@
     Document Title
     =============================================
     -->
-<c:choose>
-	<c:when test="${userInfo ==null}">
-		<title>ㅎㅇ</title>
-	</c:when>
-	<c:otherwise>
-		<title>안녕하세요${userInfo.userName}님</title>
-	</c:otherwise>
-</c:choose>
+
+		<title>pocketLib</title>
+
 <!--  
     Favicons
     =============================================
@@ -126,7 +122,7 @@
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/">팀 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/aboutUs/aboutUs.do">팀 소개</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
@@ -171,7 +167,7 @@
 								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=2">책
 									후기 게시판</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">QNA
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">Q&A
 									게시판</a></li>
 						</ul></li>
 
@@ -216,7 +212,7 @@
 							<div class="font-alt mb-30 titan-title-size-2">
 								맞춤 추천을 받아보세요.<br />pocketLib이 도서를 추천해드립니다.
 							</div>
-							<a class="btn btn-border-w btn-round" href="about">Recommend</a>
+							<a class="btn btn-border-w btn-round" href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">Recommend</a>
 						</div>
 					</div>
 				</li>
@@ -224,10 +220,11 @@
 					style="background-image: url(${pageContext.request.contextPath}/assets/images/section-10.jpg);">
 					<div class="titan-caption">
 						<div class="caption-content">
-							<div class="font-alt mb-30 titan-title-size-1">나만의 서재에 책을 등록해보세요.</div>
+							<div class="font-alt mb-30 titan-title-size-1">나만의 서재에 책을
+								등록해보세요.</div>
 							<div class="font-alt mb-40 titan-title-size-3">My pocketLib</div>
 							<a class="section-scroll btn btn-border-w btn-round"
-								href="#about">My pocketLib</a>
+								href="${pageContext.request.contextPath}/book/mybookshelf.do">My pocketLib</a>
 						</div>
 					</div>
 				</li>
@@ -241,20 +238,19 @@
 				<div class="CSV">
 
 					<script src="https://d3js.org/d3.v3.min.js"></script>
-					<script
-						src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-					<script src="https://d3js.org/d3.v3.js"></script>
-					
+				 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+				  <script src="https://d3js.org/d3.v3.js"></script>
+				
 					<script
 						src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
 						type="text/JavaScript"></script>
 
 					<script>
-		 var body = d3.select("body"),
-			    length = 100,
-			    color = d3.scale.linear().domain([1,length])
-			      .interpolate(d3.interpolateHcl)
-			      .range([d3.rgb("#6192E8"), d3.rgb('#DF53A4')]);
+				var body = d3.select("body"),
+				    length = 100,
+				    color = d3.scale.linear().domain([1,length])
+				      .interpolate(d3.interpolateHcl)
+				      .range([d3.rgb("#6192E8"), d3.rgb('#DF53A4')]);
 
         var width = 1200,
             height = 400
@@ -262,7 +258,8 @@
         var svg = d3.select("div.CSV").append("svg")
             .attr("width", width)
             .attr("height", height);
-        d3.csv("${pageContext.request.contextPath}/assets/searching.csv", function (data) {
+        d3.csv("${pageContext.request.contextPath}/searching.csv", function (data) {
+        	console.log(data);
             showCloud(data)
             setInterval(function(){
                  showCloud(data)
@@ -272,11 +269,12 @@
         //domain: 데이터의 범위, 입력 크기
         //range: 표시할 범위, 출력 크기 
         //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
-        wordScale = d3.scale.linear().domain([0, 100]).range([0, 150]).clamp(true);
-        var keywords = ["${rank1}", "${rank2}", "${rank3}"]
+
+        wordScale = d3.scale.linear().domain([0, 1000]).range([0, 200]).clamp(true);
+
         var svg = d3.select("svg")
                     .append("g")
-                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+                    .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
 
         function showCloud(data) {
             d3.layout.cloud().size([width, height])
@@ -304,7 +302,9 @@
                     	  max = Math.floor(100);
                     	  
                     	 return color( Math.floor(Math.random() * (max - min + 1)) + min);
-                  })
+                    	
+                    	
+                    })
                     .style("fill-opacity", .5)
                     .attr("text-anchor", "middle") 
                     .attr('font-size', 1)
@@ -321,15 +321,15 @@
                         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
                     })
                     .style("fill-opacity", 1); 
-            }
+                     }
         }
     </script>
 
 				</div>
 			</div>
 		</section>
-		
-		
+
+
 		<section class="module">
 			<div class="row">
 				<div class="col-sm-8 col-sm-offset-2">
@@ -341,30 +341,30 @@
 								<col style="width: 80%;">
 							</colgroup>
 
-							<c:if test="${list[status.index] != null}">
-							<div class="alert alert-success" role="alert">
-								${months[status.index]} 의 인기도서 <span><i
-									class="icon-quote"></i></span>
-							</div>
+							<c:if test="${fn:length(list)>0}">
+								<div class="alert alert-success" role="alert">
+								<h4 class="font-al mb-0">
+							
+									<strong>${months[status.index]} 의 인기도서</strong> <span><i
+										class="icon-quote"></i></span>
+								</div>
+
+
+								<tbody>
+									<tr>
+
+										<c:forEach var="item" items="${list}" varStatus="status">
+											<td>${status.index+1}위</td>
+											<td><a
+												href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
+													${item.title}</a></td>
+									</tr>
+
+								</tbody>
+								</c:forEach>
 							</c:if>
-
-							<tbody>
-								<tr>
-
-									<c:forEach var="item" items="${list}" varStatus="status">
-										<td>${status.index+1}위</td>
-										<td><a
-											href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
-												${item.title}</a></td>
-								</tr>
-
-							</tbody>
-					</c:forEach>
-
-					</c:forEach>
-					</table>
-
-
+							</c:forEach>
+						</table>
 				</div>
 			</div>
 		</section>
@@ -374,63 +374,63 @@
 				<div class="row">
 					<div class="col-sm-9">
 						<div>
-							<a href="${pageContext.request.contextPath}" class="font-alt" style="font-size:14px; padding-right:10px;">About pocketLib</a>
-					
-										
-							<a href="${pageContext.request.contextPath}" class="font-alt" style="font-size:14px; padding-right:10px;">이용약관</a>
-					
-										
-							<a href="${pageContext.request.contextPath}" class="font-alt" style="font-size:14px; padding-right:10px;">개인정보취급방침</a>
-					
-										
-							<a href="${pageContext.request.contextPath}/board/FAQ.do" class="font-alt" style="font-size:14px; padding-right:10px;">고객센터</a>
-					
-										
-							<a href="https://github.com/utaek/pocketlib" target="_blank" class="font-alt" style="font-size:14px; padding-right:10px;">Github</a>
-							
+							<a href="${pageContext.request.contextPath}" class="font-alt"
+								style="font-size: 14px; padding-right: 10px;">About
+								pocketLib</a> <a href="${pageContext.request.contextPath}"
+								class="font-alt" style="font-size: 14px; padding-right: 10px;">이용약관</a>
+
+
+							<a href="${pageContext.request.contextPath}" class="font-alt"
+								style="font-size: 14px; padding-right: 10px;">개인정보취급방침</a> <a
+								href="${pageContext.request.contextPath}/board/FAQ.do"
+								class="font-alt" style="font-size: 14px; padding-right: 10px;">고객센터</a>
+
+
+							<a href="https://github.com/utaek/pocketlib" target="_blank"
+								class="font-alt" style="font-size: 14px; padding-right: 10px;">Github</a>
+
 						</div>
-						<hr style="margin: 8px 0;"/>
-						
+						<hr style="margin: 8px 0;" />
+
 						<div class="widget-title font-alt">
 							<p>
-								<span style="padding-right:10px;">
-							  		<Strong style="font-size:12px;">팀명</Strong>: pocketLib	
-							  	</span>
-							  	<span style="padding-right:10px;">
-							  		<Strong style="font-size:12px;">Email</Strong>: oooo@ooooo.com
-							  	</span>
+								<span style="padding-right: 10px;"> <Strong
+									style="font-size: 12px;">팀명</Strong>: pocketLib
+								</span> <span style="padding-right: 10px;"> <Strong
+									style="font-size: 12px;">Email</Strong>: oooo@ooooo.com
+								</span>
 							</p>
-							
+
 						</div>
 						<hr class="divider-d">
-						<div class ="font-alt">
-							<span class="">
-								pocketLib은 BootStrap 기반 오픈소스와 Spring Framework로 만들어졌습니다.<br/>
-								자세한 내용은 <a href="https://github.com/utaek/pocketlib" target="_blank">Github</a>에서 확인 하실 수 있습니다.
+						<div class="font-alt">
+							<span class=""> pocketLib은 BootStrap 기반 오픈소스와 Spring
+								Framework로 만들어졌습니다.<br /> 자세한 내용은 <a
+								href="https://github.com/utaek/pocketlib" target="_blank">Github</a>에서
+								확인 하실 수 있습니다.
 							</span>
 						</div>
 					</div>
-					
-			</div>
-		</div>
-		
-		<footer class="footer bg-dark">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="copyright font-alt">
-							&copy; 2019&nbsp;<a href="${pageContext.request.contextPath}">pocektLib</a>, All Rights
-							Reserved
-						</p>
-					</div>
+
 				</div>
 			</div>
-		</footer>
-		<div class="scroll-up">
-			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
-		</div>
-	</div>
 
+			<footer class="footer bg-dark">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6">
+							<p class="copyright font-alt">
+								&copy; 2019&nbsp;<a href="${pageContext.request.contextPath}">pocektLib</a>,
+								All Rights Reserved
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<div class="scroll-up">
+				<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+			</div>
+		</div>
 	</main>
 	<!--  
     JavaScripts

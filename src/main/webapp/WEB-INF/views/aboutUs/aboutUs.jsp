@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -16,8 +15,8 @@
     =============================================
     -->
 
-		<title>BestSeller | pocketLib</title>
-
+		<title>About Us | pocketLib</title>
+	
 <!--  
     Favicons
     =============================================
@@ -53,12 +52,6 @@
 <meta name="msapplication-TileImage"
 	content="${pageContext.request.contextPath}/assets/images/favicons/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
-<link rel="rp" type="image/png" sizes="16x16"
-	href="${pageContext.request.contextPath}/assets/images/rp-1.png">
-<link rel="rp" type="image/png" sizes="16x16"
-	href="${pageContext.request.contextPath}/assets/images/rp-2.png">
-
-
 <!--  
     Stylesheets
     =============================================
@@ -108,6 +101,7 @@
 	href="${pageContext.request.contextPath}/assets/css/colors/default.css"
 	rel="stylesheet">
 </head>
+
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
 	<main>
@@ -129,7 +123,8 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li><a href="${pageContext.request.contextPath}/aboutUs/aboutUs.do">팀 소개</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/bestseller.do"
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/book/bestseller.do"
 						data-toggle="dropdown">도서추천</a>
 						<ul class="dropdown-menu">
 							<li><a
@@ -137,9 +132,12 @@
 							<li><a
 								href="${pageContext.request.contextPath}/book/item_new_special.do">화제의
 									신간도서</a></li>
-							<li><a href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">맞춤 추천</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">맞춤
+									추천</a></li>
 						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle" href="${pageContext.request.contextPath}/book/mybookshelf.do"
+					<li class="dropdown"><a class="dropdown-toggle"
+						href="${pageContext.request.contextPath}/book/mybookshelf.do"
 						data-toggle="dropdown">독서관리</a>
 						<ul class="dropdown-menu">
 							<c:choose>
@@ -192,120 +190,164 @@
 			</div>
 		</div>
 	</nav>
-
-
-	<div class="main">
-		<section class="module-small">
-			<div class="container">
-
-				<form class="row" method="get"
-					action="${pageContext.request.contextPath}/book/bestseller.do">
-
-					<div class="col-sm-4 mb-sm-19 pull-left">
-						<select class="form-control" name="category" value="${category}">
-							<option selected="selected" value=336>장르선택</option>
-							<option value=336>자기계발</option>
-							<option value=170>경제경영</option>
-							<option value=1>소설/시/희곡</option>
-							<option value=987>과학</option>
-							<option value=798>사회과학</option>
-							<option value=656>인문학</option>
-							<option value=517>예술/대중문화</option>
-							<option value=1196>여행</option>
-							<option value=55889>에세이</option>
-						</select>
-					</div>
-					<p class="btn-list">
-						<button class="btn btn-g btn-round" type="submit">찾기</button>
-
-					</p>
-				</form>
-
-			
-				<h3>${aladinBookList.searchCategoryName}분야 베스트셀러</h3>
-			</div>
-			<c:if test="${aladinBookList!=null}">
-				<hr style="border: solid 1px black; width: 70%" />
-
-				<table class="table table-hover" align="center"
-					style="width: 70%; text-align: center;">
-
-					<colgroup>
-						<col style="width: 10%;">
-						<col style="width: 50%;">
-						<col style="width: 40%;">
-					</colgroup>
-
-					<c:forEach var="item" items="${aladinBookList.item}"
-						varStatus="status">
-						<thead>
-							<tr>
-								<td><h3>${item.bestRank}위</h3></td>
-								<td><a
-									href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
-									<img src="${item.cover}" height="150"></a></td>
-								<td>
-									<h3>
-										<a
-											href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${item.isbn}">
-											${item.title}</a>
-									</h3>
-									<table class="table table-hover">
-										<tr>
-											<td>저자</td>
-											<td>${item.author}</td>
-										</tr>
-										<tr>
-											<td>출판사</td>
-											<td>${item.publisher}</td>
-										</tr>
-										<tr>
-											<td>평점</td>
-											<td>
-												<!-- 여기가 평점 별  --> 
-												<c:choose>
-													<c:when test="${item.customerReviewRank == 0}">
-														<c:forEach var="j" begin="1" end="5" varStatus="status">
-															<i class="fa fa-star-o fa-2x"></i>
-															<c:set var="j" value="${j+1}" />
-														</c:forEach>
-													</c:when>
-
-													<c:when test="${item.customerReviewRank != 0}">
-														<c:forEach var="i" begin="1" end="${(item.customerReviewRank-2)/2}" varStatus="status">
-															<i class="fa fa-star fa-2x"></i>
-															<c:set var="i" value="${i+1}" />
-														</c:forEach>
-
-													</c:when>
-													</c:choose>
-														<c:choose>
-													<c:when test="${(item.customerReviewRank % 2 == 0) && item.customerReviewRank!=0}">
-														
-														<i class="fa fa-star fa-2x"></i>
-													</c:when>
-													<c:when test="${(item.customerReviewRank % 2 != 0) && item.customerReviewRank!=0}">
-														<i class="fa fa-star fa-2x"></i>
-														<i class="fa fa-star-half fa-2x"></i>
-													</c:when>
-												 
-												</c:choose> 
-											(${item.customerReviewRank})
-
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</thead>
-					</c:forEach>
-				</table>
-			</c:if>
-
-
-
-		</section>
-		<div class="module-extra-small bg-dark">
+      <div class="main">
+        <section class="module bg-dark-60 about-page-header" data-background="${pageContext.request.contextPath}/assets/images/about_bg.jpg">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">About</h2>
+                <div class="module-subtitle font-alt">POCKETLIB 프로젝트를 소개합니다. <br/> period of developing the project : 19.08.17 ~ 19.09.17</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="module">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Our skills</h2>
+                <div class="module-subtitle font-alt">skills & experiences</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="font-alt"><span class="icon-tools-2"></span> JAVA
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="70" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-strategy"></span> JSP
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="60" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-target"></span> SPRING
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="80" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-camera"></span> JAVA SCRIPT
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="25" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <h6 class="font-alt"><span class="icon-tools-2"></span> MYSQL
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="90" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-strategy"></span> JQUERY
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="20" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-target"></span> MYBATIS
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="85" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-camera"></span> HTML+CSS
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="30" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      
+        <section class="module" id="team">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Team</h2>
+                <div class="module-subtitle font-alt">pocketLib Developers</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
+                <div class="team-item">
+                  <div class="team-image"><img src="${pageContext.request.contextPath}/assets/images/team-1.jpg" alt="Member Photo"/>
+                    <div class="team-detail">
+                      <h5 class="font-alt">헬스가 제일 좋아요</h5>
+                      <p class="font-serif">헬스없는 세상은 상상하기도 싫어요</p>
+                    
+                    </div>
+                  </div>
+                  <div class="team-descr font-alt">
+                    <div class="team-name">송수협</div>
+                    <div class="team-role">pocketLib crew</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
+                <div class="team-item">
+                  <div class="team-image"><img src="${pageContext.request.contextPath}/assets/images/team-2.jpg" alt="Member Photo"/>
+                    <div class="team-detail">
+                      <h5 class="font-alt">날씨가 좋네요 번호좀주실수있나요?</h5>
+                      <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+                      
+                    </div>
+                  </div>
+                  <div class="team-descr font-alt">
+                    <div class="team-name">박장호</div>
+                    <div class="team-role">pocketLib crew</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
+                <div class="team-item">
+                  <div class="team-image"><img src="${pageContext.request.contextPath}/assets/images/team-3.jpg" alt="Member Photo"/>
+                    <div class="team-detail">
+                      <h5 class="font-alt">싫어욧!!</h5>
+                      <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+                      
+                    </div>
+                  </div>
+                  <div class="team-descr font-alt">
+                    <div class="team-name">최우택</div>
+                    <div class="team-role">pocketLib crew</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
+                <div class="team-item">
+                  <div class="team-image"><img src="${pageContext.request.contextPath}/assets/images/team-4.jpg" alt="Member Photo"/>
+                    <div class="team-detail">
+                      <h5 class="font-alt">저와 함께 머리미실분?</h5>
+                      <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+                      
+                    </div>
+                  </div>
+                  <div class="team-descr font-alt">
+                    <div class="team-name">빢빢이</div>
+                    <div class="team-role">pocketLib crew</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
+                <div class="team-item">
+                  <div class="team-image"><img src="${pageContext.request.contextPath}/assets/images/team-4.jpg" alt="Member Photo"/>
+                    <div class="team-detail">
+                      <h5 class="font-alt">저욧!!</h5>
+                      <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+                     
+                    </div>
+                  </div>
+                  <div class="team-descr font-alt">
+                    <div class="team-name">정수연</div>
+                    <div class="team-role">pocketLib crew</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        
+       <div class="module-extra-small bg-dark">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-9">
@@ -367,8 +409,8 @@
 				<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
 			</div>
 		</div>
-	</main>
-	<!--  
+    </main>
+  	<!--  
     JavaScripts
     =============================================
     -->
