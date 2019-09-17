@@ -21,6 +21,13 @@
 <%@ include file="/WEB-INF/views/inc/favicon.jsp" %>
 <!-- Stylesheets -->
 <%@ include file="/WEB-INF/views/inc/style.jsp" %>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js" charset="UTF-8"></script></head>
+<style>
+    @font-face {
+        font-family: 'overwatch';
+        src: url('${pageContext.request.contextPath}/assets/koverwatch.ttf');
+    }
+</style>
 
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
@@ -74,8 +81,7 @@
 	</section>
 	<div class="main">
 		<section class="module-medium">
-			<div class="container" id="container"
-				style="font-family: 'overwatch'; src: url('fonts/koverwatch.woff2');">
+			<div class="container" id="container">
 				<div class="CSV">
 
 					<script src="https://d3js.org/d3.v3.min.js"></script>
