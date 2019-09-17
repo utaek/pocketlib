@@ -60,8 +60,8 @@
 		</div>
 	
 		<div class="container">
-
-			<c:if test="${search!=null}">
+			<c:choose>
+			<c:when test="${search!=null}">
 				<hr style="border: solid 1px black; width: 70%;" />
 				<table class="table table-hover" align="center"
 					style="width: 70%; text-align: center;">
@@ -134,7 +134,24 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</c:if>
+			</c:when>
+			<c:otherwise>
+				<hr style="border: solid 1px black; width: 70%;" />
+				<table class="table table-hover" align="center"
+					style="width: 70%; text-align: center;">
+
+					<colgroup>
+						<col style="width: 5%;">
+						<col style="width: 30%;">
+						<col style="width: 65%;">
+					</colgroup>
+					<tr>
+							<td><h2 class="font-alt"><br/>검색어를 입력하시면 책 정보가 나타납니다.</h2></td>
+							
+					</tr>
+					</table>
+			</c:otherwise>
+			</c:choose>
 		</div>
 	</section>
 </main>
