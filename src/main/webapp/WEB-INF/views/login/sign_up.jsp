@@ -8,9 +8,7 @@
 <script>
 	$(function() {
 
-		$("#check_user_id")
-				.click(
-						function(e) {
+		$("#check_user_id").click(function(e) {
 
 							e.preventDefault();
 							var user_id = $("#userID").val();
@@ -22,11 +20,12 @@
 						
 	});
 	
-	${("#form").submit(function(){
+	$("#form").submit(function(){
 		if(document.form.check_user_id.value=="check"){
 			$("#btn-submit").prop('disabled', true);}
-		}
-	});
+		});
+
+	$("#btn-submit").prop('disabled', false);
 	
 </script>
 <script>
