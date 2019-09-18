@@ -47,7 +47,7 @@
 						style="margin-left: 5%; width: 100%;">
 						<div role="tabpanel">
 							<ul class="nav nav-tabs font-alt" role="tablist">
-								<li><a href="#sales" data-toggle="tab"><span
+								<li class="active"><a href="#sales" data-toggle="tab"><span
 										class="icon-globe"></span>FAQ</a></li>
 							</ul>
 							
@@ -58,14 +58,14 @@
 											<div class="panel-heading font-alt">
 												<h4 class="panel-title font-alt">
 													<a data-toggle="collapse" data-parent="#accordion"
-														href="#sales1"><h4><strong>1. 저와 맞는 맞춤 도서를 어떻게 해야 볼 수 있나요?</strong></h4></a>
+														href="#sales1"><h4><strong>1. 저에게 맞는 맞춤 도서를 어떻게 해야 볼 수 있나요?</strong></h4></a>
 												</h4>
 											</div>
 											<div class="panel-collapse collapse in" id="sales1">
 												<div class="panel-body font-alt"><h5>
-												pocketLib에서는 사용자가 직접 등록한 관심책과 읽은책에 대해서 맞춤 도서를 추천드리며,<br/><br/>				
-												추가된 도서가 많을 수록 맞춤도서에 대한 정확도가 높아집니다.<br/><br/>
-												pocketLib 추천서비스를 활용하여 더 많은 책을 추천받아 보세요!</h5>
+												pocketLib에서는 사용자가 직접 등록한 <b>관심 책</b>과 <b>읽은 책</b>에 대해 맞춤 도서를 추천드리며,<br/><br/>				
+												추가된 도서가 많을 수록 추천에 대한 정확도가 높아집니다.<br/><br/>
+												pocketLib 추천 서비스를 활용하여 더 많은 책을 추천받아 보세요!</h5>
 												</div>
 											</div>
 										</div>
@@ -78,9 +78,9 @@
 											</div>
 											<div class="panel-collapse collapse" id="sales2">
 												<div class="panel-body font-alt"><h5>
-												회원가입은 상단에 로그인을 클릭하신 후 진행하시면 됩니다.<br/><br/>
-												회원가입 후 관심있는 책을 1권이상 자유롭게 선택해 주시고 작성했던 이메일에서 인증을 하시면,
-												회원가입이 완료됩니다.</h5>
+												회원가입은 아래의 주소를 클릭하신 후 순차적으로 진행하시면 됩니다.<br/><br/>
+												<a href="${pageContext.request.contextPath}/login/registerShow.do">http://itproject.ezenac.co.kr/pocketlib/login/registerShow.do?</a><br/><br/>
+												이후 관심있는 책을 1권이상 자유롭게 선택하시고 이메일 인증을 받으시면 회원가입이 완료됩니다.</h5>
 												</div>
 											</div>
 										</div>
@@ -93,9 +93,9 @@
 											</div>
 											<div class="panel-collapse collapse" id="sales3">
 												<div class="panel-body font-alt"><h5>
-												나의 책통계는 상단에 독서관리 > 내책장 > 나의 책 통계 에서 볼 수 있습니다.<br/><br/>
-												사용자가 등록한 읽은책을 기반으로 하여 그래프를 보여줍니다.<br/><br/>
-												더 많은 책을 등록하셔서 그래프와 분석을 통해 자신의 독서량을 확인해보세요.</h5>
+												나의 책 통계는 상단에 <b>독서관리 > 내책장 > 나의 책 통계</b> 에서 볼 수 있습니다.<br/><br/>
+												사용자가 등록한 <b>읽은 책</b>을 기반으로 하여 그래프를 보여줍니다.<br/><br/>
+												더 많은 책을 등록하셔서 그래프와 통계를 통해 자신의 독서량을 확인해보세요.</h5>
 												</div>
 											</div>
 										</div>
@@ -103,14 +103,14 @@
 											<div class="panel-heading">
 												<h4 class="panel-title font-alt">
 													<a class="collapsed" data-toggle="collapse"
-														data-parent="#accordion" href="#sales4"><h4><strong>4. 더 많은 책을 추가하고 싶어요 책추가는 어떻게 하나요?</strong></h4></a>
+														data-parent="#accordion" href="#sales4"><h4><strong>4. 더 많은 책을 추가하고 싶어요. 책 추가는 어떻게 하나요?</strong></h4></a>
 												</h4>
 											</div>
 											<div class="panel-collapse collapse" id="sales4">
 												<div class="panel-body font-alt"><h5>
-												책 추가는 상단에 독서관리 > 책검색을 통해서도 원하는 도서를 추가할 수 있으며, 도서추천 탭을 활용하여<br/><br/>
-												현재 베스트셀러와 화제의 신간도서등 도서의 상세정보를 확인하여 추가하는 방법도 있습니다.<br/><br/>
-												마지막으로 사용자가 등록했었던 도서와 관련된 맞춤도서를 통해서도 추가할 수있습니다.</h5>
+												책 추가는 상단에 <b>독서관리 > 책 검색</b>을 통해서 원하는 도서를 추가할 수 있으며, <br/><br/>
+												현재 베스트셀러와 화제의 신간도서의 <b>상세정보</b>를 확인하여 추가하는 방법도 있습니다.<br/><br/>
+												마지막으로 <b>맞춤 추천</b> 탭에서 추천 된 도서 목록을 통해서도 추가할 수 있습니다.</h5>
 												</div>
 											</div>
 										</div>

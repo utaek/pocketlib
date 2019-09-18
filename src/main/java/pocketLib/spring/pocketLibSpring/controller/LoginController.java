@@ -257,7 +257,7 @@ public class LoginController {
 		}
 
 		if (userName == null) {
-			return webHelper.redirect(null, "이름 입력하세요.");
+			return webHelper.redirect(null, "이름을 입력하세요.");
 
 		}
 
@@ -486,7 +486,7 @@ public class LoginController {
 		}
 
 		if (userName == null) {
-			return webHelper.redirect(null, "이름 입력하세요.");
+			return webHelper.redirect(null, "이름을 입력하세요.");
 		}
 
 		if (birthday == null) {
@@ -513,7 +513,7 @@ public class LoginController {
 		}
 		
 		if(countEmail >0) {
-			return webHelper.redirect(null, "중복 된 Email입니다.");
+			return webHelper.redirect(null, "중복된 이메일입니다.");
 		}
 		try {
 			mailHelper.sendMail(email, "PocketLib 회원가입 인증 메일입니다.",
