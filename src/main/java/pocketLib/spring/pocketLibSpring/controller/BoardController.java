@@ -66,7 +66,7 @@ public class BoardController {
 		// 전체 게시글 수
 		int totalCount = 0;
 		// 한 페이지당 표시할 목록수
-		int listCount = 10;
+		int listCount = 12;
 		// 한 그룹당 표시할 페이지 번호 수
 		int pageCount = 5;
 
@@ -81,6 +81,7 @@ public class BoardController {
 
 		// 조회결과가 저장될 객체
 		List<Board> output = null;
+		List<Board> output2 = null;
 		PageData pageData = null;
 
 		try {
@@ -97,6 +98,7 @@ public class BoardController {
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			output = boardService.getBoardOptionList(input, keywordOption);
+			output2 = boardService.getNoticeList();
 
 			input.getBoardCate();
 		} catch (Exception e) {
@@ -109,6 +111,7 @@ public class BoardController {
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("output", output);
+		model.addAttribute("output2", output2);
 		model.addAttribute("pageData", pageData);
 		model.addAttribute("boardCate", boardCate);
 		model.addAttribute("boardOrder", boardOrder);

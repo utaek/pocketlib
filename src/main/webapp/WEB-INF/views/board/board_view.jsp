@@ -74,17 +74,20 @@
 				<div class="col-sm-15 mb-sm-1">
 					<form class="row">
 
-						<div class="col-sm-1 mb-sm-3">${output.userId }</div>
-						<div class="col-sm-1 mb-sm-2">
+						<div class="col-sm-2 mb-sm-3" >${output.userId }</div>
+						<div class="col-sm-1 mb-sm-2" style="width:4%;">
 							<i class="fa fa-comment">${commentList.size()}</i>
 						</div>
-						<div class="col-sm-1 mb-sm-2">
+						<div class="col-sm-1 mb-sm-2" style="width:4%;">
 							<i class="fa fa-eye">${output.hits }</i>
 						</div>
-						<div class="col-sm-1 mb-sm-2">
+						<div class="col-sm-1 mb-sm-2" style="width:4%;">
 							<i class="fa fa-thumbs-up">${output.love }</i>
 						</div>
-						<i class="fa fa-thumbs-down">${output.hate }</i>
+						<div class="col-sm-1 mb-sm-2" style="width:4%;">
+							<i class="fa fa-thumbs-down">${output.hate }</i>
+						</div>
+						
 
 						<div class="col-sm-2.5 mb-sm-10 pull-right">
 							<i class="pull-right time">${output.reg_date }</i>
@@ -114,7 +117,7 @@
 						<p class="btn-list">
 
 							<c:if test="${totalCount > 0}">
-								<c:if test="${userInfo.getUserno() == output.userNo}">
+								<c:if test="${(userInfo.getUserno() == output.userNo) || userInfo.userId=='admin'}">
 									<a
 										href="${pageContext.request.contextPath}/board/board_edit.do?boardCate=${boardCate}&boardNo=${boardno}">
 										<button class="btn btn-g btn-round btn-xs" type="submit">수정</button>
@@ -131,12 +134,15 @@
 					</div>
 					<div class="pull-right">
 						<p class="btn-list">
-							<a href="${pageContext.request.contextPath}/login/show.do"> <c:choose>
+							<a href="${pageContext.request.contextPath}/login/show.do"> 
+							<c:choose>
 									<c:when test="${userInfo != null}">
+										<c:if test="${boardCate!=4 || (boardCate==4 && userInfo.userId=='admin')}">
 										<a href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
 											<button class="btn btn-success btn-round btn-xs"
 												type="submit">글쓰기</button>
 										</a>
+										</c:if>
 									</c:when>
 									<c:otherwise>
 										<a href="${pageContext.request.contextPath}/login/show.do">
@@ -190,7 +196,7 @@
 															class="cmt_reply_box"
 															id="comment_reply_box_inner-${cmtId}"> 답글 </a>
 													</c:if>
-													<c:if test="${userInfo.getUserId()== userId}">
+													<c:if test="${userInfo.getUserId()== userId || userInfo.userId=='admin'}">
 														<a href="javascript:;" onclick="edit_box()"
 															class="cmt_edit_box" id="comment_edit_box_inner-${cmtId}">수정</a>
 														<a href=""

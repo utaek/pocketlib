@@ -36,7 +36,7 @@
 					<table class="table table-hover">
 						<thead>
 
-							<h3>${userInfo.userName}님의MyPage</h3>
+							<h3>${userInfo.userName}님의 MyPage</h3>
 						</thead>
 						<tbody>
 

@@ -99,8 +99,39 @@
 							</div>
 						</form>
 					</c:when>
+					<c:when test="${boardCate==3}">
+						<h1>Q&A 게시판 글쓰기</h1>
+						<hr />
+						<form class="row" method="post"
+							action="${pageContext.request.contextPath}/board/board_add_ok.do">
+							<label for="post-title" class="col-sm-1 control-label">제목</label>
+							<div class="col-sm-8" style="display: table;">
+								<input type="hidden" id="boardCate" name="boardCate"
+									value="${boardCate}"> <input class="form-control"
+									type="text" name="title" id="title" />
+							</div>
+							<br>
+							<div class="form-group" style="margin-top: 30px">
+								<textarea name="content" class="ckeditor" name="content"
+									id="content"></textarea>
+								<hr />
+								<script src="//cdn.ckeditor.com/4.12.1/basic/ckeditor.js"></script>
+							</div>
+
+							<div class="border_button">
+								<div class="border_button text-center mt20">
+									<p class="btn-list">
+										<button class="btn btn-success btn-round btn-xs" type="submit">작성완료</button>
+										<a
+											href="${pageContext.request.contextPath}/board/board_list.do?boardCate=${boardCate}"><button
+												class="btn btn-g btn-round btn-xs" type="button">취소</button></a>
+									</p>
+								</div>
+							</div>
+						</form>
+					</c:when>
 					<c:otherwise>
-						<h1>Q&A게시판 글쓰기</h1>
+						<h1>공지사항 글쓰기</h1>
 						<hr />
 						<form class="row" method="post"
 							action="${pageContext.request.contextPath}/board/board_add_ok.do">

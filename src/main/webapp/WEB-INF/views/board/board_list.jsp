@@ -22,8 +22,11 @@
 	<c:when test="${boardCate ==2}">
 		<title>Book Review Board | pocketLib</title>
 	</c:when>
-	<c:otherwise>
+	<c:when test="${boardCate ==3}">
 		<title>Q&A | pocketLib</title>
+	</c:when>
+	<c:otherwise>
+		<title>Notice | pocketLib</title>
 	</c:otherwise>
 </c:choose>
 <!-- favicon -->
@@ -50,8 +53,11 @@
 					<c:when test="${boardCate==2}">
 						<h1>책 후기게시판</h1>
 					</c:when>
+					<c:when test="${boardCate==3}">
+						<h1>Q&A 게시판</h1>
+					</c:when>
 					<c:otherwise>
-						<h1>Q&A게시판</h1>
+						<h1>공지사항</h1>
 					</c:otherwise>
 				</c:choose>
 				<hr />
@@ -60,7 +66,7 @@
 						action="${pageContext.request.contextPath}/board/board_list.do">
 						<div class="col-sm-2 mb-sm-20">
 							<select class="form-control" id="sortCate" name="sortCate"
-								onchange="location.href='${pageContext.request.contextPath}/board/board_list.do?${boardCate}&searchList=${keywordOption}&keyword=${keyword}&sortCate='+ this.value;">
+								onchange="location.href='${pageContext.request.contextPath}/board/board_list.do?boardCate=${boardCate}&searchList=${keywordOption}&keyword=${keyword}&sortCate='+ this.value;">
 								<option value="order">정렬하기</option>
 								<option value="reg_date"
 									<c:if test="${sortCate != null and sortCate == 'reg_date'}"> selected </c:if>>날짜순</option>
@@ -98,9 +104,9 @@
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>글쓴이</th>
-							<th>날짜</th>
-							<th>조회수</th>
+							<th style="text-align:center;">글쓴이</th>
+							<th style="text-align:center;">날짜</th>
+							<th style="text-align:center;">조회수</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -111,6 +117,23 @@
 								</tr>
 							</c:when>
 							<c:otherwise>
+								<c:forEach var="item" items="${output2}" varStatus="status">
+									<c:set var="boardno" value="${item.boardNo}" />
+									<c:set var="title" value="${item.title}" />
+									<c:set var="content" value="${item.content}" />
+									<c:set var="userid" value="${item.userId}" />
+									<c:set var="reg_date" value="${item.reg_date}" />
+									<c:set var="hits" value="${item.hits}" />
+									<tr>
+										<td style="width:9%; "><span class="label label-primary">공지</span></td>
+										<td style="width:38%;"><a
+											href="${pageContext.request.contextPath}/board/board_view.do?boardCate=${boardCate}&boardNo=${boardno}&searchList=${keywordOption }&keyword=${keyword }&sortCate=${sortCate}">${title}</a></td>
+										<td style="width:17%; text-align:center;">${userid}</td>
+										<td style="width:13%; text-align:center;">${reg_date}</td>
+										<td style="width:10%; text-align:center;">${hits}</td>
+									</tr>
+								</c:forEach>
+								
 								<c:forEach var="item" items="${output}" varStatus="status">
 									<c:set var="boardno" value="${item.boardNo}" />
 									<c:set var="title" value="${item.title}" />
@@ -129,12 +152,12 @@
 
 
 									<tr>
-										<td><span class="label label-primary">${boardOrder}</span></td>
-										<td style="text-overflow: ellipsis;"><a
+										<td style="width:9%; "><span class="font-alt" style="font-size:13px;">${boardOrder}</span></td>
+										<td style="width:38%;"><a
 											href="${pageContext.request.contextPath}/board/board_view.do?boardCate=${boardCate}&boardNo=${boardno}&searchList=${keywordOption }&keyword=${keyword }&sortCate=${sortCate}">${title}</a></td>
-										<td>${userid}</td>
-										<td>${reg_date}</td>
-										<td>${hits}</td>
+										<td style="width:17%; text-align:center;">${userid}</td>
+										<td style="width:13%; text-align:center;">${reg_date}</td>
+										<td style="width:10%; text-align:center;">${hits}</td>
 									</tr>
 									<c:set var="boardOrder" value="${boardOrder-1}" />
 								</c:forEach>
@@ -154,10 +177,12 @@
 						<p class="btn-list">
 							<c:choose>
 								<c:when test="${userInfo != null}">
+									<c:if test="${boardCate!=4 || (boardCate==4 && userInfo.userId=='admin')}">
 									<a
 										href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
 										<button class="btn btn-success btn-round btn-xs" type="submit">글쓰기</button>
 									</a>
+									</c:if>
 								</c:when>
 								<c:otherwise>
 									<a href="${pageContext.request.contextPath}/login/show.do">

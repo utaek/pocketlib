@@ -32,7 +32,7 @@
 					name="form">
 					<table class="table table-hover">
 						<thead>
-							<h3>${userInfo.userName}님의정보수정창입니다.</h3>
+							<h3>${userInfo.userName}님의 정보 수정 창입니다.</h3>
 						</thead>
 						<tbody>
 
