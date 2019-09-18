@@ -12,6 +12,8 @@ public interface CustomerService {
 	
 	public int getCustomerCount(Customer input) throws Exception;
 	
+	public int getCountEmail(Customer input) throws Exception;
+	
 	public Customer getLoginCheckId(Customer input) throws Exception;
 	
 	public int editCustomer(Customer input) throws Exception;	

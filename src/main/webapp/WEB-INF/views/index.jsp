@@ -21,7 +21,7 @@
 <%@ include file="/WEB-INF/views/inc/favicon.jsp" %>
 <!-- Stylesheets -->
 <%@ include file="/WEB-INF/views/inc/style.jsp" %>
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js" charset="UTF-8"></script></head>
+</head>
 <style>
     @font-face {
         font-family: 'overwatch';
@@ -210,11 +210,12 @@
 			</div>
 		</section>
 		</div>
-		<%@ include file="/WEB-INF/views/inc/bottom.jsp" %>
+		
 		
 		
 	</main>
-	<%@ include file="/WEB-INF/views/inc/script.jsp" %>
+	
 </body>
-
+<%@ include file="/WEB-INF/views/inc/bottom.jsp" %>
+<%@ include file="/WEB-INF/views/inc/script.jsp" %>
 </html>

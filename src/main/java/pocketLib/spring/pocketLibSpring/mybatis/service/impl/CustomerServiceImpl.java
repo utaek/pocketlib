@@ -190,4 +190,19 @@ public class CustomerServiceImpl implements CustomerService {
         } 
         return result;
 	}
+
+	@Override
+	public int getCountEmail(Customer input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("CustomerMapper.countEmail", input);
+		} catch (Exception e) {
+
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		} 
+
+		return result;
+	}
 }

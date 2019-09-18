@@ -150,11 +150,11 @@
 						<div class="team-item">
 							<div class="team-image">
 								<img
-									src="${pageContext.request.contextPath}/assets/images/team-1.jpg"
+									src="${pageContext.request.contextPath}/assets/images/team-1.gif"
 									alt="Member Photo" />
 								<div class="team-detail">
-									<h5 class="font-alt">헬스가 제일 좋아요</h5>
-									<p class="font-serif">헬스없는 세상은 상상하기도 싫어요</p>
+									<h5 class="font-alt">우리팀 첫째</h5>
+									<p class="font-serif">헬스쟁이</p>
 
 								</div>
 							</div>
@@ -169,12 +169,11 @@
 						<div class="team-item">
 							<div class="team-image">
 								<img
-									src="${pageContext.request.contextPath}/assets/images/team-2.jpg"
+									src="${pageContext.request.contextPath}/assets/images/team-2.gif"
 									alt="Member Photo" />
 								<div class="team-detail">
-									<h5 class="font-alt">날씨가 좋네요 번호좀주실수있나요?</h5>
-									<p class="font-serif">Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+									<h5 class="font-alt">우리팀 둘째</h5>
+									<p class="font-serif">센스쟁이</p>
 
 								</div>
 							</div>
@@ -189,12 +188,11 @@
 						<div class="team-item">
 							<div class="team-image">
 								<img
-									src="${pageContext.request.contextPath}/assets/images/team-3.jpg"
+									src="${pageContext.request.contextPath}/assets/images/team-3.gif"
 									alt="Member Photo" />
 								<div class="team-detail">
-									<h5 class="font-alt">싫어욧!!</h5>
-									<p class="font-serif">Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+									<h5 class="font-alt">우리팀 셋째</h5>
+									<p class="font-serif">코쟁이</p>
 
 								</div>
 							</div>
@@ -209,32 +207,30 @@
 						<div class="team-item">
 							<div class="team-image">
 								<img
-									src="${pageContext.request.contextPath}/assets/images/team-4.jpg"
+									src="${pageContext.request.contextPath}/assets/images/team-4.gif"
 									alt="Member Photo" />
 								<div class="team-detail">
-									<h5 class="font-alt">저와 함께 머리미실분?</h5>
-									<p class="font-serif">Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+									<h5 class="font-alt">우리팀 넷째</h5>
+									<p class="font-serif">거짓말쟁이</p>
 
 								</div>
 							</div>
 							<div class="team-descr font-alt">
-								<div class="team-name">빢빢이</div>
+								<div class="team-name">김현종</div>
 								<div class="team-role">pocketLib crew</div>
 							</div>
 						</div>
 					</div>
-					<div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3"
+					<div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" 
 						onclick="wow fadeInUp">
 						<div class="team-item">
 							<div class="team-image">
 								<img
-									src="${pageContext.request.contextPath}/assets/images/team-4.jpg"
-									alt="Member Photo" />
+									src="${pageContext.request.contextPath}/assets/images/team-5.gif"
+									alt="Member Photo" style="height:265px;"/>
 								<div class="team-detail">
-									<h5 class="font-alt">저욧!!</h5>
-									<p class="font-serif">Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
+									<h5 class="font-alt">우리팀 막내</h5>
+									<p class="font-serif">말썽쟁이</p>
 
 								</div>
 							</div>
@@ -249,10 +245,11 @@
 		</section>
 	</div>
 
-	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+
 </main>
-	
-	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
+
 
 </body>
+	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>
