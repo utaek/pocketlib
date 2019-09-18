@@ -76,7 +76,7 @@ public class RetrofitController {
 		// 검색 결과 저장할 beans 객체 선언
 		String ttbkey = "ttbfreda70890100001";
 		String queryType = "Bestseller";
-		int maxResults = 20;
+		int maxResults = 40;
 		String cover = "Big";
 		int start = 1;
 		String searchTarget = "Book";
@@ -146,7 +146,7 @@ public class RetrofitController {
 		String ttbkey = "ttbfreda70890100001";
 		String queryType = "ItemNewSpecial";
 		String cover = "Big";
-		int maxResults = 20;
+		int maxResults = 40;
 		int start = 1;
 		String searchTarget = "Book";
 		String output = "js";

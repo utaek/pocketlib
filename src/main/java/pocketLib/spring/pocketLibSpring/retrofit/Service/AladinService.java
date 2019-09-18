@@ -94,7 +94,7 @@ public interface AladinService {
 		
 	
 	
-	//편집자 추천 리스트
+	//편집자 추천 리스트 - 내용이 없음
 	@GET("/ttb/api/ItemList.aspx")
 	Call<AladinBookList> getEditorChoice(
 			@Query("TTBKey") String ttbkey, 
@@ -106,13 +106,5 @@ public interface AladinService {
 			@Query("SearchTarget") String searchTarget, 
 			@Query("output") String output,
 			@Query("Version") int version);
-
-
-	
-
-
-	//북플베스트셀러
-	@GET("/ttb/api/ItemList.aspx")
-	Call<AladinBookList> getBPBestseller();
 
 }
