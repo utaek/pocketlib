@@ -82,6 +82,7 @@
 	<div class="main">
 		<section class="module-medium">
 			<div class="container" id="container">
+			<div><span><p>가장 많이 검색된 검색어를 보여드립니다.</p></span></div>
 				<div class="CSV">
 
 					<script src="https://d3js.org/d3.v3.min.js"></script>

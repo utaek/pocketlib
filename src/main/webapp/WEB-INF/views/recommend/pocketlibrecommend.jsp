@@ -138,7 +138,9 @@
             <div class="row">
               <div class="col-sm-7 col-sm-offset-2">
                 <h2 class="module-title font-alt">${userInfo.userName}님을 위한 관심 도서 추천 </h2>
-                <div class="module-subtitle font-serif">${userInfo.userName}님이 선택하신 관심 도서와 비슷한 카테고리의 도서 목록입니다.</div>
+                <div class="module-subtitle font-serif">${userInfo.userName}님이 선택하신 관심 도서와 비슷한 카테고리의 도서 목록입니다.<br/>
+                	<h5>새로고침하시면 새로운 목록을 불러올 수 있습니다.</h5>
+                </div>
               </div>
             </div>
             <div class="row">
