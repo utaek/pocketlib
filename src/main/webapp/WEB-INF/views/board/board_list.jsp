@@ -185,11 +185,13 @@
 									</c:if>
 								</c:when>
 								<c:otherwise>
+								<c:if test ="${boardCate!=4 || (boardCate==4 && userInfo.userId=='admin')}">
 									<a href="${pageContext.request.contextPath}/login/show.do">
 										<button class="btn btn-success btn-round btn-xs"
 											onclick="if(alert('비회원은 글쓰기가 불가능합니다. 로그인 해주세요.'));"
 											type="submit">글쓰기</button>
 									</a>
+								</c:if>
 								</c:otherwise>
 							</c:choose>
 						</p>
