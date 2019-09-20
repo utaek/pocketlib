@@ -1,5 +1,6 @@
 package pocketLib.spring.pocketLibSpring.controller;
 
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,10 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 import pocketLib.spring.pocketLibSpring.helper.PageData;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Board;
+import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
+import pocketLib.spring.pocketLibSpring.mybatis.model.BookRead;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Comment;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Customer;
 import pocketLib.spring.pocketLibSpring.mybatis.model.LoveHate;
 import pocketLib.spring.pocketLibSpring.mybatis.service.BoardService;
+import pocketLib.spring.pocketLibSpring.mybatis.service.BookService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.CommentService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.CustomerService;
 import pocketLib.spring.pocketLibSpring.mybatis.service.LoveHateService;
@@ -40,15 +44,32 @@ public class BoardController {
 
 	@Autowired
 	LoveHateService lovehateService;
+	
+	@Autowired
+	BookService bookService;
 
 	@RequestMapping(value = "/board/board_list.do", method = RequestMethod.GET)
 	public ModelAndView list(Model model, HttpServletRequest request) { // 메서드 이름은 아무런 영향이 없음. 자유롭게정의
 		HttpSession session = request.getSession();
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
-
+		
+		int userno=0;
 		if (userInfo == null) {
 			userInfo = null;
+		}else {
+		userno = userInfo.getUserno(); 
 		}
+		List<Book> list =null;
+		BookRead bR =new BookRead();
+		bR.setUserno(userno);
+		
+		try {
+			list= bookService.getItemByUserNo(bR);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int listLength = list.size();
 		String keyword = webHelper.getString("keyword", "");
 		int nowPage = webHelper.getInt("page", 1);
 		int boardCate = webHelper.getInt("boardCate", 1);
@@ -112,6 +133,7 @@ public class BoardController {
 		model.addAttribute("pageData", pageData);
 		model.addAttribute("boardCate", boardCate);
 		model.addAttribute("boardOrder", boardOrder);
+		model.addAttribute("length",listLength);
 
 		String viewPath = "board/board_list";
 		return new ModelAndView(viewPath);
@@ -121,6 +143,16 @@ public class BoardController {
 	public String add(Model model, HttpServletRequest request) { // 메서드 이름은 아무런 영향이 없음. 자유롭게정의
 		HttpSession session = request.getSession();
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
+		int userno = userInfo.getUserno(); 
+		List<Book> list =null;
+		BookRead input =new BookRead();
+		input.setUserno(userno);
+		try {
+			list= bookService.getItemByUserNo(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		if (userInfo == null) {
 			userInfo = null;
@@ -129,6 +161,7 @@ public class BoardController {
 		int boardCate = webHelper.getInt("boardCate");
 
 		model.addAttribute("boardCate", boardCate);
+		model.addAttribute("list",list);
 		return "board/board_add";
 	}
 
@@ -145,6 +178,8 @@ public class BoardController {
 		int No = userInfo.getUserno();
 		String date = webHelper.getString("reg_date");
 		int boardCate = webHelper.getInt("boardCate");
+		String isbn = webHelper.getString("isbn");
+	
 
 		if (date == null) {
 			Calendar calendar = Calendar.getInstance();
@@ -179,11 +214,16 @@ public class BoardController {
 		input.setContent(content);
 		input.setReg_date(regdate);
 		input.setBoardCate(boardCate);
+		input.setIsbn(isbn);
 
 		try {
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
-			boardService.addBoard(input);
+			if(boardCate==2) {
+				boardService.addBoard2(input);
+			}else {
+				boardService.addBoard(input);
+			}
 		} catch (Exception e) {
 			// 에러발생시 DB접속을 끊고 에러 메시지를 표시한후 이전페이지로 이동
 			return webHelper.redirect(null, e.getLocalizedMessage());
@@ -193,7 +233,7 @@ public class BoardController {
 
 		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
-		return webHelper.redirect("board_view.do?boardCate=" + input.getBoardCate() + "&boardNo=" + input.getBoardNo(),
+		return webHelper.redirect("board_view.do?boardCate=" + input.getBoardCate() + "&boardNo=" + input.getBoardNo() + "&isbn=" + input.getIsbn(),
 				"저장되었습니다.");
 
 	}
@@ -230,6 +270,7 @@ public class BoardController {
 		String keyword = webHelper.getString("keyword", "");
 		String keywordOption = "title_content";
 		String sortCate = "order";
+		String isbn = webHelper.getString("isbn");
 
 		if (webHelper.getString("searchList") != null) {
 			keywordOption = webHelper.getString("searchList");
@@ -256,9 +297,12 @@ public class BoardController {
 		input.setHits(hits);
 		input.setLove(love);
 		input.setHate(hate);
+		
 
 		// 조회결과를 저장할 객체 선언
 		Board output = null;
+		Book book = new Book();
+		book.setIsbn(isbn);
 		// 쿠키목록이 있다면,
 		myCookie = webHelper.getCookie("mycookie" + mycookie);
 
@@ -267,6 +311,8 @@ public class BoardController {
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			output = boardService.getBoardItem(input);
 			commentList = commentService.getCommentList(cmtInput);
+			book = bookService.getBookItem(book);
+			
 
 			if (myCookie == null) {
 				boardService.editViewCount(input);
@@ -278,6 +324,8 @@ public class BoardController {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 
 		}
+		String bookTitle = book.getTitle();
+		String bookCover = book.getCover();
 
 		model.addAttribute("output", output);
 		model.addAttribute("commentList", commentList);
@@ -287,6 +335,9 @@ public class BoardController {
 		model.addAttribute("keywordOption", keywordOption);
 		model.addAttribute("sortCate", sortCate);
 		model.addAttribute("boardno", boardno);
+		model.addAttribute("bookTitle", bookTitle);
+		model.addAttribute("bookCover", bookCover);
+		
 
 		String viewPath = "board/board_view";
 		return new ModelAndView(viewPath);

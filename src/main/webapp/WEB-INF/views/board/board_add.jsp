@@ -48,6 +48,7 @@
 									value="${boardCate}"> <input class="form-control"
 									type="text" name="title" id="title" />
 							</div>
+							
 							<br>
 							<div class="form-group" style="margin-top: 30px">
 								<textarea name="content" class="ckeditor" name="content"
@@ -79,6 +80,14 @@
 									value="${boardCate}"> <input class="form-control"
 									type="text" name="title" id="title" />
 							</div>
+							<div class="col-sm-3 mb-sm-19 pull-right">
+							<select class="form-control" id="isbn" name="isbn">
+							<c:forEach var="item" items="${list}" varStatus="status">
+								<option value="${item.isbn}">${item.title}</option>
+									
+								</c:forEach>
+							</select>
+						</div>
 							<br>
 							<div class="form-group" style="margin-top: 30px">
 								<textarea name="content" class="ckeditor" name="content"

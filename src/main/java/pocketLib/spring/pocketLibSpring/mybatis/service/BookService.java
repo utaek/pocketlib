@@ -40,6 +40,8 @@ public interface BookService {
 	public int addBestseller(Book input) throws Exception;
 	
 	public List<Book> getBestsellerList(Book input) throws Exception;
+	
+	public List<Book> getItemByUserNo(BookRead input) throws Exception;
 
 	
 	

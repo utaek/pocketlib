@@ -40,6 +40,8 @@ public interface BoardService {
      */
     public int addBoard(Board input) throws Exception;
     
+    public int addBoard2(Board input) throws Exception;
+    
     /**
      * 학과 데이터 수정하기
      * @param Board 수정할 정보를 담고 있는 Beans

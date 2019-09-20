@@ -23,6 +23,8 @@
 			column="customerReviewRank" />
 		<result property="cate" column="cate" />
 		<result property="count" column="count" />
+		
+		
 
 	</resultMap>
 	<resultMap id="SearchingMap"
@@ -78,6 +80,7 @@
 		customerReviewRank from book where isbn=#{isbn};
 
 	</select>
+	
 
 
 	<!-- 다중행 조회를 위한 기능 정의 -->
@@ -117,6 +120,17 @@
 		book join bookread where book.isbn = bookread.isbn and
 		userno=#{userno};
 
+
+	</select>
+	
+	<!-- 유저의 읽은 책 목록 조회 -->
+	<select id="selectItembyUserNo"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
+		resultMap="bookMap">
+		<!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+		select book.isbn, book.title, book.cover from
+		book join bookread where book.isbn = bookread.isbn and
+		userno=#{userno};
 
 	</select>
 

@@ -118,6 +118,7 @@
 									<c:set var="userid" value="${item.userId}" />
 									<c:set var="reg_date" value="${item.reg_date}" />
 									<c:set var="hits" value="${item.hits}" />
+									<c:set var="isbn" value="${item.isbn}" />
 
 									<c:if test="${keyword!=''}">
 										<c:set var="mark" value="<mark>${keyword}</mark>" />
@@ -130,8 +131,16 @@
 
 									<tr>
 										<td><span class="label label-primary">${boardOrder}</span></td>
+										<c:choose>
+										<c:when test ="${boardCate ==2}">
+										<td style="text-overflow: ellipsis;"><a
+											href="${pageContext.request.contextPath}/board/board_view.do?boardCate=${boardCate}&boardNo=${boardno}&searchList=${keywordOption }&keyword=${keyword }&sortCate=${sortCate}&isbn=${isbn}">${title}</a></td>
+										</c:when>
+										<c:otherwise>
 										<td style="text-overflow: ellipsis;"><a
 											href="${pageContext.request.contextPath}/board/board_view.do?boardCate=${boardCate}&boardNo=${boardno}&searchList=${keywordOption }&keyword=${keyword }&sortCate=${sortCate}">${title}</a></td>
+											</c:otherwise>
+											</c:choose>
 										<td>${userid}</td>
 										<td>${reg_date}</td>
 										<td>${hits}</td>
@@ -153,12 +162,27 @@
 					<div class="pull-right">
 						<p class="btn-list">
 							<c:choose>
+							<c:when test="${boardCate == 2 and length>0 and userInfo !=null}">
+									<a
+										href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
+										<button class="btn btn-success btn-round btn-xs" type="submit">글쓰기</button>
+									</a>
+								</c:when>
+								<c:when test="${boardCate == 2 and length == 0}">
+									<a href="${pageContext.request.contextPath}/">
+										<button class="btn btn-success btn-round btn-xs"
+											onclick="if(alert('읽은책을 등록후 후기작성 가능합니다.'));"
+											type="submit">글쓰기</button>
+									</a>
+								</c:when>
 								<c:when test="${userInfo != null}">
 									<a
 										href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
 										<button class="btn btn-success btn-round btn-xs" type="submit">글쓰기</button>
 									</a>
 								</c:when>
+								
+								
 								<c:otherwise>
 									<a href="${pageContext.request.contextPath}/login/show.do">
 										<button class="btn btn-success btn-round btn-xs"

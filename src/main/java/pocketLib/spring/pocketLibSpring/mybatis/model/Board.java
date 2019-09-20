@@ -15,6 +15,7 @@ public class Board {
     private int hits;
     private int love;
     private int hate;
+    private String isbn;
     
     private String sortCate;
 

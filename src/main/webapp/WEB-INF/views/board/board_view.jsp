@@ -60,11 +60,12 @@
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
-	
+
 	<div class="page-loader">
 		<div class="loader">Loading...</div>
 	</div>
-		<!-- Nav bar --> <%@ include file="/WEB-INF/views/inc/navbar.jsp"%>
+	<!-- Nav bar -->
+	<%@ include file="/WEB-INF/views/inc/navbar.jsp"%>
 
 	<div class="main">
 		<section class="module-small">
@@ -92,6 +93,17 @@
 
 					</form>
 				</div>
+				<c:choose>
+				<c:when test="${output.boardCate ==2}">
+				<div>
+				<a
+					href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${output.isbn}">
+					<img src="${bookCover}" height="150">
+				</a>
+				<h4>${bookTitle}</h4>
+				</div></c:when>
+				</c:choose>
+
 				<div class="contents-view">
 					<div class="post-content">${output.content}</div>
 				</div>
@@ -133,7 +145,8 @@
 						<p class="btn-list">
 							<a href="${pageContext.request.contextPath}/login/show.do"> <c:choose>
 									<c:when test="${userInfo != null}">
-										<a href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
+										<a
+											href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
 											<button class="btn btn-success btn-round btn-xs"
 												type="submit">글쓰기</button>
 										</a>
@@ -306,7 +319,7 @@
 
 	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
 
-	
+
 	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 
 </body>

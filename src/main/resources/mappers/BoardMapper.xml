@@ -20,6 +20,7 @@
 		<result property="sortCate" column="sortCate" />
 		<result property="love" column="love" />
 		<result property="hate" column="hate" />
+		<result property="isbn" column="isbn" />
 	</resultMap>
 
 	<!-- 단일행 조회를 위한 기능 정의 -->
@@ -30,6 +31,7 @@
 		SELECT boardNo, userNo, userId, title, content,
 		reg_date,hits,boardCate,love,hate FROM Board WHERE boardNo=#{boardNo};
 	</select>
+	
 
 	<select id="selectOptionList1"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
@@ -180,6 +182,15 @@
 		VALUES
 		(#{userNo},#{userId},#{title}, #{content}, #{reg_date},
 		#{boardCate},0,0);
+	</insert>
+	<insert id="insertItemForBook"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
+		useGeneratedKeys="true" keyProperty="boardNo">
+		INSERT INTO Board
+		(userNo,userId,title,content,reg_date,boardCate,love,hate,isbn)
+		VALUES
+		(#{userNo},#{userId},#{title}, #{content}, #{reg_date},
+		#{boardCate},0,0,#{isbn});
 	</insert>
 
 	<!-- 데이터 삭제를 위한 기능 정의 -->
