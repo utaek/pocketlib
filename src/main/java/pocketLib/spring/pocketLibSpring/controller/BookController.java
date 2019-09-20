@@ -232,6 +232,8 @@ public class BookController {
 			
 		}
 
+
+        
 		String isbn = webHelper.getString("isbn");
 
 		
@@ -349,23 +351,23 @@ public class BookController {
 	
 		int userno = webHelper.getInt("userno");
 		String isbn = webHelper.getString("isbn");
+		String date =webHelper.getString("date");
 		int value = webHelper.getInt("value");
+		
+		
+		if(date==null) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 0);
+        date = String.format("%04d%02d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
+              calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
+              calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+		}
 
-		String date =null;
-		if (date == null) {
-	         Calendar calendar = Calendar.getInstance();
-	         calendar.add(Calendar.DAY_OF_MONTH, 0);
-	         date = String.format("%04d%02d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
-	               calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
-	               calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
-	      }
-	      String regdate = date.replace("-", "");
 		BookRead input = new BookRead();
 		input.setIsbn(isbn);
 		input.setUserno(userno);
 		input.setValue(value);
-		input.setReg_date(regdate);
-		
+		input.setReg_date(date);
 		
 		int cnt = 0;
 		try {

@@ -304,7 +304,6 @@ public class BoardController {
 		input.setLove(love);
 		input.setHate(hate);
 		
-
 		// 조회결과를 저장할 객체 선언
 		Board output = null;
 		Book book = new Book();
@@ -344,7 +343,6 @@ public class BoardController {
 		model.addAttribute("boardno", boardno);
 		model.addAttribute("bookTitle", bookTitle);
 		model.addAttribute("bookCover", bookCover);
-		
 
 		String viewPath = "board/board_view";
 		return new ModelAndView(viewPath);
@@ -465,31 +463,31 @@ public class BoardController {
 		// 확인할 대상이 삭제된 상태이므로 목록페이지로 이동
 		return webHelper.redirect("board_list.do?boardCate=" + input.getBoardCate(), "삭제되었습니다.");
 	}
+
 	@RequestMapping(value = "/board/love_hate_ok.do", method = RequestMethod.GET)
-	public ModelAndView love_hate(Model model, HttpServletRequest request){
-		
+	public ModelAndView love_hate(Model model, HttpServletRequest request) {
+
 		HttpSession session = request.getSession();
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
-		
+
 		if (userInfo == null) {
 			userInfo = null;
 		}
-		
-		if(userInfo==null){
-			return webHelper.redirect(null,"추천은 로그인 후 이용해주세요.");
+
+		if (userInfo == null) {
+			return webHelper.redirect(null, "추천은 로그인 후 이용해주세요.");
 		}
-		
+
 		int No = userInfo.getUserno();
-		LoveHate lH =new LoveHate();
+		LoveHate lH = new LoveHate();
 		int boardCate = webHelper.getInt("boardCate");
 		int boardNo = webHelper.getInt("boardNo");
 		int count;
 		int type = webHelper.getInt("type");
-		Board boardInput = new Board(); 
+		Board boardInput = new Board();
 		boardInput.setBoardNo(boardNo);
 		lH.setBoardNo(boardNo);
 		lH.setUserNo(No);
-		
 
 		try {
 			count = lovehateService.getLoveHateOptionCount(lH);
@@ -498,58 +496,56 @@ public class BoardController {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
-		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사*/
+		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
 
 		// 학과 이름은 필수항목이므로 입력여부를 검사
 		// 위치는 미필수(null 허용)이므로 입력여부를 검사하지 않는다
-		
-			if (count==1){
-				return webHelper.redirect(null,"이미 누르셨습니다.");
-				
-			}else if(type==0){
-				try {
-					boardService.editBoardLove(boardInput);
-				} catch (Exception e) {
-					return webHelper.redirect(null, e.getLocalizedMessage());
-					
-				}
-				
-			}else{
-				try {
-					boardService.editBoardHate(boardInput);
-				} catch (Exception e) {
-					return webHelper.redirect(null, e.getLocalizedMessage());
-					
-				}
-				
+
+		if (count == 1) {
+			return webHelper.redirect(null, "이미 누르셨습니다.");
+
+		} else if (type == 0) {
+			try {
+				boardService.editBoardLove(boardInput);
+			} catch (Exception e) {
+				return webHelper.redirect(null, e.getLocalizedMessage());
+
 			}
 
-		/** 3) 데이터 저장하기*/
+		} else {
+			try {
+				boardService.editBoardHate(boardInput);
+			} catch (Exception e) {
+				return webHelper.redirect(null, e.getLocalizedMessage());
+
+			}
+
+		}
+
+		/** 3) 데이터 저장하기 */
 		// 저장할 값들을 Beans에 담는다
 		LoveHate input = new LoveHate();
 		input.setBoardNo(boardNo);
 		input.setUserNo(No);
 		input.setLoveType(type);
-		
+
 		try {
 			lovehateService.addLoveHate(input);
 		} catch (Exception e) {
 
 			return webHelper.redirect(null, e.getLocalizedMessage());
-			
+
 		}
-		/** 5) 결과를 확인하기 위한 페이지 이동*/
+		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
-		if(input.getLoveType()==0) {
-			return webHelper.redirect("board_view.do?boardCate=" + boardCate+ "&boardNo=" + boardNo, "추천되었습니다.");
-		}else {
-			return webHelper.redirect("board_view.do?boardCate=" + boardCate+ "&boardNo=" + boardNo, "비추천되었습니다.");
+		if (input.getLoveType() == 0) {
+			return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardNo, "추천되었습니다.");
+		} else {
+			return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardNo, "비추천되었습니다.");
 		}
-		
+
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/board/cmt_edit_ok.do", method = RequestMethod.POST)
 	public ModelAndView cmt_edit_ok(Model model) {
 
@@ -745,7 +741,7 @@ public class BoardController {
 		} catch (Exception e) {
 
 			return webHelper.redirect(null, e.getLocalizedMessage());
-			
+
 		}
 
 		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
@@ -755,22 +751,22 @@ public class BoardController {
 
 		if (count == 1) {
 			return webHelper.redirect(null, "이미 누르셨습니다.");
-			
+
 		} else if (type == 0) {
 			try {
 				commentService.editLoveCount(comment);
 			} catch (Exception e) {
 				return webHelper.redirect(null, e.getLocalizedMessage());
-				
+
 			}
 
 		} else {
 			try {
 				commentService.editHateCount(comment);
 			} catch (Exception e) {
-				
+
 				return webHelper.redirect(null, e.getLocalizedMessage());
-				
+
 			}
 
 		}
@@ -788,7 +784,7 @@ public class BoardController {
 			lovehateService.addLoveHate(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
-			
+
 		}
 
 		/** 5) 결과를 확인하기 위한 페이지 이동 */
@@ -799,7 +795,7 @@ public class BoardController {
 			return webHelper.redirect("board_view.do?boardCate=" + boardCate+ "&boardNo=" + boardNo +"&isbn=" + output.getIsbn(), "비추천되었습니다.");
 		}
 	}
-	
+
 	@RequestMapping(value = "/board/ccmt_add_ok.do", method = RequestMethod.POST)
 	public ModelAndView ccmt_add_ok(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -808,43 +804,37 @@ public class BoardController {
 		if (userInfo == null) {
 			userInfo = null;
 		}
-		
+
 		int boardno = webHelper.getInt("boardNo");
-		int boardCate= webHelper.getInt("boardCate");
+		int boardCate = webHelper.getInt("boardCate");
 		int cmtNo = webHelper.getInt("cmtNo");
-		String Id =  userInfo.getUserId();
+		String Id = userInfo.getUserId();
 		int No = userInfo.getUserno();
 		String date = webHelper.getString("reg_date");
-		
-		if(date == null){
+
+		if (date == null) {
 			Calendar calendar = Calendar.getInstance();
-			calendar.add(Calendar.DAY_OF_MONTH,0);
-			date = String.format("%04d%02d%02d%02d%02d%02d", 
-					calendar.get(Calendar.YEAR),
-					calendar.get(Calendar.MONTH)+1,
-					calendar.get(Calendar.DAY_OF_MONTH),
-					calendar.get(Calendar.HOUR_OF_DAY),
-					calendar.get(Calendar.MINUTE),
-					calendar.get(Calendar.SECOND));
+			calendar.add(Calendar.DAY_OF_MONTH, 0);
+			date = String.format("%04d%02d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
+					calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
+					calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
 		}
 		String regdate = date.replace("-", "");
-		
-		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사*/
+
+		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
 		String cmt_content = webHelper.getString("cmt_content");
-		
+
 		// 학과 이름은 필수항목이므로 입력여부를 검사
 		// 위치는 미필수(null 허용)이므로 입력여부를 검사하지 않는다
-		
-		if(cmt_content==null){
+
+		if (cmt_content == null) {
 			return webHelper.redirect(null, "내용을 입력하세요");
 		}
-		
-		 
-		
-		/** 3) 데이터 저장하기*/
+
+		/** 3) 데이터 저장하기 */
 		// 저장할 값들을 Beans에 담는다
 		Comment input = new Comment();
-		
+
 		input.setUserNo(No);
 		input.setUserId(Id);
 		input.setCmt_content(cmt_content);
@@ -852,7 +842,7 @@ public class BoardController {
 		input.setBoardNo(boardno);
 		input.setCcmt_ref(cmtNo);
 		input.setCcmt_exist(1);
-			
+
 		Board input2 = new Board();
 		input2.setBoardNo(boardno);
 		Board output = new Board();
@@ -861,23 +851,19 @@ public class BoardController {
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			commentService.addComment(input);
-			output = boardService.getBoardItem(input2);
-			
-			
-			
-		}catch(Exception e){
+			output = boardService.getBoardItem(input2);		
+		}catch(Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
-			
 		}
-		
-		/** 5) 결과를 확인하기 위한 페이지 이동*/
+
+		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
 		return webHelper.redirect("board_view.do?boardCate="+ boardCate +"&boardNo="+ boardno +"&isbn=" + output.getIsbn(),"저장되었습니다.");
 	}
-	
+
 	@RequestMapping(value = "/board/ccmt_edit_ok.do", method = RequestMethod.POST)
 	public ModelAndView ccmt_edit_ok(Model model) {
-		
+
 		int boardno = webHelper.getInt("boardNo");
 		String date = webHelper.getString("reg_date");
 		int boardCate = webHelper.getInt("boardCate");
@@ -888,21 +874,20 @@ public class BoardController {
 			calendar.add(Calendar.DAY_OF_MONTH, 0);
 			date = String.format("%04d%02d%02d%02d%02d%02d", calendar.get(Calendar.YEAR),
 					calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
-					calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
-					calendar.get(Calendar.SECOND));
+					calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
 		}
 		String regdate = date.replace("-", "");
 
-		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사*/
+		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
 
 		// 학과 이름은 필수항목이므로 입력여부를 검사
 		// 위치는 미필수(null 허용)이므로 입력여부를 검사하지 않는다
 		if (cmt_content == null) {
 			return webHelper.redirect(null, "내용을 입력하세요");
-			
+
 		}
 
-		/** 3) 데이터 저장하기*/
+		/** 3) 데이터 저장하기 */
 		// 저장할 값들을 Beans에 담는다
 		Comment input = new Comment();
 		input.setCmt_reg_date(regdate);
@@ -919,19 +904,16 @@ public class BoardController {
 			output = boardService.getBoardItem(input2);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
-			
-		}
-		
 
-		/** 5) 결과를 확인하기 위한 페이지 이동*/
+		}
+
+		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
 		return webHelper.redirect("board_view.do?boardCate="+ boardCate +"&boardNo=" + boardno + "&isbn=" + output.getIsbn(), "수정되었습니다.");
 	}
 
 	@RequestMapping(value = "/board/FAQ.do", method = RequestMethod.GET)
 	public String FAQ() {
-		
-	
 		return "board/FAQ";
 	}
 }

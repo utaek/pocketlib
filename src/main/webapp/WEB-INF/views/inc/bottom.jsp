@@ -4,7 +4,7 @@
 <style>
 
 </style>
-<div class="module-extra-small bg-dark fixed-bottom" id = "footer">
+<div class="module-extra-small bg-dark">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9">
