@@ -37,7 +37,13 @@
 
 		SELECT COUNT(*) FROM customer where userid = #{userId};
 	</select>
+	
+	<select id="countEmail"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer" resultType="int">
 
+		SELECT COUNT(*) FROM customer where email = #{email};
+	</select>
+	
 	<select id="LoginCheckId" resultMap="customerMap"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Customer">
 

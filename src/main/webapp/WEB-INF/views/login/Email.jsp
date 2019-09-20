@@ -5,36 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
-	$(function() {
-		$("#check_user_id")
-				.click(
-						function(e) {
 
-							e.preventDefault();
-							var user_id = $("#userID").val();
-							var url = "${pageContext.request.contextPath}/login/register/duplicate.do?userID="
-									+ user_id;
-							window.open(url, "check_id",
-									"width=400, height=300");
-						});
-	});
-</script>
-<script>
-	function checksubmit() {
-		if (document.form.check_user_id.value == "uncheck") {
-			alert("중복체크해주세요");
-			return false;
-		} else if (document.form.check_user_id.value == "check") {
-			return true;
-		}
-	}
-</script>
-<script>
-	function inputIdChk() {
-		document.form.check_user_id.value = "uncheck";
-	}
-</script>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -71,12 +42,9 @@
 		<section class="module">
 			<div class="container">
 
-				<form method="post"
-					action="${pageContext.request.contextPath}/login/registerOk.do"
-					name="form" onsubmit='return checksubmit();'>
 					<table class="table table-hover">
 						<thead>
-							<h3>${userName}님</h3>
+							<h3>${userId}님</h3>
 						</thead>
 						<tbody>
 							<h4>Email인증이 완료되었습니다.</h4>
@@ -87,13 +55,14 @@
 							</h4>
 						</tbody>
 					</table>
-				</form>
 			</div>
 		</section>
 	</div>
-	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+	
 
-	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
+	
 
 </body>
+<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>

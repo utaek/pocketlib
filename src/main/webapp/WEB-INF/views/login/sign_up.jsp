@@ -243,16 +243,11 @@
 				</form>
 			</div>
 		</section>
-		<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+		
 	</div>
 	</main>
 
-
-	<div class="scroll-up">
-		<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
-	</div>
-
-	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
-
 </body>
+<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>

@@ -24,7 +24,7 @@ public interface BoardService {
      */
     public List<Board> getBoardOptionList(Board input, String keywordOption) throws Exception;
     
-
+    public List<Board> getNoticeList() throws Exception;
     /**
      * 학과 데이터가 저장되어 있는 갯수 조회
      * @return int

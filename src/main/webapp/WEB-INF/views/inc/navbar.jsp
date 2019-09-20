@@ -63,7 +63,10 @@
 							<li><a
 								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=3">Q&A
 									게시판</a></li>
-						</ul></li>
+							<li><a
+								href="${pageContext.request.contextPath}/board/board_list.do?boardCate=4">공지사항</a></li>
+						</ul>
+						</li>
 
 					<li><a href="${pageContext.request.contextPath}/board/FAQ.do">FAQ</a></li>
 

@@ -87,7 +87,7 @@ public class BoardController {
 		// 전체 게시글 수
 		int totalCount = 0;
 		// 한 페이지당 표시할 목록수
-		int listCount = 10;
+		int listCount = 12;
 		// 한 그룹당 표시할 페이지 번호 수
 		int pageCount = 5;
 
@@ -102,6 +102,8 @@ public class BoardController {
 
 		// 조회결과가 저장될 객체
 		List<Board> output = null;
+		List<Board> output2 = null;
+		List<Board> output3 = null;
 		PageData pageData = null;
 
 		try {
@@ -117,7 +119,10 @@ public class BoardController {
 
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
+			
 			output = boardService.getBoardOptionList(input, keywordOption);
+			output2 = boardService.getNoticeList();
+			
 
 			input.getBoardCate();
 		} catch (Exception e) {
@@ -130,6 +135,7 @@ public class BoardController {
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("output", output);
+		model.addAttribute("output2", output2);
 		model.addAttribute("pageData", pageData);
 		model.addAttribute("boardCate", boardCate);
 		model.addAttribute("boardOrder", boardOrder);
@@ -311,8 +317,9 @@ public class BoardController {
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			output = boardService.getBoardItem(input);
 			commentList = commentService.getCommentList(cmtInput);
+			if(boardCate==2) {
 			book = bookService.getBookItem(book);
-			
+			}
 
 			if (myCookie == null) {
 				boardService.editViewCount(input);
@@ -412,11 +419,12 @@ public class BoardController {
 		input.setTitle(title);
 		input.setContent(content);
 		input.setReg_date(regdate);
-
+		Board output = new Board();
 		try {
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			boardService.editBoard(input);
+			output = boardService.getBoardItem(input);
 		} catch (Exception e) {
 			// 에러발생시 DB접속을 끊고 에러 메시지를 표시한후 이전페이지로 이동
 			return webHelper.redirect(null, e.getLocalizedMessage());
@@ -425,7 +433,7 @@ public class BoardController {
 		model.addAttribute("boardno", boardno);
 		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
-		return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + input.getBoardNo(),
+		return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + input.getBoardNo() +"&isbn="+output.getIsbn(),
 				"수정되었습니다.");
 
 	}
@@ -575,11 +583,15 @@ public class BoardController {
 		input.setCmt_reg_date(regdate);
 		input.setCmtNo(cmtNo);
 		input.setCmt_content(cmt_content);
+		Board input2 = new Board();
+		input2.setBoardNo(boardno);
+		Board output = new Board();
 
 		try {
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			commentService.editComment(input);
+			output = boardService.getBoardItem(input2);
 		} catch (Exception e) {
 			// 에러발생시 DB접속을 끊고 에러 메시지를 표시한후 이전페이지로 이동
 			return webHelper.redirect(null, e.getLocalizedMessage());
@@ -591,7 +603,7 @@ public class BoardController {
 
 		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
-		return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardno, "수정되었습니다.");
+		return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardno + "&isbn="+output.getIsbn(), "수정되었습니다.");
 	}
 
 	@RequestMapping(value = "/board/cmt_add_ok.do", method = RequestMethod.POST)
@@ -599,7 +611,8 @@ public class BoardController {
 
 		HttpSession session = request.getSession();
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
-
+		
+		
 		if (userInfo == null) {
 			userInfo = null;
 		}
@@ -642,13 +655,16 @@ public class BoardController {
 		input.setCmt_reg_date(regdate);
 		input.setBoardNo(boardno);
 		input.setCcmt_ref(cmtNo);
+		Board input2 = new Board();
+		input2.setBoardNo(boardno);
+		Board output = new Board();
 
 		try {
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			commentService.addComment(input);
 			commentService.editRefComment(input);
-
+			output = boardService.getBoardItem(input2);
 		} catch (Exception e) {
 
 			return webHelper.redirect(null, e.getLocalizedMessage());
@@ -659,7 +675,7 @@ public class BoardController {
 
 		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
-		return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardno, "저장되었습니다.");
+		return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardno + "&isbn="+output.getIsbn(), "저장되었습니다.");
 	}
 
 	@RequestMapping(value = "/board/cmt_delete_ok.do", method = RequestMethod.GET)
@@ -696,7 +712,7 @@ public class BoardController {
 
 		HttpSession session = request.getSession();
 		Customer userInfo = (Customer) session.getAttribute("userInfo");
-
+	
 		if (userInfo == null) {
 			userInfo = null;
 		}
@@ -709,6 +725,7 @@ public class BoardController {
 		int boardCate = webHelper.getInt("boardCate");
 		int cmtNo = webHelper.getInt("cmtNo");
 		int boardNo = webHelper.getInt("boardNo");
+		
 		int count;
 		int type = webHelper.getInt("type");
 		int cateType = 1;
@@ -716,9 +733,15 @@ public class BoardController {
 		comment.setCmtNo(cmtNo);
 		lH.setCmtNo(cmtNo);
 		lH.setUserNo(No);
-
+		//isbn 받기위해 책을 boardno 로 가져온다
+		Board input2 = new Board();
+		input2.setBoardNo(boardNo);
+		Board output = new Board();
 		try {
 			count = lovehateService.getLoveHateCmtCount(lH);
+			output = boardService.getBoardItem(input2);
+			
+			
 		} catch (Exception e) {
 
 			return webHelper.redirect(null, e.getLocalizedMessage());
@@ -771,9 +794,9 @@ public class BoardController {
 		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
 		if(input.getLoveType()==0) {
-			return webHelper.redirect("board_view.do?boardCate=" + boardCate+ "&boardNo=" + boardNo, "추천되었습니다.");
+			return webHelper.redirect("board_view.do?boardCate=" + boardCate+ "&boardNo=" + boardNo +"&isbn=" + output.getIsbn(), "추천되었습니다.");
 		}else {
-			return webHelper.redirect("board_view.do?boardCate=" + boardCate+ "&boardNo=" + boardNo, "비추천되었습니다.");
+			return webHelper.redirect("board_view.do?boardCate=" + boardCate+ "&boardNo=" + boardNo +"&isbn=" + output.getIsbn(), "비추천되었습니다.");
 		}
 	}
 	
@@ -830,11 +853,15 @@ public class BoardController {
 		input.setCcmt_ref(cmtNo);
 		input.setCcmt_exist(1);
 			
+		Board input2 = new Board();
+		input2.setBoardNo(boardno);
+		Board output = new Board();
 		
 		try{
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			commentService.addComment(input);
+			output = boardService.getBoardItem(input2);
 			
 			
 			
@@ -845,7 +872,7 @@ public class BoardController {
 		
 		/** 5) 결과를 확인하기 위한 페이지 이동*/
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
-		return webHelper.redirect("board_view.do?boardCate="+ boardCate +"&boardNo="+ boardno,"저장되었습니다.");
+		return webHelper.redirect("board_view.do?boardCate="+ boardCate +"&boardNo="+ boardno +"&isbn=" + output.getIsbn(),"저장되었습니다.");
 	}
 	
 	@RequestMapping(value = "/board/ccmt_edit_ok.do", method = RequestMethod.POST)
@@ -881,11 +908,15 @@ public class BoardController {
 		input.setCmt_reg_date(regdate);
 		input.setCmtNo(cmtNo);
 		input.setCmt_content(cmt_content);
+		Board input2 = new Board();
+		input2.setBoardNo(boardno);
+		Board output = new Board();
 
 		try {
 			// 데이터 저장
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			commentService.editComment(input);
+			output = boardService.getBoardItem(input2);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 			
@@ -894,7 +925,7 @@ public class BoardController {
 
 		/** 5) 결과를 확인하기 위한 페이지 이동*/
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
-		return webHelper.redirect("board_view.do?boardCate="+ boardCate +"&boardNo=" + boardno, "수정되었습니다.");
+		return webHelper.redirect("board_view.do?boardCate="+ boardCate +"&boardNo=" + boardno + "&isbn=" + output.getIsbn(), "수정되었습니다.");
 	}
 
 	@RequestMapping(value = "/board/FAQ.do", method = RequestMethod.GET)

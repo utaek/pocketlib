@@ -280,4 +280,28 @@ public class BoardServiceImpl implements BoardService {
 		}
 
 		return result;
-	}}
+	}
+	     
+	
+
+	@Override
+	public List<Board> getNoticeList() throws Exception {
+		List<Board> result = null;
+
+		try {
+			result = sqlSession.selectList("BoardMapper.selectNoticeList");
+			
+		} catch (NullPointerException e) {
+
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		} 
+
+		return result;
+	}
+}
+

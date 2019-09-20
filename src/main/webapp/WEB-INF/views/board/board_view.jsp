@@ -75,17 +75,20 @@
 				<div class="col-sm-15 mb-sm-1">
 					<form class="row">
 
-						<div class="col-sm-1 mb-sm-3">${output.userId }</div>
-						<div class="col-sm-1 mb-sm-2">
+						<div class="col-sm-2 mb-sm-3">${output.userId }</div>
+						<div class="col-sm-1 mb-sm-2" style="width: 4%;">
 							<i class="fa fa-comment">${commentList.size()}</i>
 						</div>
-						<div class="col-sm-1 mb-sm-2">
+						<div class="col-sm-1 mb-sm-2" style="width: 4%;">
 							<i class="fa fa-eye">${output.hits }</i>
 						</div>
-						<div class="col-sm-1 mb-sm-2">
+						<div class="col-sm-1 mb-sm-2" style="width: 4%;">
 							<i class="fa fa-thumbs-up">${output.love }</i>
 						</div>
-						<i class="fa fa-thumbs-down">${output.hate }</i>
+						<div class="col-sm-1 mb-sm-2" style="width: 4%;">
+							<i class="fa fa-thumbs-down">${output.hate }</i>
+						</div>
+
 
 						<div class="col-sm-2.5 mb-sm-10 pull-right">
 							<i class="pull-right time">${output.reg_date }</i>
@@ -94,19 +97,25 @@
 					</form>
 				</div>
 				<c:choose>
-				<c:when test="${output.boardCate ==2}">
-				<div>
-				<a
-					href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${output.isbn}">
-					<img src="${bookCover}" height="150">
-				</a>
-				<h4>${bookTitle}</h4>
-				</div></c:when>
+					<c:when test="${output.boardCate ==2}">
+						<div style="text-align:center;">
+							<br>
+							<br> <a
+								href="${pageContext.request.contextPath}/book/book_detail.do?isbn=${output.isbn}">
+								<img src="${bookCover}" height="150">
+							</a><br>
+							<br>
+							<h4>
+								<b><${bookTitle}></b>
+							</h4>
+						</div>
+					</c:when>
 				</c:choose>
 
 				<div class="contents-view">
-					<div class="post-content">${output.content}</div>
+					<div class="post-content"><h4>${output.content}</h4></div>
 				</div>
+
 				<div class="recommend"
 					style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
 					<a
@@ -126,7 +135,8 @@
 						<p class="btn-list">
 
 							<c:if test="${totalCount > 0}">
-								<c:if test="${userInfo.getUserno() == output.userNo}">
+								<c:if
+									test="${(userInfo.userno == output.userNo) || userInfo.userId=='admin'}">
 									<a
 										href="${pageContext.request.contextPath}/board/board_edit.do?boardCate=${boardCate}&boardNo=${boardno}">
 										<button class="btn btn-g btn-round btn-xs" type="submit">수정</button>
@@ -145,11 +155,19 @@
 						<p class="btn-list">
 							<a href="${pageContext.request.contextPath}/login/show.do"> <c:choose>
 									<c:when test="${userInfo != null}">
+
 										<a
 											href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
-											<button class="btn btn-success btn-round btn-xs"
-												type="submit">글쓰기</button>
-										</a>
+
+											<c:if
+												test="${boardCate!=4 || (boardCate==4 && userInfo.userId=='admin')}">
+												<a
+													href="${pageContext.request.contextPath}/board/board_add.do?boardCate=${boardCate}">
+
+													<button class="btn btn-success btn-round btn-xs"
+														type="submit">글쓰기</button>
+												</a>
+											</c:if>
 									</c:when>
 									<c:otherwise>
 										<a href="${pageContext.request.contextPath}/login/show.do">
@@ -203,7 +221,8 @@
 															class="cmt_reply_box"
 															id="comment_reply_box_inner-${cmtId}"> 답글 </a>
 													</c:if>
-													<c:if test="${userInfo.getUserId()== userId}">
+													<c:if
+														test="${userInfo.getUserId()== userId || userInfo.userId=='admin'}">
 														<a href="javascript:;" onclick="edit_box()"
 															class="cmt_edit_box" id="comment_edit_box_inner-${cmtId}">수정</a>
 														<a href=""
@@ -317,11 +336,9 @@
 		</section>
 	</div>
 
-	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
 
-
-	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 
 </body>
-
+<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>

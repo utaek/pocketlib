@@ -98,7 +98,7 @@ to {
 	function showPopup(frm) {
 		var url = "bookstat.do";
 		var title = "bookstat";
-		var status = "width=1000, height=900";
+		var status = "width=800, height=900";
 
 		window.open("", title, status);
 
@@ -276,9 +276,10 @@ to {
 
 
 
+
+
+</body>
 	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
 
 	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
-
-</body>
 </html>

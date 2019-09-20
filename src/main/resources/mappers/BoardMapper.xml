@@ -28,8 +28,19 @@
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
 		resultMap="boardMap">
 		<!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
-		SELECT boardNo, userNo, userId, title, content,
+		SELECT isbn,boardNo, userNo, userId, title, content,
 		reg_date,hits,boardCate,love,hate FROM Board WHERE boardNo=#{boardNo};
+	</select>
+	
+
+
+
+	<select id="selectNoticeList"
+		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
+		resultMap="boardMap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT boardNo,title,content,userId,reg_date,hits,boardCate,love,hate
+		FROM Board where boardCate=4 order by reg_date desc limit 2;
 	</select>
 	
 
@@ -37,7 +48,8 @@
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
 		resultMap="boardMap">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
-		SELECT boardNo,title,content,userId,reg_date,hits,boardCate,love,hate
+		SELECT 
+		isbn,boardNo,title,content,userId,reg_date,hits,boardCate,love,hate
 		FROM Board
 		<where>
 			<if test="true">
@@ -70,7 +82,7 @@
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
 		resultMap="boardMap">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
-		SELECT boardNo,title,content,userId,reg_date,hits,boardCate,love,hate
+		SELECT isbn,boardNo,title,content,userId,reg_date,hits,boardCate,love,hate
 		FROM Board
 		<where>
 			<if test="true">
@@ -100,7 +112,7 @@
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Board"
 		resultMap="boardMap">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
-		SELECT boardNo,title,content,userId,reg_date,hits,boardCate,love,hate
+		SELECT isbn,boardNo,title,content,userId,reg_date,hits,boardCate,love,hate
 		FROM Board
 		<where>
 			<if test="true">

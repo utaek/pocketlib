@@ -36,7 +36,7 @@
 					<table class="table table-hover">
 						<thead>
 
-							<h3>${userInfo.userName}님의MyPage</h3>
+							<h3>${userInfo.userName}님의 MyPage</h3>
 						</thead>
 						<tbody>
 
@@ -71,13 +71,15 @@
 		</section>
 	</div>
 
-	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+	
 
 	</main>
 
 
-	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
+	
 
 
 </body>
+<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>

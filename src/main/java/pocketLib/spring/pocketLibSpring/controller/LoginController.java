@@ -257,7 +257,7 @@ public class LoginController {
 		}
 
 		if (userName == null) {
-			return webHelper.redirect(null, "이름 입력하세요.");
+			return webHelper.redirect(null, "이름을 입력하세요.");
 
 		}
 
@@ -306,7 +306,7 @@ public class LoginController {
 	// 이메일 인증 userkey 값을 N에서 Y로
 	@RequestMapping(value = "/login/Email.do", method = RequestMethod.GET)
 	public String Email(Model model, HttpServletRequest request) {
-		String userName = webHelper.getString("userName");
+	
 		String userId = webHelper.getString("userID");
 		String userkey = "Y";
 
@@ -321,7 +321,7 @@ public class LoginController {
 
 		}
 
-		model.addAttribute("userName", userName);
+		model.addAttribute("userId", userId);
 		return "login/Email";
 	}
 
@@ -368,7 +368,7 @@ public class LoginController {
 		try {
 			mailHelper.sendMail(email, "PocketLib 비밀번호 변경 메일입니다.",
 					"<h2>안녕하세요. PocketLib 비밀번호 변경 메일입니다.</h2>" + "<h3>" + userName + "님</h3>" + "<p>변경된 비밀번호는 "
-							+ npassword + "입니다.<br> 확인 후 마이페이지에서 비밀번호를 변경해 주세요.<br>" + "<a href='http://localhost:8080"
+							+ npassword + "입니다.<br> 확인 후 마이페이지에서 비밀번호를 변경해 주세요.<br>" + "<a href='http://itproject.ezenac.co.kr"
 							+ request.getContextPath() + "/login/show.do'>로그인하러 가기</a></p>");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -428,7 +428,7 @@ public class LoginController {
 		model.addAttribute("userno", userno);
 
 		if (isbnList != null) {
-			return webHelper.redirect("show.do", "책등록이 다 되었습니다 이제 이메일 인증을 해주세요~.");
+			return webHelper.redirect("show.do", "책등록이 다 되었습니다 이제 이메일 인증을 해주세요.");
 		} else {
 			return webHelper.redirect(null, "책을 한권이상 선택해주세요.");
 		}
@@ -438,7 +438,6 @@ public class LoginController {
 	@RequestMapping(value = "/login/registerOk.do", method = RequestMethod.POST)
 	public ModelAndView registerOk(Model model, HttpServletRequest request) {
 		String userId = webHelper.getString("userID");
-
 		String tmppassword = webHelper.getString("password");
 
 		if (tmppassword == null || tmppassword.equals("")) {
@@ -457,8 +456,27 @@ public class LoginController {
 		String birthday = String.join("-", year, month, day);
 		String email = webHelper.getString("email");
 		String gender = webHelper.getString("userGender");
-		String userkey = "N";
-
+		String userkey= new String();
+		
+		Random rnd = new Random();
+		for (int i = 0; i < 12; i++) {
+		    int rIndex = rnd.nextInt(3);
+		    switch (rIndex) {
+		    case 0:
+		        // a-z
+		    	userkey+=((char) ((int) (rnd.nextInt(26)) + 97));
+		        break;
+		    case 1:
+		        // A-Z
+		    	userkey+=((char) ((int) (rnd.nextInt(26)) + 65));
+		        break;
+		    case 2:
+		        // 0-9
+		    	userkey+=((rnd.nextInt(10)));
+		        break;
+		    }
+		}
+		
 		if (!regexHelper.isEngNum(tmppassword)) {
 			return webHelper.redirect(null, "비밀번호는 영어, 숫자 조합만 가능합니다.");
 		}
@@ -468,7 +486,7 @@ public class LoginController {
 		}
 
 		if (userName == null) {
-			return webHelper.redirect(null, "이름 입력하세요.");
+			return webHelper.redirect(null, "이름을 입력하세요.");
 		}
 
 		if (birthday == null) {
@@ -478,7 +496,7 @@ public class LoginController {
 		if (email == null) {
 			return webHelper.redirect(null, "이메일 주소를 입력하세요.");
 		}
-
+		int countEmail = 0;
 		Customer input = new Customer();
 		input.setUserId(userId);
 		input.setPassword(password);
@@ -487,13 +505,21 @@ public class LoginController {
 		input.setEmail(email);
 		input.setGender(gender);
 		input.setUserkey(userkey);
-
+		
+		try {
+			countEmail=customerService.getCountEmail(input);
+		}catch(Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		if(countEmail >0) {
+			return webHelper.redirect(null, "중복된 이메일입니다.");
+		}
 		try {
 			mailHelper.sendMail(email, "PocketLib 회원가입 인증 메일입니다.",
-					"<h2>안녕하세요. PocketLib 회원가입 인증 메일입니다.</h2>" + "<h3>" + userName + "님</h3>"
+					"<h2>안녕하세요. PocketLib 회원가입 인증 메일입니다.</h2>" + "<h3>" + userId + "님</h3>"
 							+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " + "<a href='http://localhost:8080"
-							+ request.getContextPath() + "/login/Email.do?userID=" + userId + "&userName="
-							+ userName + "&userkey=" + userkey+ "'>인증하기</a></p>");
+							+ request.getContextPath() + "/login/Email.do?userID=" + userId + "&userkey=" + userkey+ "'>인증하기</a></p>");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return webHelper.redirect(null, "메일 발송에 실패했습니다.");
@@ -507,7 +533,7 @@ public class LoginController {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 
 		}
-
+		
 		
 
 		model.addAttribute("input", input);

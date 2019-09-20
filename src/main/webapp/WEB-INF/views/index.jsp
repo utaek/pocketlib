@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -18,15 +18,15 @@
 <title>pocketLib</title>
 
 <!-- favicon -->
-<%@ include file="/WEB-INF/views/inc/favicon.jsp" %>
+<%@ include file="/WEB-INF/views/inc/favicon.jsp"%>
 <!-- Stylesheets -->
-<%@ include file="/WEB-INF/views/inc/style.jsp" %>
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js" charset="UTF-8"></script></head>
+<%@ include file="/WEB-INF/views/inc/style.jsp"%>
+</head>
 <style>
-    @font-face {
-        font-family: 'overwatch';
-        src: url('${pageContext.request.contextPath}/assets/koverwatch.ttf');
-    }
+@font-face {
+	font-family: 'overwatch';
+	src: url('${pageContext.request.contextPath}/assets/koverwatch.ttf');
+}
 </style>
 
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -35,10 +35,9 @@
 	<div class="page-loader">
 		<div class="loader">Loading...</div>
 	</div>
-	
-	<!-- Nav bar -->
-<%@ include file="/WEB-INF/views/inc/navbar.jsp" %>
-		<section class="home-section home-parallax home-fade" id="home">
+
+	<!-- Nav bar --> <%@ include file="/WEB-INF/views/inc/navbar.jsp"%>
+	<section class="home-section home-parallax home-fade" id="home">
 		<div class="hero-slider">
 			<ul class="slides">
 				<li class="bg-dark-30 bg-dark"
@@ -60,7 +59,8 @@
 							<div class="font-alt mb-30 titan-title-size-2">
 								맞춤 추천을 받아보세요.<br />pocketLib이 도서를 추천해드립니다.
 							</div>
-							<a class="btn btn-border-w btn-round" href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">Recommend</a>
+							<a class="btn btn-border-w btn-round"
+								href="${pageContext.request.contextPath}/recommend/pocketlibrecommend.do">Recommend</a>
 						</div>
 					</div>
 				</li>
@@ -72,7 +72,8 @@
 								등록해보세요.</div>
 							<div class="font-alt mb-40 titan-title-size-3">My pocketLib</div>
 							<a class="section-scroll btn btn-border-w btn-round"
-								href="${pageContext.request.contextPath}/book/mybookshelf.do">My pocketLib</a>
+								href="${pageContext.request.contextPath}/book/mybookshelf.do">My
+								pocketLib</a>
 						</div>
 					</div>
 				</li>
@@ -82,12 +83,16 @@
 	<div class="main">
 		<section class="module-medium">
 			<div class="container" id="container">
+				<div>
+					<span><p>가장 많이 검색된 검색어를 보여드립니다.</p></span>
+				</div>
 				<div class="CSV">
 
 					<script src="https://d3js.org/d3.v3.min.js"></script>
-				 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-				  <script src="https://d3js.org/d3.v3.js"></script>
-				
+					<script
+						src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+					<script src="https://d3js.org/d3.v3.js"></script>
+
 					<script
 						src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
 						type="text/JavaScript"></script>
@@ -187,10 +192,10 @@
 
 							<c:if test="${fn:length(list)>0}">
 								<div class="alert alert-success" role="alert">
-								<h4 class="font-al mb-0">
-							
-									<strong>${months[status.index]} 의 인기도서</strong> <span><i
-										class="icon-quote"></i></span>
+									<h4 class="font-al mb-0">
+
+										<strong>${months[status.index]} 의 인기도서</strong> <span><i
+											class="icon-quote"></i></span>
 								</div>
 								<tbody>
 									<tr>
@@ -209,12 +214,13 @@
 				</div>
 			</div>
 		</section>
-		</div>
-		<%@ include file="/WEB-INF/views/inc/bottom.jsp" %>
-		
-		
-	</main>
-	<%@ include file="/WEB-INF/views/inc/script.jsp" %>
-</body>
+	</div>
 
+
+
+	</main>
+
+</body>
+<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>

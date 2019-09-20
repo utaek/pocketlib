@@ -12,7 +12,9 @@ body {
   font: 400 12px/1.8 "Open Sans", sans-serif;
   color: #666;
   -webkit-font-smoothing: antialiased;
+  padding-bottom:208px;
 }
+
 
 img {
   max-width: 100%;
@@ -152,6 +154,7 @@ a,
 /* Sections */
 .navbar-custom + .main {
   margin-top: 50px;
+  
 }
 
 .main {

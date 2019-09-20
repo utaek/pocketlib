@@ -32,7 +32,7 @@
 					name="form">
 					<table class="table table-hover">
 						<thead>
-							<h3>${userInfo.userName}님의정보수정창입니다.</h3>
+							<h3>${userInfo.userName}님의 정보 수정 창입니다.</h3>
 						</thead>
 						<tbody>
 
@@ -186,12 +186,14 @@
 			</div>
 		</section>
 
-		<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+		
 
 	</div>
 	</main>
 
-	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
+	
 
 </body>
+<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>

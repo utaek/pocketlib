@@ -98,10 +98,12 @@
 			</div>
 		</section>
 	</div>
-	<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+	
 	</main>
 
-	<%@ include file="/WEB-INF/views/inc/script.jsp"%>
+	
 
 </body>
+<%@ include file="/WEB-INF/views/inc/bottom.jsp"%>
+<%@ include file="/WEB-INF/views/inc/script.jsp"%>
 </html>
