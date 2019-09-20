@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
-<div class="module-extra-small bg-dark">
+<div class="module-extra-small bg-dark" style="position:absolute; width:100%;">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9">

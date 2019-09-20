@@ -37,11 +37,20 @@ function rank_reg() {
 
 	<div class="main">
 		<section class="module">
+		
+			<div class="container">
+				<form method="post" action="rank_ok.do?isbn=${isbn}">
+				
+				<h4 class="font-alt mb-0">읽은 날짜 등록 </h4>
+				<hr class="divider-w mt-10 mb-20">
+				
+				<input type="date"  name="date" id="date"  >
+				
+			</div>
 			<div class="container">
 				<h4 class="font-alt mb-0">평점등록</h4>
 				<hr class="divider-w mt-10 mb-20">
 
-				<form method="post" action="rank_ok.do?isbn=${isbn}">
 					<input type="hidden" id="userno" name="userno"
 						value="${userInfo.userno}"> <input
 						type="radio" id="value" name="value" value="10" checked>10점

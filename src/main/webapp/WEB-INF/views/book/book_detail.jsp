@@ -110,7 +110,7 @@ to {
 	function showPopup(frm) {
 		var url = "br_insert.do";
 		var title = "br_insert";
-		var status = "width=470, height=350";
+		var status = "width=600, height=500";
 
 		window.open("", title, status);
 
@@ -223,17 +223,12 @@ to {
 												</c:when>
 
 											</c:choose> (${output.customerReviewRank})
-
-
 										</td>
 									</tr>
-
 									<tr>
 										<td>판매가</td>
 										<td>${output.priceSales}</td>
 									</tr>
-
-
 									<tr>
 										<td>정가</td>
 										<td>${output.priceStandard}</td>
@@ -242,8 +237,6 @@ to {
 										<td>ISBN</td>
 										<td>${output.isbn}</td>
 									</tr>
-
-
 									<tr>
 										<td>분류</td>
 										<td>${output.categoryName}</td>
@@ -264,10 +257,7 @@ to {
 										<input type="submit" class="btn btn-g btn-round"
 											value="관심책 취소">
 									</form>
-
 								</c:when>
-
-
 								<c:when test="${totalCountbI==0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/bi_insert.do">
@@ -277,19 +267,14 @@ to {
 									</form>
 								</c:when>
 							</c:choose>
-
 							<!-- 읽은책 등록 버튼 -->
-
 							<c:choose>
 								<c:when test="${userInfo==null}">
 									<a href="${pageContext.request.contextPath}/login/show.do">
 										<input type="button" class="btn btn-d btn-round"
 										value="읽은책 등록" onclick="alert('로그인 후 이용하세요');" />
 									</a>
-
 								</c:when>
-
-
 								<c:when test="${userInfo!=null && totalCountbR>0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_delete.do">
@@ -297,25 +282,18 @@ to {
 										<input type="submit" class="btn btn-d btn-round"
 											value="읽은책 취소">
 									</form>
-
 								</c:when>
-
-
 								<c:when test="${totalCountbR==0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_insert.do">
-
 
 										<input type="hidden" name="isbn" value="${output.isbn}">
 										<input type="button" class="btn btn-d btn-round"
 											value="읽은책 등록" onclick="javascript:showPopup(this.form);" />
 
-
 									</form>
 								</c:when>
 							</c:choose>
-
-
 
 						</div>
 					</div>

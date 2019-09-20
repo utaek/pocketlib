@@ -117,7 +117,7 @@
 						<p class="btn-list">
 
 							<c:if test="${totalCount > 0}">
-								<c:if test="${(userInfo.getUserno() == output.userNo) || userInfo.userId=='admin'}">
+								<c:if test="${(userInfo.getUserno() == output.userNo) || (userInfo.userId=='admin')}">
 									<a
 										href="${pageContext.request.contextPath}/board/board_edit.do?boardCate=${boardCate}&boardNo=${boardno}">
 										<button class="btn btn-g btn-round btn-xs" type="submit">수정</button>
