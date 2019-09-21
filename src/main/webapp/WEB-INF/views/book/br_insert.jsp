@@ -22,23 +22,23 @@
 
 
 <script>
-function rank_reg() {
-	if(document.form.date.value == ""){
-		var check=confirm("날짜가 입력되지 않았습니다. 오늘 날짜로 등록하시겠습니까?");
-		if(check == true){
+	function rank_reg() {
+		if (document.form.date.value == "") {
+			var check = confirm("날짜가 입력되지 않았습니다. 오늘 날짜로 등록하시겠습니까?");
+			if (check == true) {
+				opener.location.reload();
+				window.close();
+				return true;
+			} else {
+				return false;
+			}
+
+		} else {
+			alert("평점이 등록되었습니다.");
 			opener.location.reload();
 			window.close();
-			return true;
-		}else{
-			return false;
 		}
-		
-	}else{
-		alert("평점이 등록되었습니다.");
-		opener.location.reload();
-		window.close();
 	}
-}
 </script>
 
 </head>
@@ -48,38 +48,52 @@ function rank_reg() {
 
 	<div class="main">
 		<section class="module">
-		
+
 			<div class="container">
-				<form method="post" name="form" onsubmit="return rank_reg()" action="rank_ok.do?isbn=${isbn}">
-				
-				<h4 class="font-alt mb-0">읽은 날짜 등록 </h4>
-				<hr class="divider-w mt-10 mb-20">
-				
-				<input type="date"  name="date" id="date" >
-				
+				<form method="post" name="form" onsubmit="return rank_reg()"
+					action="rank_ok.do?isbn=${isbn}" max="today">
+
+					<h4 class="font-alt mb-0">읽은 날짜 등록</h4>
+					<hr class="divider-w mt-10 mb-20">
+
+					<input type="date" name="date" id="date">
 			</div>
 			<div class="container">
 				<h4 class="font-alt mb-0">평점등록</h4>
 				<hr class="divider-w mt-10 mb-20">
 
-					<input type="hidden" id="userno" name="userno"
-						value="${userInfo.userno}"> <input
-						type="radio" id="value" name="value" value="10" checked>10점
-					<input type="radio" id="value" name="value" value="9">9점 <input
-						type="radio" id="value" name="value" value="8">8점 <input
-						type="radio" id="value" name="value" value="7">7점 <input
-						type="radio" id="value" name="value" value="6">6점 <input
-						type="radio" id="value" name="value" value="5">5점 <input
-						type="radio" id="value" name="value" value="4">4점 <input
-						type="radio" id="value" name="value" value="3">3점 <input
-						type="radio" id="value" name="value" value="2">2점 <input
-						type="radio" id="value" name="value" value="1">1점
-						<button type="submit" class="btn btn-g btn-round btn-xs" >평점등록</button>
+				<input type="hidden" id="userno" name="userno"
+					value="${userInfo.userno}"> <input type="radio" id="value"
+					name="value" value="10" checked>10점 <input type="radio"
+					id="value" name="value" value="9">9점 <input type="radio"
+					id="value" name="value" value="8">8점 <input type="radio"
+					id="value" name="value" value="7">7점 <input type="radio"
+					id="value" name="value" value="6">6점 <input type="radio"
+					id="value" name="value" value="5">5점 <input type="radio"
+					id="value" name="value" value="4">4점 <input type="radio"
+					id="value" name="value" value="3">3점 <input type="radio"
+					id="value" name="value" value="2">2점 <input type="radio"
+					id="value" name="value" value="1">1점
+				<button type="submit" class="btn btn-g btn-round btn-xs">평점등록</button>
 				</form>
 			</div>
 		</section>
 	</div>
 </body>
+<script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1;
+	var yyyy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd
+	}
+	if (mm < 10) {
+		mm = '0' + mm
+	}
 
+	today = yyyy + '-' + mm + '-' + dd;
+	document.getElementById("date").setAttribute("max", today);
+</script>
 
 </html>
