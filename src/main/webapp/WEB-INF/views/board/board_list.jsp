@@ -112,6 +112,22 @@
 					<tbody>
 						<c:choose>
 							<c:when test="${output.size() == 0}">
+								<c:forEach var="item" items="${output2}" varStatus="status">
+									<c:set var="boardno" value="${item.boardNo}" />
+									<c:set var="title" value="${item.title}" />
+									<c:set var="content" value="${item.content}" />
+									<c:set var="userid" value="${item.userId}" />
+									<c:set var="reg_date" value="${item.reg_date}" />
+									<c:set var="hits" value="${item.hits}" />
+									<tr>
+										<td style="width: 9%;"><span class="label label-primary">공지</span></td>
+										<td style="width: 38%;"><a
+											href="${pageContext.request.contextPath}/board/board_view.do?boardCate=${boardCate}&boardNo=${boardno}&searchList=${keywordOption }&keyword=${keyword }&sortCate=${sortCate}">${title}</a></td>
+										<td style="width: 17%; text-align: center;">${userid}</td>
+										<td style="width: 13%; text-align: center;">${reg_date}</td>
+										<td style="width: 10%; text-align: center;">${hits}</td>
+									</tr>
+								</c:forEach>
 								<tr>
 									<td colspan="3" align="center">조회결과가 없습니다</td>
 								</tr>
@@ -153,9 +169,6 @@
 
 
 									<tr>
-
-									
-
 										<td style="width: 9%;"><span class="font-alt"
 											style="font-size: 13px;">${boardOrder}</span></td>
 										<td style="width: 38%;"><a

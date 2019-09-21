@@ -368,7 +368,7 @@ public class LoginController {
 		try {
 			mailHelper.sendMail(email, "PocketLib 비밀번호 변경 메일입니다.",
 					"<h2>안녕하세요. PocketLib 비밀번호 변경 메일입니다.</h2>" + "<h3>" + userName + "님</h3>" + "<p>변경된 비밀번호는 "
-							+ npassword + "입니다.<br> 확인 후 마이페이지에서 비밀번호를 변경해 주세요.<br>" + "<a href='http://itproject.ezenac.co.kr"
+							+ npassword + "입니다.<br> 확인 후 마이페이지에서 비밀번호를 변경해 주세요.<br>" + "<a href='http://itproject.ezenac.co.kr/"
 							+ request.getContextPath() + "/login/show.do'>로그인하러 가기</a></p>");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -518,7 +518,7 @@ public class LoginController {
 		try {
 			mailHelper.sendMail(email, "PocketLib 회원가입 인증 메일입니다.",
 					"<h2>안녕하세요. PocketLib 회원가입 인증 메일입니다.</h2>" + "<h3>" + userId + "님</h3>"
-							+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " + "<a href='http://localhost:8080"
+							+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " + "<a href='http://itproject.ezenac.co.kr/"
 							+ request.getContextPath() + "/login/Email.do?userID=" + userId + "&userkey=" + userkey+ "'>인증하기</a></p>");
 		} catch (Exception e) {
 			e.printStackTrace();

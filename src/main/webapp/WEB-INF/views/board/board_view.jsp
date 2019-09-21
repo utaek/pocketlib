@@ -97,7 +97,7 @@
 					</form>
 				</div>
 				<c:choose>
-					<c:when test="${output.boardCate ==2}">
+					<c:when test="${output.boardCate ==2 && output.isbn !=null}">
 						<div style="text-align:center;">
 							<br>
 							<br> <a
@@ -109,12 +109,18 @@
 								<b><${bookTitle}></b>
 							</h4>
 						</div>
+						<div class="contents-view">
+							<div class="post-content"><h4>${output.content}</h4></div>
+						</div>
 					</c:when>
+					<c:otherwise>
+					<div class="contents-view">
+						<div class="post-content"><h4>${output.content}</h4></div>
+					</div>
+					</c:otherwise>
 				</c:choose>
 
-				<div class="contents-view">
-					<div class="post-content"><h4>${output.content}</h4></div>
-				</div>
+				
 
 				<div class="recommend"
 					style="margin-top: 20px; margin-bottom: 20px; text-align: center;">

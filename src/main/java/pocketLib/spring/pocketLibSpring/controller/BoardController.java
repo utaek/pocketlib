@@ -316,7 +316,7 @@ public class BoardController {
 			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input객체에 pk값이 저장
 			output = boardService.getBoardItem(input);
 			commentList = commentService.getCommentList(cmtInput);
-			if(boardCate==2) {
+			if(boardCate==2 && isbn!=null) {
 			book = bookService.getBookItem(book);
 			}
 

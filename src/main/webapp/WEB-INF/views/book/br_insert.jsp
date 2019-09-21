@@ -23,10 +23,21 @@
 
 <script>
 function rank_reg() {
-	alert("평점이 등록되었습니다.");
-	opener.location.reload();
-	window.close();
-	
+	if(document.form.date.value == ""){
+		var check=confirm("날짜가 입력되지 않았습니다. 오늘 날짜로 등록하시겠습니까?");
+		if(check == true){
+			opener.location.reload();
+			window.close();
+			return true;
+		}else{
+			return false;
+		}
+		
+	}else{
+		alert("평점이 등록되었습니다.");
+		opener.location.reload();
+		window.close();
+	}
 }
 </script>
 
@@ -39,12 +50,12 @@ function rank_reg() {
 		<section class="module">
 		
 			<div class="container">
-				<form method="post" action="rank_ok.do?isbn=${isbn}">
+				<form method="post" name="form" onsubmit="return rank_reg()" action="rank_ok.do?isbn=${isbn}">
 				
 				<h4 class="font-alt mb-0">읽은 날짜 등록 </h4>
 				<hr class="divider-w mt-10 mb-20">
 				
-				<input type="date"  name="date" id="date"  >
+				<input type="date"  name="date" id="date" >
 				
 			</div>
 			<div class="container">
@@ -63,10 +74,12 @@ function rank_reg() {
 						type="radio" id="value" name="value" value="3">3점 <input
 						type="radio" id="value" name="value" value="2">2점 <input
 						type="radio" id="value" name="value" value="1">1점
-						<button type="submit" class="btn btn-g btn-round btn-xs" onclick="rank_reg();" >평점등록</button>
+						<button type="submit" class="btn btn-g btn-round btn-xs" >평점등록</button>
 				</form>
 			</div>
 		</section>
 	</div>
 </body>
+
+
 </html>

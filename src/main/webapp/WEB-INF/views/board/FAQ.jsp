@@ -79,7 +79,7 @@
 											<div class="panel-collapse collapse" id="sales2">
 												<div class="panel-body font-alt"><h5>
 												회원가입은 아래의 주소를 클릭하신 후 순차적으로 진행하시면 됩니다.<br/><br/>
-												<a href="${pageContext.request.contextPath}/login/registerShow.do">http://itproject.ezenac.co.kr/pocketlib/login/registerShow.do?</a><br/><br/>
+												<a href="${pageContext.request.contextPath}/login/registerShow.do">회원가입 하러가기</a><br/><br/>
 												이후 관심있는 책을 1권이상 자유롭게 선택하시고 이메일 인증을 받으시면 회원가입이 완료됩니다.</h5>
 												</div>
 											</div>

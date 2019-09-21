@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pocketLib.spring.pocketLibSpring.helper.RegexHelper;
 import pocketLib.spring.pocketLibSpring.helper.WebHelper;
 import pocketLib.spring.pocketLibSpring.mybatis.model.Book;
 import pocketLib.spring.pocketLibSpring.mybatis.model.BookInterested;
@@ -44,7 +45,9 @@ public class BookController {
 
 	@Autowired
 	private BookInterestedService bookInterestedService;
-
+	
+	@Autowired
+	RegexHelper regexHelper;
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
