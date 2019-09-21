@@ -51,7 +51,7 @@
 
 			<div class="container">
 				<form method="post" name="form" onsubmit="return rank_reg()"
-					action="rank_ok.do?isbn=${isbn}" max="today">
+					action="rank_ok.do?isbn=${isbn}" max="today" min="min">
 
 					<h4 class="font-alt mb-0">읽은 날짜 등록</h4>
 					<hr class="divider-w mt-10 mb-20">
@@ -93,6 +93,12 @@
 	}
 
 	today = yyyy + '-' + mm + '-' + dd;
+	var min = new Date();
+	var yyyy = 1900;
+	var mm = '0' + 1;
+	var dd = '0' + 1;
+	min = yyyy+'-'+mm+'-'+dd;
+	document.getElementById("date").setAttribute("min", min);
 	document.getElementById("date").setAttribute("max", today);
 </script>
 
