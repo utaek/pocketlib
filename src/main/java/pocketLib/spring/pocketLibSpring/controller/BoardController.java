@@ -199,6 +199,9 @@ public class BoardController {
 		/** 2) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
 		String title = webHelper.getString("title");
 		String content = webHelper.getString("content");
+		
+		title = title.replaceAll(">", "&gt;");
+		title = title.replaceAll("<", "&lt;");
 
 		// 학과 이름은 필수항목이므로 입력여부를 검사
 		// 위치는 미필수(null 허용)이므로 입력여부를 검사하지 않는다

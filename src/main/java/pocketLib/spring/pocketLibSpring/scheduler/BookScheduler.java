@@ -107,6 +107,7 @@ public class BookScheduler {
 					
 					try {
 						bookService.addBestseller(book);
+						bookService.addBook(book);
 					} catch (Exception e) {
 						e.getLocalizedMessage();
 					}

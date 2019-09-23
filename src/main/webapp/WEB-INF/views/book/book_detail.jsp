@@ -201,8 +201,8 @@ to {
 													</c:forEach>
 												</c:when>
 
-												<c:when test="${output.customerReviewRank != 0}">
-													<c:forEach var="i" begin="1"
+												<c:when test="${output.customerReviewRank >= 2}">
+													<c:forEach var="i" begin="0"
 														end="${(output.customerReviewRank-2)/2}"
 														varStatus="status">
 														<i class="fa fa-star fa-2x"></i>

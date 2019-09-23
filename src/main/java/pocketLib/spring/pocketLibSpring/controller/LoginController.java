@@ -512,7 +512,7 @@ public class LoginController {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 		
-		if(countEmail >0) {
+		if(countEmail >10) {
 			return webHelper.redirect(null, "중복된 이메일입니다.");
 		}
 		try {
