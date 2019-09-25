@@ -23,8 +23,8 @@
 			column="customerReviewRank" />
 		<result property="cate" column="cate" />
 		<result property="count" column="count" />
-		
-		
+
+
 
 	</resultMap>
 	<resultMap id="SearchingMap"
@@ -80,7 +80,7 @@
 		customerReviewRank from book where isbn=#{isbn};
 
 	</select>
-	
+
 
 
 	<!-- 다중행 조회를 위한 기능 정의 -->
@@ -121,16 +121,17 @@
 		book join bookread where book.isbn = bookread.isbn and
 		userno=#{userno}
 		order by reg_date desc;
-	
+
 	</select>
-	
+
 	<!-- 유저의 읽은 책 목록 조회 -->
 	<select id="selectItembyUserNo"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.BookRead"
 		resultMap="bookMap">
 		<!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
 		select book.isbn, book.title, book.cover from
-		book join bookread where book.isbn = bookread.isbn and
+		book join bookread where
+		book.isbn = bookread.isbn and
 		userno=#{userno};
 
 	</select>
@@ -146,18 +147,39 @@
 	</select>
 
 
-	<!-- isbn 없으면 insert 하기  -->
+	<!-- isbn 없으면 insert 하기 -->
 	<insert id="insertItem"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book">
 		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
-		insert ignore into book (isbn, title, author, description, pubDate,
-		priceSales, priceStandard, cover, categoryId, categoryName,
-		publisher,customerReviewRank)
-		values (#{isbn},#{title},
-		#{author},#{description}, #{pubDate},
-		#{priceSales}, #{priceStandard},
-		#{cover}, #{categoryId},
-		#{categoryName},#{publisher},#{customerReviewRank});
+		insert into book (
+		isbn,
+		title,
+		author,
+		description,
+		pubDate,
+		priceSales,
+		priceStandard,
+		cover,
+		categoryId,
+		categoryName,
+		publisher,
+		customerReviewRank)
+		values (
+		#{isbn},
+		#{title},
+		#{author},
+		#{description},
+		#{pubDate},
+		#{priceSales},
+		#{priceStandard},
+		#{cover},
+		#{categoryId},
+		#{categoryName},
+		#{publisher},
+		#{customerReviewRank})
+		on duplicate key
+		update
+		customerReviewRank=#{customerReviewRank};
 	</insert>
 
 
@@ -210,29 +232,32 @@
 		where bookread.userno=#{userno} and
 		SUBSTRING_INDEX(SUBSTRING_INDEX(book.categoryName, '>' , 2), '>', -1)
 		in ('경제경영','과학','사회과학','소설/시/희곡','에세이','역사' ,'인문학','자기계발')
-		group by cate;
+		group by
+		cate;
 	</select>
-	
+
 	<!-- 유저가 등록한 관심책의 총 정가 -->
 	<select id="totalPriceofBookInterested"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
 		resultMap="bookMap">
 
 		select sum(priceStandard) as priceStandard from book
-		join bookinterested
+		join
+		bookinterested
 		on book.isbn=bookinterested.isbn
 		where userno=#{userno};
 	</select>
-	
+
 	<!-- 유저가 등록한 읽은책의 총 정가 -->
 	<select id="totalPriceofBookRead"
 		parameterType="pocketLib.spring.pocketLibSpring.mybatis.model.Book"
 		resultMap="bookMap">
 
 		select sum(priceStandard) as priceStandard from book
-		join bookread
+		join
+		bookread
 		on book.isbn=bookread.isbn
 		where userno=#{userno};
-		
+
 	</select>
 </mapper>

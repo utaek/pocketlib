@@ -193,24 +193,21 @@ to {
 									<tr>
 										<td>평점</td>
 										<td>
-											<!-- 여기가 평점 별  --> <c:choose>
+											<!-- 여기가 평점 별  --> 
+											<c:choose>
 												<c:when test="${output.customerReviewRank == 0}">
 													<c:forEach var="j" begin="1" end="5" varStatus="status">
 														<i class="fa fa-star-o fa-2x"></i>
-														<c:set var="j" value="${j+1}" />
-													</c:forEach>
+												</c:forEach>
 												</c:when>
-
-												<c:when test="${output.customerReviewRank >= 2}">
-													<c:forEach var="i" begin="0"
-														end="${(output.customerReviewRank-2)/2}"
+												<c:when test="${output.customerReviewRank >=2 }">
+													<c:forEach var="i" begin="1" end="${(output.customerReviewRank-2)/2}"
 														varStatus="status">
 														<i class="fa fa-star fa-2x"></i>
-														<c:set var="i" value="${i+1}" />
 													</c:forEach>
-
 												</c:when>
-											</c:choose> <c:choose>
+											</c:choose> 
+											<c:choose>
 												<c:when
 													test="${(output.customerReviewRank % 2 == 0) && output.customerReviewRank!=0}">
 
@@ -219,10 +216,16 @@ to {
 												<c:when
 													test="${(output.customerReviewRank % 2 != 0) && output.customerReviewRank!=0}">
 													<i class="fa fa-star fa-2x"></i>
-													<i class="fa fa-star-half fa-2x"></i>
+													<i class="fa fa-star-half-o fa-2x"></i>
 												</c:when>
-
-											</c:choose> (${output.customerReviewRank})
+											</c:choose>
+											<c:choose>
+												<c:when test="${output.customerReviewRank >=2 }">
+													<c:forEach var="i" begin="1" end="${(10-output.customerReviewRank)/2}" varStatus="status">
+														<i class="fa fa-star-o fa-2x"></i>
+													</c:forEach>
+												</c:when> 
+											</c:choose>(${output.customerReviewRank})
 										</td>
 									</tr>
 									<tr>
@@ -283,7 +286,7 @@ to {
 											value="읽은책 취소">
 									</form>
 								</c:when>
-								<c:when test="${totalCountbR==0}">
+								<c:when test="${userInfo!=null && totalCountbR==0}">
 									<form class="form" method="post"
 										action="${pageContext.request.contextPath}/book/br_insert.do">
 

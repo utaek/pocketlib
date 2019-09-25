@@ -28,7 +28,7 @@
     <!-- 날짜별 에러 로그 생성 -->
     <appender name="errorFile" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="Threshold" value="ERROR" />
-        <param name="File" value="/home/student/pocketlibslogs/error.log" />
+        <param name="File" value="/home/student/pocketlib/logs/error.log" />
         <param name="Append" value="true" />
         <param name="DatePattern" value="'.'yyMMdd" />
         <layout class="org.apache.log4j.PatternLayout">

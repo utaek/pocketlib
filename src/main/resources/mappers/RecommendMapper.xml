@@ -166,6 +166,6 @@
 		resultMap="bookMap">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 
-		select book.isbn,book.cover from bookread inner join book on bookread.isbn= book.isbn group by isbn order by (count(*))desc, avg(value) desc;
+		select book.isbn,book.cover from bookread inner join book on bookread.isbn= book.isbn group by isbn order by (count(*))desc, avg(value) desc limit 24;
 	</select>
 </mapper>

@@ -51,12 +51,12 @@
 
 			<div class="container">
 				<form method="post" name="form" onsubmit="return rank_reg()"
-					action="rank_ok.do?isbn=${isbn}" max="today" min="min">
+					action="rank_ok.do?isbn=${isbn}">
 
 					<h4 class="font-alt mb-0">읽은 날짜 등록</h4>
 					<hr class="divider-w mt-10 mb-20">
 
-					<input type="date" name="date" id="date">
+					<input type="date" name="date" id="date"  max="today" min="min" >
 			</div>
 			<div class="container">
 				<h4 class="font-alt mb-0">평점등록</h4>
@@ -93,6 +93,7 @@
 	}
 
 	today = yyyy + '-' + mm + '-' + dd;
+	
 	var min = new Date();
 	var yyyy = 1900;
 	var mm = '0' + 1;

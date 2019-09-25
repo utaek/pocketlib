@@ -109,36 +109,39 @@
 											<tr>
 												<td>평점</td>
 												<td>
-													<!-- 여기가 평점 별  --> <c:choose>
-														<c:when test="${item.customerReviewRank == 0}">
-															<c:forEach var="j" begin="1" end="5" varStatus="status">
-																<i class="fa fa-star-o fa-2x"></i>
-																<c:set var="j" value="${j+1}" />
-															</c:forEach>
-														</c:when>
+													<!-- 여기가 평점 별  -->
+											<c:choose>
+												<c:when test="${item.customerReviewRank == 0}">
+													<c:forEach var="j" begin="1" end="5" varStatus="status">
+														<i class="fa fa-star-o fa-2x"></i>
+												</c:forEach>
+												</c:when>
+												<c:when test="${item.customerReviewRank >=2 }">
+													<c:forEach var="i" begin="1" end="${(item.customerReviewRank-2)/2}"
+														varStatus="status">
+														<i class="fa fa-star fa-2x"></i>
+													</c:forEach>
+												</c:when>
+											</c:choose> 
+											<c:choose>
+												<c:when
+													test="${(item.customerReviewRank % 2 == 0) && item.customerReviewRank!=0}">
 
-														<c:when test="${item.customerReviewRank != 0}">
-															<c:forEach var="i" begin="1"
-																end="${(item.customerReviewRank-2)/2}"
-																varStatus="status">
-																<i class="fa fa-star fa-2x"></i>
-																<c:set var="i" value="${i+1}" />
-															</c:forEach>
-
-														</c:when>
-													</c:choose> <c:choose>
-														<c:when
-															test="${(item.customerReviewRank % 2 == 0) && item.customerReviewRank!=0}">
-
-															<i class="fa fa-star fa-2x"></i>
-														</c:when>
-														<c:when
-															test="${(item.customerReviewRank % 2 != 0) && item.customerReviewRank!=0}">
-															<i class="fa fa-star fa-2x"></i>
-															<i class="fa fa-star-half fa-2x"></i>
-														</c:when>
-
-													</c:choose> (${item.customerReviewRank})
+													<i class="fa fa-star fa-2x"></i>
+												</c:when>
+												<c:when
+													test="${(item.customerReviewRank % 2 != 0) && item.customerReviewRank!=0}">
+													<i class="fa fa-star fa-2x"></i>
+													<i class="fa fa-star-half-o fa-2x"></i>
+												</c:when>
+											</c:choose>
+											<c:choose>
+												<c:when test="${item.customerReviewRank >=2 }">
+													<c:forEach var="i" begin="1" end="${(10-item.customerReviewRank)/2}" varStatus="status">
+														<i class="fa fa-star-o fa-2x"></i>
+													</c:forEach>
+												</c:when> 
+											</c:choose>(${item.customerReviewRank})
 
 												</td>
 											</tr>

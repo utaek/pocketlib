@@ -345,7 +345,7 @@ public class BookController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/book/rank_ok.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/book/rank_ok.do", method =RequestMethod.POST)
 	public ModelAndView rankOK(Model model, HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
