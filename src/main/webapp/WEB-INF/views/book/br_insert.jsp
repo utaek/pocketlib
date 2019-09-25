@@ -51,19 +51,20 @@
 
 			<div class="container">
 				<form method="post" name="form" onsubmit="return rank_reg()"
-					action="rank_ok.do?isbn=${isbn}">
+					action="rank_ok.do">
 
 					<h4 class="font-alt mb-0">읽은 날짜 등록</h4>
 					<hr class="divider-w mt-10 mb-20">
 
-					<input type="date" name="date" id="date"  max="today" min="min" >
+					<input type="date" name="date" id="date" max="today" min="min" >
 			</div>
 			<div class="container">
 				<h4 class="font-alt mb-0">평점등록</h4>
 				<hr class="divider-w mt-10 mb-20">
-
-				<input type="hidden" id="userno" name="userno"
-					value="${userInfo.userno}"> <input type="radio" id="value"
+ 
+				<input type="hidden" id="userno" name="userno" value="${userInfo.userno}">
+				<input type="hidden" id="isbn" name="isbn" value="${isbn}">
+				<input type="radio" id="value"
 					name="value" value="10" checked>10점 <input type="radio"
 					id="value" name="value" value="9">9점 <input type="radio"
 					id="value" name="value" value="8">8점 <input type="radio"
