@@ -22,110 +22,7 @@
 <!-- Stylesheets -->
 <%@ include file="/WEB-INF/views/inc/style.jsp"%>
 
-<style>
-/* Popup container - can be anything you want */
-.popup {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
 
-/* The actual popup */
-.popup .popuptext {
-	visibility: hidden;
-	width: 160px;
-	background-color: #555;
-	color: #fff;
-	text-align: center;
-	border-radius: 6px;
-	padding: 8px 0;
-	position: absolute;
-	z-index: 1;
-	bottom: 125%;
-	left: 50%;
-	margin-left: -80px;
-}
-
-.popup .popuptext2 {
-	visibility: hidden;
-	width: 180px;
-	background-color: #555;
-	color: #fff;
-	text-align: center;
-	border-radius: 6px;
-	padding: 8px 0;
-	position: absolute;
-	z-index: 1;
-	bottom: 125%;
-	left: 50%;
-	margin-left: -80px;
-}
-
-/* Popup arrow */
-.popup .popuptext::after {
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	margin-left: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class - hide and show the popup */
-.popup .show {
-	visibility: visible;
-	-webkit-animation: fadeIn 1s;
-	animation: fadeIn 1s;
-}
-
-/* Add animation (fade in the popup) */
-@
--webkit-keyframes fadeIn {
-	from {opacity: 0;
-}
-
-to {
-	opacity: 1;
-}
-
-}
-@
-keyframes fadeIn {
-	from {opacity: 0;
-}
-
-to {
-	opacity: 1;
-}
-}
-</style>
-
-<script>
-	function showPopup(frm) {
-		var url = "br_insert.do";
-		var title = "br_insert";
-		var status = "width=600, height=500";
-
-		window.open("", title, status);
-
-		frm.target = title;
-		frm.action = url;
-		frm.method = "post";
-		frm.submit();
-	}
-
-	function m_over() {
-
-		var popup = document.getElementById("myPopup");
-		popup.classList.toggle("show");
-	}
-</script>
 
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -136,8 +33,6 @@ to {
 	</div>
 	<!-- Nav bar -->
 	<%@ include file="/WEB-INF/views/inc/navbar.jsp"%>
-
-
 
 
 	<div class="main">
@@ -291,9 +186,8 @@ to {
 										action="${pageContext.request.contextPath}/book/br_insert.do">
 
 										<input type="hidden" name="isbn" value="${output.isbn}">
-										<input type="button" class="btn btn-d btn-round"
-											value="읽은책 등록" onclick="javascript:showPopup(this.form);" />
-
+							
+										<input type="submit" class="btn btn-d btn-round" value="읽은책 등록"  />
 									</form>
 								</c:when>
 							</c:choose>

@@ -234,11 +234,8 @@ public class BookController {
 			return webHelper.redirect(null, "로그인 후 이용하세요.");
 			
 		}
-
-
         
 		String isbn = webHelper.getString("isbn");
-
 		
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("isbn", isbn);
@@ -384,9 +381,9 @@ public class BookController {
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-
-		String viewPath = "book/book_detail";
-		return new ModelAndView(viewPath);
+		
+		return webHelper.redirect("book_detail.do?isbn="+isbn, "읽은 책 목록에 추가되었습니다");
+		
 	}
 	
 	
