@@ -491,9 +491,11 @@ public class BoardController {
 		boardInput.setBoardNo(boardNo);
 		lH.setBoardNo(boardNo);
 		lH.setUserNo(No);
+		Board output = new Board();
 
 		try {
 			count = lovehateService.getLoveHateOptionCount(lH);
+			output = boardService.getBoardItem(boardInput);
 		} catch (Exception e) {
 
 			return webHelper.redirect(null, e.getLocalizedMessage());
@@ -525,8 +527,7 @@ public class BoardController {
 
 		}
 
-		/** 3) 데이터 저장하기 */
-		// 저장할 값들을 Beans에 담는다
+		
 		LoveHate input = new LoveHate();
 		input.setBoardNo(boardNo);
 		input.setUserNo(No);
@@ -542,9 +543,9 @@ public class BoardController {
 		/** 5) 결과를 확인하기 위한 페이지 이동 */
 		// 저장 결과를 확인하기 위해서 데이터 저장시 생성된 pk값을 상세 페이지로 전달
 		if (input.getLoveType() == 0) {
-			return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardNo, "추천되었습니다.");
+			return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardNo + "&isbn=" + output.getIsbn(), "추천되었습니다.");
 		} else {
-			return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardNo, "비추천되었습니다.");
+			return webHelper.redirect("board_view.do?boardCate=" + boardCate + "&boardNo=" + boardNo + "&isbn=" + output.getIsbn(), "비추천되었습니다.");
 		}
 
 	}
